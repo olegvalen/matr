@@ -66,3 +66,4 @@ class Category extends ActiveRecord
     }
 
 }
+//

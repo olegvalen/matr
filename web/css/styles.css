@@ -4502,7 +4502,7 @@ footer .footer-block {
   font-size: 16px;
 }
 .input-group-btn:last-child > .btn {
-  margin-left: 0px;
+  margin-left: 0;
 }
 button {
   color: #fff;
@@ -4676,7 +4676,7 @@ label {
   position: absolute;
   opacity: 0;
   cursor: pointer;
-  left: 0px;
+  left: 0;
 }
 /* Create a custom checkbox */
 .checkmark {
@@ -4726,7 +4726,7 @@ label {
   padding: 0 20px 20px 20px;
 }
 .sidebar .block:first-child {
-  margin-top: 0px;
+  margin-top: 0;
 }
 .block-content li {
   margin-top: 10px;

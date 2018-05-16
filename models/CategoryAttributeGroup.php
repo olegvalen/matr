@@ -22,3 +22,4 @@ class CategoryAttributeGroup extends ActiveRecord
 //        return $this->hasMany(AttributeDescription::class, ['attribute_id' => 'attribute_ id'])->via('attribute');
 //    }
 }
+//

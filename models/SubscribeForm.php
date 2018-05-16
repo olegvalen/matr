@@ -23,3 +23,4 @@ class SubscribeForm extends Model
         ];
     }
 }
+//

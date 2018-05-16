@@ -11,3 +11,4 @@ class ProductOption extends ActiveRecord
 //        return $this->hasOne(AttributeGroupDescription::className(), ['attribute_group_id' => 'attribute_group_id']);
 //    }
 }
+//

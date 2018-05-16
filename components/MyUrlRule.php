@@ -48,3 +48,4 @@ class MyUrlRule implements UrlRuleInterface
         return false;  // данное правило не применимо
     }
 }
+//

@@ -8,3 +8,4 @@ class AttributeGroupDescription extends ActiveRecord
 {
 
 }
+//

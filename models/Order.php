@@ -16,3 +16,4 @@ class Order extends ActiveRecord
         return $this->hasMany(Item::class, ['id' => 'item_id'])->viaTable('order_item', ['order_id' => 'id']);
     }
 }
+//

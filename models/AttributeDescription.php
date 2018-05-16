@@ -12,3 +12,4 @@ class AttributeDescription extends ActiveRecord
 //    }
 
 }
+//

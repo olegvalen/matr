@@ -11,3 +11,4 @@ class Attribute extends ActiveRecord
         return $this->hasOne(AttributeDescription::class, ['attribute_id' => 'attribute_id']);
     }
 }
+//
