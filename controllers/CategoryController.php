@@ -19,7 +19,26 @@ class CategoryController extends Controller
 
         $data = [];
 
-        $data['filter'] = Category::getFilter(Yii::$app->request->get('category'));
+        $categoryAQ = Category::getCategoryAQBySeoUrl(Yii::$app->request->get('category'));
+        $category = Category::getCategoryByAQ($categoryAQ);
+
+        $data['filter'] = Category::getFilter($categoryAQ);
+        $data['title'] = $category->name;
+
+//        $products = Category::getProductsByCategory($)
+
+//        $query = Article::find()->where(['status' => 1]);
+//        $countQuery = clone $query;
+//        $pages = new Pagination(['totalCount' => $countQuery->count()]);
+//        $models = $query->offset($pages->offset)
+//            ->limit($pages->limit)
+//            ->all();
+//
+//        return $this->render('index', [
+//            'models' => $models,
+//            'pages' => $pages,
+//        ]);
+
 
         return $this->render('index', $data);
     }

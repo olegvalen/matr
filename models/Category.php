@@ -24,10 +24,20 @@ class Category extends ActiveRecord
 //            ->viaTable('category_attribute_group', ['category_id' => 'category_id']);
 //    }
 
-    public static function getFilter($categoryName)
+    public static function getCategoryAQBySeoUrl($seoUrl)
+    {
+        return Category::find()->where(['seo_url' => $seoUrl])->limit(1);
+    }
+
+    public static function getCategoryByAQ($categoryAQ)
+    {
+        return $categoryAQ->one();
+    }
+
+    public static function getFilter($categoryAQ)
     {
         $filter = [];
-        $category = Category::find()
+        $category = $categoryAQ
             ->joinWith(
                 [
                     'attributeGroups ag' => function ($query) {
@@ -37,10 +47,7 @@ class Category extends ActiveRecord
                                     $query->onCondition(['agd.language_id' => 1]);
                                 }]);
                     }])
-            ->where(['seo_url' => $categoryName])
-            ->limit(1)
             ->one();
-
         foreach ($category->attributeGroups as $ag) {
             $attributes = $ag->getMyAttributes()
                 ->with('attributeDescriptions')

@@ -2,12 +2,32 @@ $(document).ready(function () {
     "use strict";
 
     $(window).resize(function () {
+
         if (window.matchMedia('(min-width: 768px)').matches) {
             $('.nav-li>.dropdown-menu').removeClass('min-width768');
         } else {
             $('.nav-li>.dropdown-menu').addClass('min-width768');
         }
+
+        if (window.matchMedia('(min-width: 992px)').matches) {
+            $('.top-menu2').addClass('open');
+        } else {
+            $('.top-menu2').removeClass('open');
+        }
+
     });
+
+    if (window.matchMedia('(min-width: 768px)').matches) {
+        $('.nav-li>.dropdown-menu').removeClass('min-width768');
+    } else {
+        $('.nav-li>.dropdown-menu').addClass('min-width768');
+    }
+
+    if (window.matchMedia('(min-width: 992px)').matches) {
+        $('.top-menu2').addClass('open');
+    } else {
+        $('.top-menu2').removeClass('open');
+    }
 
     $('.nav-li').mouseenter(function () {
         $(this)
@@ -34,19 +54,24 @@ $(document).ready(function () {
 
     $('.item-grid>ul>li').hover(
         function () {
-            $(this).find('ul').css('display', 'inline-flex');
-            $(this).find('.text-center a').css('color', '#CD8250');
+            var self = $(this);
+            self.find('ul').css('display', 'inline-flex');
+            self.find('.text-center a').css('color', '#CD8250');
+            self.css('border', '1px solid #505050');
         },
         function () {
-            $(this).find('ul').css('display', 'none');
-            $(this).find('.text-center a').css('color', '#505050');
+            var self = $(this);
+            self.find('ul').css('display', 'none');
+            self.find('.text-center a').css('color', '#505050');
+            self.css('border', 'none');
         }
     );
 
-    $('.dropdown-toggle').click(function () {
-            $('.nav.dropdown-menu').toggle(128);
-        }
-    );
+    // $('.dropdown-toggle').click(function () {
+    //         var self = $(this);
+    //         self.find('.dropdown-menu').toggle(128);
+    //     }
+    // );
 
     /******************************
      BOTTOM SCROLL TOP BUTTON

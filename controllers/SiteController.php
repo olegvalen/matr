@@ -64,14 +64,11 @@ class SiteController extends Controller
     public function actionIndex()
     {
 
-        $productsCheap = Product::find()->where(['product_id' => [10, 1, 4, 5]])->asArray()->all();
-        $productsPopular = Product::find()->where(['product_id' => [2, 7, 11, 9]])->asArray()->all();
-        $productsPremium = Product::find()->where(['product_id' => [14, 12, 15, 13]])->asArray()->all();
         $modelSubscribeForm = new SubscribeForm();
         return $this->render('index', [
-            'productsCheap' => $productsCheap,
-            'productsPopular' => $productsPopular,
-            'productsPremium' => $productsPremium,
+            'productsCheap' => Product::getProductsByIds([10, 1, 4, 5]),
+            'productsPopular' => Product::getProductsByIds([2, 7, 11, 9]),
+            'productsPremium' => Product::getProductsByIds([14, 12, 15, 13]),
             'modelSubscribeForm' => $modelSubscribeForm,
         ]);
 
