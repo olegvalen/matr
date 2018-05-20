@@ -467,6 +467,129 @@ label {
   transform: rotate(45deg);
 }
 
+.col-left {
+  margin: 30px 0;
+  .block {
+    background-color: #FCFCFC;
+    border-top: 3px solid #d9d9d9;
+    padding: 0 20px 20px 20px;
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+}
+
+.block-content {
+  li {
+    margin-top: 10px;
+    font-size: 13px;
+  }
+  > ul > div {
+    font-size: 16px;
+  }
+  > ul {
+    border-bottom: 1px solid #e3e3e3;
+    &:first-child {
+      margin-top: 10px;
+    }
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+}
+
+.page-title h1 {
+  color: #000;
+  //text-transform: none;
+  font-size: 29px;
+  font-weight: 600;
+  border-bottom: 0;
+  padding-bottom: 3px;
+  margin: 0 0 30px;
+}
+
+.col-main {
+  margin: 30px 0;
+}
+
+.toolbar {
+  line-height: 32px;
+  font-size: 13px;
+  color: #878787;
+  margin: 0 0 30px;
+  border: 1px solid #e4e4e4;
+  background: #f9f9f9;
+  padding: 9px 10px 0px;
+  label {
+    float: left;
+    margin: 0 13px 0 0;
+    font-weight: 300;
+  }
+  .toolbar {
+    float: right;
+    margin: 0;
+    border: 0;
+    background: transparent;
+    padding: 0;
+  }
+  .toolbar-dropdown {
+    position: relative;
+    float: left;
+    margin-right: 13px;
+    height: 32px;
+    a span {
+      padding-left: 30px;
+      font-size: 10px;
+    }
+    .dropdown-toggle {
+      padding: 0 10px;
+      background: #fff;
+      border: 1px solid #e4e4e4;
+      color: #505050;
+      display: inline-block;
+      height: 32px;
+      line-height: 31px;
+    }
+    .dropdown-menu {
+      border-top: 3px solid #CD8250;
+      background: #fff;
+      -webkit-box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.15);
+      -moz-box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.15);
+      box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.15);
+      a {
+        display: block;
+        padding: 0 15px;
+        line-height: 33px;
+        font-size: 12px;
+        color: #363636;
+      }
+    }
+  }
+}
+
+.sorter {
+  float: left;
+  margin-bottom: 10px;
+  > .sort-by {
+    //float: left;
+  }
+}
+
+.pagination {
+  float: right;
+  margin: 0 0 10px;
+  line-height: 32px;
+  font-size: 13px;
+  color: #878787;
+}
+
+.pagination {
+  > .disabled > span, > .disabled > span:hover {
+    background-color: transparent;
+    border-color: transparent;
+  }
+}
+
 //MEDIA
 @media (max-width: 991px) {
   .search-btn {
@@ -632,124 +755,10 @@ label {
   .subscribe-container {
     margin-bottom: 10px;
   }
-}
 
-.col-left {
-  margin: 30px 0;
-  .block {
-    background-color: #FCFCFC;
-    border-top: 3px solid #d9d9d9;
-    padding: 0 20px 20px 20px;
-    &:first-child {
-      margin-top: 0;
-    }
-  }
-}
-
-.block-content {
-  li {
-    margin-top: 10px;
-    font-size: 13px;
-  }
-  > ul > div {
-    font-size: 16px;
-  }
-  > ul {
-    border-bottom: 1px solid #e3e3e3;
-    &:first-child {
-      margin-top: 10px;
-    }
-    &:last-child {
-      border-bottom: 0;
-    }
-  }
-}
-
-.page-title h1 {
-  color: #000;
-  //text-transform: none;
-  font-size: 29px;
-  font-weight: 600;
-  border-bottom: 0;
-  padding-bottom: 3px;
-  margin: 0 0 30px;
-}
-
-.col-main {
-  margin: 30px 0;
-}
-
-.toolbar {
-  line-height: 32px;
-  font-size: 13px;
-  color: #878787;
-  margin: 0 0 30px;
-  border: 1px solid #e4e4e4;
-  background: #f9f9f9;
-  padding: 9px 10px 0px;
-  label {
+  .pagination {
     float: left;
-    margin: 0 13px 0 0;
-    font-weight: 300;
-  }
-  .toolbar {
-    float: right;
-    margin: 0;
-    border: 0;
-    background: transparent;
-    padding: 0;
-  }
-  .toolbar-dropdown {
-    position: relative;
-    float: left;
-    margin-right: 13px;
-    height: 32px;
-    a span {
-      padding-left: 30px;
-      font-size: 10px;
-    }
-    .dropdown-toggle {
-      padding: 0 10px;
-      background: #fff;
-      border: 1px solid #e4e4e4;
-      color: #505050;
-      display: inline-block;
-      height: 32px;
-      line-height: 31px;
-    }
-    .dropdown-menu {
-      border-top: 3px solid #CD8250;
-      background: #fff;
-      -webkit-box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.15);
-      -moz-box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.15);
-      box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.15);
-      a {
-        display: block;
-        padding: 0 15px;
-        line-height: 33px;
-        font-size: 12px;
-        color: #363636;
-      }
-    }
   }
 }
 
-.sorter {
-  float: left;
-  margin-bottom: 10px;
-  > .sort-by {
-    //float: left;
-  }
-}
-
-.pager {
-  float: right;
-  margin: 0 0 10px;
-  line-height: 32px;
-  font-size: 13px;
-  color: #878787;
-}
-
-.pages {
-  float: right;
-}
+//MEDIA

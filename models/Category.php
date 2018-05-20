@@ -18,20 +18,20 @@ class Category extends ActiveRecord
 
     }
 
+//    public function getProducts()
+//    {
+//        return $this->hasMany(Product::class, ['category_id' => 'category_id']);
+//    }
+
 //    public function getAttributeGroupDescriptions()
 //    {
 //        return $this->hasMany(AttributeGroupDescription::class, ['attribute_group_id' => 'attribute_group_id'])
 //            ->viaTable('category_attribute_group', ['category_id' => 'category_id']);
 //    }
 
-    public static function getCategoryAQBySeoUrl($seoUrl)
+    public static function getCategoryQueryBySeoUrl($seoUrl)
     {
         return Category::find()->where(['seo_url' => $seoUrl])->limit(1);
-    }
-
-    public static function getCategoryByAQ($categoryAQ)
-    {
-        return $categoryAQ->one();
     }
 
     public static function getFilter($categoryAQ)

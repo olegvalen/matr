@@ -5,7 +5,7 @@
                title="<?= $item['name'] ?>"
                class="product-image">
 
-                <img class="img-responsive" src="<?php echo "images/{$item['image']}" ?>"
+                <img class="img-responsive" src="<?php echo "/images/{$item['image']}" ?>"
                      alt="<?= $item['name'] ?>">
             </a>
             <div class="product-info">

@@ -13,21 +13,38 @@ class MyUrlRule implements UrlRuleInterface
         $parts = explode('/', $route);
         if (count($parts) == 2) {
             if ($parts[0] == 'category') {
+                if ($parts[1] == 'index') {
+                    if (isset($params['category'])) {
+                        if (isset($params['sort'])) {
+                            return $params['category'] . '?' . 'sort=' . $params['sort'];
+                        } else {
+                            $url = $params['category'];
+                            $urlSuffix = '';
+                            foreach ($params as $key => $value) {
+                                if ($key == 'category') continue;
+                                $urlSuffix .= "$key=$value&";
+                            }
+                            return $url . '?' . rtrim($urlSuffix, '&');
+                        }
+                    } else
+                        return false;
+                }
                 $model = Category::findOne($parts[1]);
                 return $model->seo_url;
             }
-            return false;
-        }
 
-        if ($route === 'car/index') {
-            if (isset($params['manufacturer'], $params['model'])) {
-                return $params['manufacturer'] . '/' . $params['model'];
-            } elseif (isset($params['manufacturer'])) {
-                return $params['manufacturer'];
+            if ($route === 'car/index') {
+                if (isset($params['manufacturer'], $params['model'])) {
+                    return $params['manufacturer'] . '/' . $params['model'];
+                } elseif
+                (isset($params['manufacturer'])) {
+                    return $params['manufacturer'];
+                }
             }
+            return false;  // данное правило не применимо
         }
-        return false;  // данное правило не применимо
     }
+
 
     public function parseRequest($manager, $request)
     {

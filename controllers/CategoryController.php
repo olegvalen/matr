@@ -9,7 +9,9 @@
 namespace app\controllers;
 
 use app\models\Category;
+use app\models\Product;
 use Yii;
+use yii\data\Pagination;
 use yii\web\Controller;
 
 class CategoryController extends Controller
@@ -19,26 +21,19 @@ class CategoryController extends Controller
 
         $data = [];
 
-        $categoryAQ = Category::getCategoryAQBySeoUrl(Yii::$app->request->get('category'));
-        $category = Category::getCategoryByAQ($categoryAQ);
+        $categoryQuery = Category::getCategoryQueryBySeoUrl(Yii::$app->request->get('category'));
+        $category = $categoryQuery->one();
 
-        $data['filter'] = Category::getFilter($categoryAQ);
+        $data['filter'] = Category::getFilter($categoryQuery);
         $data['title'] = $category->name;
 
-//        $products = Category::getProductsByCategory($)
-
-//        $query = Article::find()->where(['status' => 1]);
-//        $countQuery = clone $query;
-//        $pages = new Pagination(['totalCount' => $countQuery->count()]);
-//        $models = $query->offset($pages->offset)
-//            ->limit($pages->limit)
-//            ->all();
-//
-//        return $this->render('index', [
-//            'models' => $models,
-//            'pages' => $pages,
-//        ]);
-
+        $productsQuery = Product::getProductsQueryByCategory($category->category_id);
+        $pages = new Pagination(['totalCount' => $productsQuery->count(), 'pageSize' => 10]);
+//        $pages = new Pagination(['totalCount' => $productsQuery->count()]);
+        $pages->pageSizeParam = false;
+        $products = $productsQuery->offset($pages->offset)->limit($pages->limit)->all();
+        $data['products'] = $products;
+        $data['pages'] = $pages;
 
         return $this->render('index', $data);
     }

@@ -3775,6 +3775,140 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   z-index: 2;
   margin-left: -1px;
 }
+.pagination {
+  display: inline-block;
+  padding-left: 0;
+  margin: 20px 0;
+  border-radius: 4px;
+}
+.pagination > li {
+  display: inline;
+}
+.pagination > li > a,
+.pagination > li > span {
+  position: relative;
+  float: left;
+  padding: 6px 12px;
+  line-height: 1.42857143;
+  text-decoration: none;
+  color: #252525;
+  background-color: transparent;
+  border: 1px solid transparent;
+  margin-left: -1px;
+}
+.pagination > li:first-child > a,
+.pagination > li:first-child > span {
+  margin-left: 0;
+  border-bottom-left-radius: 4px;
+  border-top-left-radius: 4px;
+}
+.pagination > li:last-child > a,
+.pagination > li:last-child > span {
+  border-bottom-right-radius: 4px;
+  border-top-right-radius: 4px;
+}
+.pagination > li > a:hover,
+.pagination > li > span:hover,
+.pagination > li > a:focus,
+.pagination > li > span:focus {
+  z-index: 2;
+  color: #CD8250;
+  background-color: transparent;
+  border-color: transparent;
+}
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
+  z-index: 3;
+  color: #878787;
+  background-color: #fff;
+  border-color: #ccc;
+  cursor: default;
+}
+.pagination > .disabled > span,
+.pagination > .disabled > span:hover,
+.pagination > .disabled > span:focus,
+.pagination > .disabled > a,
+.pagination > .disabled > a:hover,
+.pagination > .disabled > a:focus {
+  color: #777;
+  background-color: #fff;
+  border-color: #ddd;
+  cursor: not-allowed;
+}
+.pagination-lg > li > a,
+.pagination-lg > li > span {
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.3333333;
+}
+.pagination-lg > li:first-child > a,
+.pagination-lg > li:first-child > span {
+  border-bottom-left-radius: 6px;
+  border-top-left-radius: 6px;
+}
+.pagination-lg > li:last-child > a,
+.pagination-lg > li:last-child > span {
+  border-bottom-right-radius: 6px;
+  border-top-right-radius: 6px;
+}
+.pagination-sm > li > a,
+.pagination-sm > li > span {
+  padding: 5px 10px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.pagination-sm > li:first-child > a,
+.pagination-sm > li:first-child > span {
+  border-bottom-left-radius: 3px;
+  border-top-left-radius: 3px;
+}
+.pagination-sm > li:last-child > a,
+.pagination-sm > li:last-child > span {
+  border-bottom-right-radius: 3px;
+  border-top-right-radius: 3px;
+}
+.pager {
+  padding-left: 0;
+  margin: 20px 0;
+  list-style: none;
+  text-align: center;
+}
+.pager li {
+  display: inline;
+}
+.pager li > a,
+.pager li > span {
+  display: inline-block;
+  padding: 5px 14px;
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: 15px;
+}
+.pager li > a:hover,
+.pager li > a:focus {
+  text-decoration: none;
+  background-color: transparent;
+}
+.pager .next > a,
+.pager .next > span {
+  float: right;
+}
+.pager .previous > a,
+.pager .previous > span {
+  float: left;
+}
+.pager .disabled > a,
+.pager .disabled > a:hover,
+.pager .disabled > a:focus,
+.pager .disabled > span {
+  color: #777;
+  background-color: transparent;
+  cursor: not-allowed;
+}
 .modal-open {
   overflow: hidden;
 }
@@ -3914,6 +4048,8 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .btn-toolbar:after,
 .btn-group-vertical > .btn-group:before,
 .btn-group-vertical > .btn-group:after,
+.pager:before,
+.pager:after,
 .modal-header:before,
 .modal-header:after,
 .modal-footer:before,
@@ -3929,6 +4065,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .form-horizontal .form-group:after,
 .btn-toolbar:after,
 .btn-group-vertical > .btn-group:after,
+.pager:after,
 .modal-header:after,
 .modal-footer:after {
   clear: both;
@@ -4581,6 +4718,114 @@ label {
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
+.col-left {
+  margin: 30px 0;
+}
+.col-left .block {
+  background-color: #FCFCFC;
+  border-top: 3px solid #d9d9d9;
+  padding: 0 20px 20px 20px;
+}
+.col-left .block:first-child {
+  margin-top: 0;
+}
+.block-content li {
+  margin-top: 10px;
+  font-size: 13px;
+}
+.block-content > ul > div {
+  font-size: 16px;
+}
+.block-content > ul {
+  border-bottom: 1px solid #e3e3e3;
+}
+.block-content > ul:first-child {
+  margin-top: 10px;
+}
+.block-content > ul:last-child {
+  border-bottom: 0;
+}
+.page-title h1 {
+  color: #000;
+  font-size: 29px;
+  font-weight: 600;
+  border-bottom: 0;
+  padding-bottom: 3px;
+  margin: 0 0 30px;
+}
+.col-main {
+  margin: 30px 0;
+}
+.toolbar {
+  line-height: 32px;
+  font-size: 13px;
+  color: #878787;
+  margin: 0 0 30px;
+  border: 1px solid #e4e4e4;
+  background: #f9f9f9;
+  padding: 9px 10px 0px;
+}
+.toolbar label {
+  float: left;
+  margin: 0 13px 0 0;
+  font-weight: 300;
+}
+.toolbar .toolbar {
+  float: right;
+  margin: 0;
+  border: 0;
+  background: transparent;
+  padding: 0;
+}
+.toolbar .toolbar-dropdown {
+  position: relative;
+  float: left;
+  margin-right: 13px;
+  height: 32px;
+}
+.toolbar .toolbar-dropdown a span {
+  padding-left: 30px;
+  font-size: 10px;
+}
+.toolbar .toolbar-dropdown .dropdown-toggle {
+  padding: 0 10px;
+  background: #fff;
+  border: 1px solid #e4e4e4;
+  color: #505050;
+  display: inline-block;
+  height: 32px;
+  line-height: 31px;
+}
+.toolbar .toolbar-dropdown .dropdown-menu {
+  border-top: 3px solid #CD8250;
+  background: #fff;
+  -webkit-box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.15);
+  box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.15);
+}
+.toolbar .toolbar-dropdown .dropdown-menu a {
+  display: block;
+  padding: 0 15px;
+  line-height: 33px;
+  font-size: 12px;
+  color: #363636;
+}
+.sorter {
+  float: left;
+  margin-bottom: 10px;
+}
+.pagination {
+  float: right;
+  margin: 0 0 10px;
+  line-height: 32px;
+  font-size: 13px;
+  color: #878787;
+}
+.pagination > .disabled > span,
+.pagination > .disabled > span:hover {
+  background-color: transparent;
+  border-color: transparent;
+}
 @media (max-width: 991px) {
   .search-btn {
     display: table-cell;
@@ -4717,110 +4962,7 @@ label {
   .subscribe-container {
     margin-bottom: 10px;
   }
-}
-.col-left {
-  margin: 30px 0;
-}
-.col-left .block {
-  background-color: #FCFCFC;
-  border-top: 3px solid #d9d9d9;
-  padding: 0 20px 20px 20px;
-}
-.col-left .block:first-child {
-  margin-top: 0;
-}
-.block-content li {
-  margin-top: 10px;
-  font-size: 13px;
-}
-.block-content > ul > div {
-  font-size: 16px;
-}
-.block-content > ul {
-  border-bottom: 1px solid #e3e3e3;
-}
-.block-content > ul:first-child {
-  margin-top: 10px;
-}
-.block-content > ul:last-child {
-  border-bottom: 0;
-}
-.page-title h1 {
-  color: #000;
-  font-size: 29px;
-  font-weight: 600;
-  border-bottom: 0;
-  padding-bottom: 3px;
-  margin: 0 0 30px;
-}
-.col-main {
-  margin: 30px 0;
-}
-.toolbar {
-  line-height: 32px;
-  font-size: 13px;
-  color: #878787;
-  margin: 0 0 30px;
-  border: 1px solid #e4e4e4;
-  background: #f9f9f9;
-  padding: 9px 10px 0px;
-}
-.toolbar label {
-  float: left;
-  margin: 0 13px 0 0;
-  font-weight: 300;
-}
-.toolbar .toolbar {
-  float: right;
-  margin: 0;
-  border: 0;
-  background: transparent;
-  padding: 0;
-}
-.toolbar .toolbar-dropdown {
-  position: relative;
-  float: left;
-  margin-right: 13px;
-  height: 32px;
-}
-.toolbar .toolbar-dropdown a span {
-  padding-left: 30px;
-  font-size: 10px;
-}
-.toolbar .toolbar-dropdown .dropdown-toggle {
-  padding: 0 10px;
-  background: #fff;
-  border: 1px solid #e4e4e4;
-  color: #505050;
-  display: inline-block;
-  height: 32px;
-  line-height: 31px;
-}
-.toolbar .toolbar-dropdown .dropdown-menu {
-  border-top: 3px solid #CD8250;
-  background: #fff;
-  -webkit-box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.15);
-  -moz-box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.15);
-  box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.15);
-}
-.toolbar .toolbar-dropdown .dropdown-menu a {
-  display: block;
-  padding: 0 15px;
-  line-height: 33px;
-  font-size: 12px;
-  color: #363636;
-}
-.sorter {
-  float: left;
-  margin-bottom: 10px;
-}
-.pager {
-  float: right;
-  margin: 0 0 10px;
-  line-height: 32px;
-  font-size: 13px;
-  color: #878787;
-}
-.pages {
-  float: right;
+  .pagination {
+    float: left;
+  }
 }
