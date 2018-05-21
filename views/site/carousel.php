@@ -1,16 +1,20 @@
+<?php
+
+use yii\helpers\Url;
+
+?>
 <ul>
     <?php foreach ($products as $item): ?>
         <li>
-            <a href="https://www.organize.com/brio-polished-porcelain-ceramic-water-dispenser-crock-with-faucet-lead-free-small-marble-blue.html"
+            <a href="<?= Url::to("/{$item['seo_url']}") ?>"
                title="<?= $item['name'] ?>"
                class="product-image">
-
                 <img class="img-responsive" src="<?php echo "/images/{$item['image']}" ?>"
                      alt="<?= $item['name'] ?>">
             </a>
             <div class="product-info">
                 <h3 class="text-center">
-                    <a href="https://www.organize.com/brio-polished-porcelain-ceramic-water-dispenser-crock-with-faucet-lead-free-small-marble-blue.html"
+                    <a href="<?= Url::to("/{$item['seo_url']}") ?>"
                        title="<?= $item['name'] ?>">
                         <?= $item['name'] ?></a></h3>
                 <div class="desc-border"></div>

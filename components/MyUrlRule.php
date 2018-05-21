@@ -15,23 +15,26 @@ class MyUrlRule implements UrlRuleInterface
             if ($parts[0] == 'category') {
                 if ($parts[1] == 'index') {
                     if (isset($params['category'])) {
-                        if (isset($params['sort'])) {
-                            return $params['category'] . '?' . 'sort=' . $params['sort'];
-                        } else {
-                            $url = $params['category'];
-                            $urlSuffix = '';
-                            foreach ($params as $key => $value) {
-                                if ($key == 'category') continue;
-                                $urlSuffix .= "$key=$value&";
+                        if (isset($params['sort'], $params['page'])) {
+                            $params_keys = array_keys($params);
+                            if (array_search('sort', $params_keys) > array_search('page', $params_keys)) {
+//                                return $params['category'] . '?sort=' . $params['sort'];
+                                return "{$params['category']}?sort={$params['sort']}";
                             }
-                            return $url . '?' . rtrim($urlSuffix, '&');
                         }
-                    } else
-                        return false;
+                    }
+                    $url = $params['category'];
+                    $urlSuffix = '';
+                    foreach ($params as $key => $value) {
+                        if ($key == 'category') continue;
+                        if (isset($value))
+                            $urlSuffix .= "$key=$value&";
+                    }
+                    return $url . '?' . rtrim($urlSuffix, '&');
                 }
-                $model = Category::findOne($parts[1]);
-                return $model->seo_url;
             }
+            $model = Category::findOne($parts[1]);
+            return $model->seo_url;
 
             if ($route === 'car/index') {
                 if (isset($params['manufacturer'], $params['model'])) {
@@ -48,12 +51,24 @@ class MyUrlRule implements UrlRuleInterface
 
     public function parseRequest($manager, $request)
     {
+        ///toppery/filter/category=nedorogie,premium;size=90x190
+
         $pathInfo = $request->getPathInfo();
         //$data = htmlspecialchars($data, ENT_COMPAT, 'UTF-8');
+
         $parts = explode('/', $pathInfo);
+
         if (count($parts) == 1) {
             //one word
             return ['category/index', array('category' => $parts[0])];
+        } elseif ($parts[1] == 'filter') {
+            $params = ['category' => $parts[0]];
+            $filters = explode(';', $parts[2]);
+            foreach ($filters as $filter) {
+                $attributeGroup = explode('=', $filter);
+                $params[$attributeGroup[0] . 'Filter'] = $attributeGroup[1];
+            }
+            return ['category/index', $params];
         }
 
         if (preg_match('%^(\w+)(/(\w+))?$%', $pathInfo, $matches)) {

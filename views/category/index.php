@@ -14,10 +14,8 @@ use yii\helpers\Url;
                             <div><?= $agd['name'] ?></div>
                             <li>
                                 <?php foreach ($agd['attrs'] as $ad): ?>
-                                    <label class="container-label"><?= $ad['name'] ?>
-                                        <input type="checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
+                                    <label class="container-label"><a href="<?= $ad['href'] ?>"><?= $ad['name'] ?><input
+                                                    type="checkbox"><span class="checkmark"></span></a></label>
                                 <?php endforeach; ?>
                             </li>
                         </ul>
@@ -36,17 +34,20 @@ use yii\helpers\Url;
                         <label>Сортировать:</label>
                         <div class="toolbar-dropdown">
                             <a href=""
-                               class="dropdown-toggle" data-toggle="dropdown">По рейтингу<span
+                               class="dropdown-toggle" data-toggle="dropdown"><?= $sortName ?><span
                                         class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a href="<?= Url::current(['sort' => 'rating']) ?>" class="selected">По
+                                    <a href="<?= Url::current(['sort' => 'rating', 'page' => null]) ?>"
+                                       class="selected">По
                                         рейтингу</a></li>
                                 <li>
-                                    <a href="<?= Url::current(['sort' => 'cheap']) ?>">По возрастанию цены</a>
+                                    <a href="<?= Url::current(['sort' => 'cheap', 'page' => null]) ?>">По возрастанию
+                                        цены</a>
                                 </li>
                                 <li>
-                                    <a href="<?= Url::current(['sort' => 'expensive']) ?>">По убыванию цены</a>
+                                    <a href="<?= Url::current(['sort' => 'expensive', 'page' => null]) ?>">По убыванию
+                                        цены</a>
                                 </li>
                             </ul>
                         </div>
@@ -63,20 +64,21 @@ use yii\helpers\Url;
                     <div class="sort-by">
                         <label>Сортировать:</label>
                         <div class="toolbar-dropdown">
-                            <a href="https://www.organize.com/water-products/water-bottles/1-gallon-bottles.html?dir=asc&amp;order=position"
-                               class="dropdown-toggle" data-toggle="dropdown">По рейтингу<span
+                            <a href=""
+                               class="dropdown-toggle" data-toggle="dropdown"><?= $sortName ?><span
                                         class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a href="https://www.organize.com/water-products/water-bottles/1-gallon-bottles.html?dir=asc&amp;order=position"
-                                       class="selected">По рейтингу</a></li>
+                                    <a href="<?= Url::current(['sort' => 'rating', 'page' => null]) ?>"
+                                       class="selected">По
+                                        рейтингу</a></li>
                                 <li>
-                                    <a href="https://www.organize.com/water-products/water-bottles/1-gallon-bottles.html?dir=asc&amp;order=name">По
-                                        возрастанию цены</a>
+                                    <a href="<?= Url::current(['sort' => 'cheap', 'page' => null]) ?>">По возрастанию
+                                        цены</a>
                                 </li>
                                 <li>
-                                    <a href="https://www.organize.com/water-products/water-bottles/1-gallon-bottles.html?dir=asc&amp;order=price">По
-                                        убыванию цены</a>
+                                    <a href="<?= Url::current(['sort' => 'expensive', 'page' => null]) ?>">По убыванию
+                                        цены</a>
                                 </li>
                             </ul>
                         </div>

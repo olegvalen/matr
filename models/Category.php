@@ -31,7 +31,7 @@ class Category extends ActiveRecord
 
     public static function getCategoryQueryBySeoUrl($seoUrl)
     {
-        return Category::find()->where(['seo_url' => $seoUrl])->limit(1);
+        return Category::find()->where(['category.seo_url' => $seoUrl])->limit(1);
     }
 
     public static function getFilter($categoryAQ)
@@ -61,11 +61,23 @@ class Category extends ActiveRecord
                 $attrs[] = [
                     'attribute_id' => $a->attributeDescriptions->attribute_id,
                     'name' => $a->attributeDescriptions->name,
+                    'seo_url' => $a->attributeDescriptions->seo_url,
+                    'title' => $a->attributeDescriptions->title,
+                    'description' => $a->attributeDescriptions->description,
+                    'keyword' => $a->attributeDescriptions->keyword,
+                    'h1' => $a->attributeDescriptions->h1,
                 ];
             }
             $filter[] = [
                 'attribute_group_id' => $ag->attributeGroupDescriptions->attribute_group_id,
                 'name' => $ag->attributeGroupDescriptions->name,
+                'seo_url' => $ag->attributeGroupDescriptions->seo_url,
+                'title' => $ag->attributeGroupDescriptions->title,
+                'description' => $ag->attributeGroupDescriptions->description,
+                'keyword' => $ag->attributeGroupDescriptions->keyword,
+                'h1' => $ag->attributeGroupDescriptions->h1,
+                'nofollow' => $ag->attributeGroupDescriptions->nofollow,
+                'noindex' => $ag->attributeGroupDescriptions->noindex,
                 'attrs' => $attrs,
             ];
         }
