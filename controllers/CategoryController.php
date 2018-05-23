@@ -38,8 +38,8 @@ class CategoryController extends Controller
         $category = $categoryQuery->one();
 
         $data['filter'] = Category::getFilter($categoryQuery);
-        $sortedFilter = $this->getSortedFilter($get, $data['filter']);
-        $data['filter'] = $this->addUrlToFilter($get['category'], $data['filter']);
+        $getFilter = $this->getGetFilter($get);
+        $data['filter'] = $this->addUrlToFilter($get['category'], $data['filter'], $getFilter);
         $data['title'] = $category->name;
 
         $productsQuery = Product::getProductsQueryByCategory($category->category_id);
@@ -54,12 +54,33 @@ class CategoryController extends Controller
         return $this->render('index', $data);
     }
 
-    public function addUrlToFilter($categoryName, &$filter)
+    public function addUrlToFilter($categoryName, &$filter, $getFilter)
     {
-        ///toppery/filter/category=nedorogie,premium;size=90x190
+        ///toppery/filter/category=premium,nedorogie;size=90x190
         foreach ($filter as &$agd) {
+            $agdExists = key_exists($agd['seo_url'], $getFilter);
             foreach ($agd['attrs'] as &$ad) {
-                $ad['href'] = "/{$categoryName}/filter/{$agd['seo_url']}={$ad['seo_url']}";
+                $getFilterCopy = $getFilter;
+                if ($agdExists) {
+                    $key = array_search($ad['seo_url'], $getFilterCopy[$agd['seo_url']]);
+                    if ($key !== false) {
+                        unset($getFilterCopy[$agd['seo_url']][$key]);
+                        $checked = ' checked';
+                    } else {
+                        $getFilterCopy[$agd['seo_url']][] = $ad['seo_url'];
+                        $checked = '';
+                    }
+                } else {
+                    $getFilterCopy[$agd['seo_url']][] = $ad['seo_url'];
+                    $checked = '';
+                }
+                $sortedFilter = $this->getSortedFilter($getFilterCopy, $filter);
+                $href = "/{$categoryName}" . (count($sortedFilter) != 0 ? '/filter/' : '');
+                foreach ($sortedFilter as $key => $value) {
+                    $href .= "{$key}=" . implode(',', $value) . ';';
+                }
+                $ad['href'] = rtrim($href, ';');
+                $ad['checked'] = $checked;
             }
             unset($ad);
         }
@@ -67,18 +88,30 @@ class CategoryController extends Controller
         return $filter;
     }
 
-    public function getSortedFilter($get, $filter)
+    public function getGetFilter($get)
+    {
+        $getFilter = [];
+        foreach ($get as $key => $value) {
+            if (substr_compare($key, 'Filter', -6) === 0) {
+                $getFilter[substr($key, 0, -6)] = explode(',', $value);
+            }
+        }
+        return $getFilter;
+    }
+
+    public function getSortedFilter($getFilter, $filter)
     {
         $sortedFilter = [];
         foreach ($filter as $key => $agd) {
-            if (key_exists($agd['seo_url'] . 'Filter', $get)) {
-                $attributeDesciptions = explode(',', $get[$agd['seo_url'] . 'Filter']);
+            if (key_exists($agd['seo_url'], $getFilter)) {
+//                $attributeDesciptions = explode(',', $getFilter[$agd['seo_url']]);
                 foreach ($agd['attrs'] as $ag) {
-                        if(in_array($ag))
-//                    $sortedFilter[$agd['seo_url']] =
+                    if (in_array($ag['seo_url'], $getFilter[$agd['seo_url']]))
+                        $sortedFilter[$agd['seo_url']][] = $ag['seo_url'];
                 }
             }
         }
+        return $sortedFilter;
     }
 
 }

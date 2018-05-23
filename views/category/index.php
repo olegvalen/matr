@@ -15,7 +15,7 @@ use yii\helpers\Url;
                             <li>
                                 <?php foreach ($agd['attrs'] as $ad): ?>
                                     <label class="container-label"><a href="<?= $ad['href'] ?>"><?= $ad['name'] ?><input
-                                                    type="checkbox"><span class="checkmark"></span></a></label>
+                                                    type="checkbox"<?= $ad['checked'] ?>><span class="checkmark"></span></a></label>
                                 <?php endforeach; ?>
                             </li>
                         </ul>

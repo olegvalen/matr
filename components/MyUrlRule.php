@@ -14,44 +14,60 @@ class MyUrlRule implements UrlRuleInterface
         if (count($parts) == 2) {
             if ($parts[0] == 'category') {
                 if ($parts[1] == 'index') {
-                    if (isset($params['category'])) {
-                        if (isset($params['sort'], $params['page'])) {
-                            $params_keys = array_keys($params);
-                            if (array_search('sort', $params_keys) > array_search('page', $params_keys)) {
-//                                return $params['category'] . '?sort=' . $params['sort'];
-                                return "{$params['category']}?sort={$params['sort']}";
+                    // filter
+                    $url = $params['category'];
+                    $filter = '';
+                    if (isset($params['filter'])) {
+                        foreach ($params as $key => $value) {
+                            if (substr_compare($key, 'Filter', -6) === 0) {
+                                $filter .= substr($key, 0, -6) . "={$value};";
                             }
                         }
+                        $filter = '/filter/' . rtrim($filter, ';');
                     }
-                    $url = $params['category'];
-                    $urlSuffix = '';
-                    foreach ($params as $key => $value) {
-                        if ($key == 'category') continue;
-                        if (isset($value))
-                            $urlSuffix .= "$key=$value&";
+
+                    // params
+                    $urlParams = '';
+                    $flag = true;
+                    if (isset($params['sort'], $params['page'])) {
+                        $params_keys = array_keys($params);
+                        if (array_search('sort', $params_keys) > array_search('page', $params_keys)) {
+                            $urlParams = "?sort={$params['sort']}";
+                            $flag = false;
+                        }
                     }
-                    return $url . '?' . rtrim($urlSuffix, '&');
+                    if ($flag) {
+                        foreach ($params as $key => $value) {
+                            if (!($key == 'sort' or $key == 'page')) continue;
+                            if (isset($value))
+                                $urlParams .= "$key=$value&";
+                        }
+                        $urlParams = '?' . rtrim($urlParams, '&');
+                    }
+
+                    return "{$url}{$filter}{$urlParams}";
                 }
             }
             $model = Category::findOne($parts[1]);
             return $model->seo_url;
 
-            if ($route === 'car/index') {
-                if (isset($params['manufacturer'], $params['model'])) {
-                    return $params['manufacturer'] . '/' . $params['model'];
-                } elseif
-                (isset($params['manufacturer'])) {
-                    return $params['manufacturer'];
-                }
-            }
-            return false;  // данное правило не применимо
+//            if ($route === 'car/index') {
+//                if (isset($params['manufacturer'], $params['model'])) {
+//                    return $params['manufacturer'] . '/' . $params['model'];
+//                } elseif
+//                (isset($params['manufacturer'])) {
+//                    return $params['manufacturer'];
+//                }
+//            }
+//            return false;  // данное правило не применимо
         }
     }
 
 
-    public function parseRequest($manager, $request)
+    public
+    function parseRequest($manager, $request)
     {
-        ///toppery/filter/category=nedorogie,premium;size=90x190
+        ///toppery/filter/category=premium,nedorogie;size=90x190
 
         $pathInfo = $request->getPathInfo();
         //$data = htmlspecialchars($data, ENT_COMPAT, 'UTF-8');
@@ -62,7 +78,7 @@ class MyUrlRule implements UrlRuleInterface
             //one word
             return ['category/index', array('category' => $parts[0])];
         } elseif ($parts[1] == 'filter') {
-            $params = ['category' => $parts[0]];
+            $params = ['category' => $parts[0], 'filter' => ''];
             $filters = explode(';', $parts[2]);
             foreach ($filters as $filter) {
                 $attributeGroup = explode('=', $filter);
