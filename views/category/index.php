@@ -53,40 +53,14 @@ use yii\helpers\Url;
                         </div>
                     </div>
                 </div>
-                <?php $pagination = \yii\widgets\LinkPager::widget(['pagination' => $pages, 'prevPageLabel' => '<', 'nextPageLabel' => '>']); ?>
-                <?= $pagination ?>
+                <?= \yii\widgets\LinkPager::widget(['pagination' => $pages, 'prevPageLabel' => '<', 'nextPageLabel' => '>']); ?>
             </div>
 
-            <?= $this->render('/site/carousel', ['products' => $products,]) ?>
-
-            <div class="toolbar clearfix">
-                <div class="sorter">
-                    <div class="sort-by">
-                        <label>Сортировать:</label>
-                        <div class="toolbar-dropdown">
-                            <a href=""
-                               class="dropdown-toggle" data-toggle="dropdown"><?= $sortName ?><span
-                                        class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a href="<?= Url::current(['sort' => 'rating', 'page' => null]) ?>"
-                                       class="selected">По
-                                        рейтингу</a></li>
-                                <li>
-                                    <a href="<?= Url::current(['sort' => 'cheap', 'page' => null]) ?>">По возрастанию
-                                        цены</a>
-                                </li>
-                                <li>
-                                    <a href="<?= Url::current(['sort' => 'expensive', 'page' => null]) ?>">По убыванию
-                                        цены</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <?= $pagination ?>
-            </div>
-
+            <?php if (!empty($products)): ?>
+                <?= $this->render('/site/carousel', ['products' => $products,]) ?>
+            <?php else: ?>
+                Нет данных по выбранному фильтру!
+            <?php endif; ?>
         </div>
     </div>
 

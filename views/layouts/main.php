@@ -106,37 +106,50 @@ AppAsset::register($this);
                                 <div class="easycatalogimg">
                                     <ul class="easycatalog-grid">
                                         <li class="item">
-                                            <h5><a href="<?= Url::to(['toppery/filter/category=nedorogie']) ?>"
+                                            <h5>
+                                                <a href="<?= Url::to(['category/index', 'category' => 'toppery', 'filter' => '', 'categoryFilter' => 'nedorogie']) ?>"
                                                    title="Недорогие">Недорогие</a></h5>
                                         </li>
                                         <li class="item">
-                                            <h5><a href="<?= Url::to(['toppery/filter/category=premium']) ?>"
+                                            <h5>
+                                                <a href="<?= Url::to(['category/index', 'category' => 'toppery', 'filter' => '', 'categoryFilter' => 'premium']) ?>"
                                                    title="Премиум">Премиум</a></h5>
                                         </li>
                                         <li class="item">
                                             <h5>Размеры</h5>
                                             <ul>
-                                                <li><a href="<?= Url::to(['toppery/filter/size=90x190']) ?>"
+                                                <li>
+                                                    <a href="<?= Url::to(['category/index', 'category' => 'toppery', 'filter' => '', 'sizeFilter' => '90x190']) ?>"
                                                        title="90x190">90x190</a></li>
-                                                <li><a href="<?= Url::to(['toppery/filter/size=90x200']) ?>"
+                                                <li>
+                                                    <a href="<?= Url::to(['category/index', 'category' => 'toppery', 'filter' => '', 'sizeFilter' => '90x200']) ?>"
                                                        title="90x200">90x200</a></li>
-                                                <li><a href="<?= Url::to(['toppery/filter/size=100x190']) ?>"
+                                                <li>
+                                                    <a href="<?= Url::to(['category/index', 'category' => 'toppery', 'filter' => '', 'sizeFilter' => '100x190']) ?>"
                                                        title="100x190">100x190</a></li>
-                                                <li><a href="<?= Url::to(['toppery/filter/size=100x200']) ?>"
+                                                <li>
+                                                    <a href="<?= Url::to(['category/index', 'category' => 'toppery', 'filter' => '', 'sizeFilter' => '100x200']) ?>"
                                                        title="100x200">100x200</a></li>
-                                                <li><a href="<?= Url::to(['toppery/filter/size=140x190']) ?>"
+                                                <li>
+                                                    <a href="<?= Url::to(['category/index', 'category' => 'toppery', 'filter' => '', 'sizeFilter' => '140x190']) ?>"
                                                        title="140x190">140x190</a></li>
-                                                <li><a href="<?= Url::to(['toppery/filter/size=140x200']) ?>"
+                                                <li>
+                                                    <a href="<?= Url::to(['category/index', 'category' => 'toppery', 'filter' => '', 'sizeFilter' => '140x200']) ?>"
                                                        title="140x200">140x200</a></li>
-                                                <li><a href="<?= Url::to(['toppery/filter/size=150x190']) ?>"
+                                                <li>
+                                                    <a href="<?= Url::to(['category/index', 'category' => 'toppery', 'filter' => '', 'sizeFilter' => '150x190']) ?>"
                                                        title="150x190">150x190</a></li>
-                                                <li><a href="<?= Url::to(['toppery/filter/size=150x200']) ?>"
+                                                <li>
+                                                    <a href="<?= Url::to(['category/index', 'category' => 'toppery', 'filter' => '', 'sizeFilter' => '150x200']) ?>"
                                                        title="150x200">150x200</a></li>
-                                                <li><a href="<?= Url::to(['toppery/filter/size=160x190']) ?>"
+                                                <li>
+                                                    <a href="<?= Url::to(['category/index', 'category' => 'toppery', 'filter' => '', 'sizeFilter' => '160x190']) ?>"
                                                        title="160x190">160x190</a></li>
-                                                <li><a href="<?= Url::to(['toppery/filter/size=160x200']) ?>"
+                                                <li>
+                                                    <a href="<?= Url::to(['category/index', 'category' => 'toppery', 'filter' => '', 'sizeFilter' => '160x200']) ?>"
                                                        title="160x200">160x200</a></li>
-                                                <li><a href="<?= Url::to(['toppery/filter/size=200x200']) ?>"
+                                                <li>
+                                                    <a href="<?= Url::to(['category/index', 'category' => 'toppery', 'filter' => '', 'sizeFilter' => '200x200']) ?>"
                                                        title="200x200">200x200</a></li>
                                             </ul>
                                         </li>
@@ -144,11 +157,13 @@ AppAsset::register($this);
                                             <h5>Наполнитель</h5>
                                             <ul>
                                                 <li>
-                                                    <a href="<?= Url::to(['toppery/filter/fill=iskussvennyy-puh']) ?>"
+                                                    <a href="<?= Url::to(['category/index', 'category' => 'toppery', 'filter' => '', 'fillFilter' => 'iskussvennyy-puh']) ?>"
                                                        title="Искусственный пух">Искусственный пух</a></li>
-                                                <li><a href="<?= Url::to(['toppery/filter/fill=gusinnoe-pero']) ?>"
+                                                <li>
+                                                    <a href="<?= Url::to(['category/index', 'category' => 'toppery', 'filter' => '', 'fillFilter' => 'gusinnoe-pero']) ?>"
                                                        title="Гусинное перо">Гусинное перо</a></li>
-                                                <li><a href="<?= Url::to(['toppery/filter/fill=utinnoe-pero']) ?>"
+                                                <li>
+                                                    <a href="<?= Url::to(['category/index', 'category' => 'toppery', 'filter' => '', 'fillFilter' => 'utinnoe-pero']) ?>"
                                                        title="Утинное перо">Утинное перо</a></li>
                                             </ul>
                                         </li>
@@ -156,13 +171,16 @@ AppAsset::register($this);
                                             <h5>Чехол</h5>
                                             <ul>
                                                 <li>
-                                                    <a href="<?= Url::to(['toppery/filter/cover=microfiber']) ?>"
+                                                    <a href="<?= Url::to(['category/index', 'category' => 'toppery', 'filter' => '', 'coverFilter' => 'microfiber']) ?>"
                                                        title="Микрофибра">Микрофибра</a></li>
-                                                <li><a href="<?= Url::to(['toppery/filter/cover=hollowfiber']) ?>"
+                                                <li>
+                                                    <a href="<?= Url::to(['category/index', 'category' => 'toppery', 'filter' => '', 'coverFilter' => 'hollowfiber']) ?>"
                                                        title="Холлофайбер">Холлофайбер</a></li>
-                                                <li><a href="<?= Url::to(['toppery/filter/cover=cotton']) ?>"
+                                                <li>
+                                                    <a href="<?= Url::to(['category/index', 'category' => 'toppery', 'filter' => '', 'coverFilter' => 'cotton']) ?>"
                                                        title="Хлопок">Хлопок</a></li>
-                                                <li><a href="<?= Url::to(['toppery/filter/cover=polyester']) ?>"
+                                                <li>
+                                                    <a href="<?= Url::to(['category/index', 'category' => 'toppery', 'filter' => '', 'coverFilter' => 'polyester']) ?>"
                                                        title="Полиэстер">Полиэстер</a></li>
                                             </ul>
                                         </li>

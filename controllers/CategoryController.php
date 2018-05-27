@@ -42,7 +42,7 @@ class CategoryController extends Controller
         $data['filter'] = $this->addUrlToFilter($get['category'], $data['filter'], $getFilter);
         $data['title'] = $category->name;
 
-        $productsQuery = Product::getProductsQueryByCategory($category->category_id);
+        $productsQuery = Product::getProductsQueryByCategory($category->category_id, $this->getProductAttributeIds($getFilter, $data['filter']));
         $pages = new Pagination(['totalCount' => $productsQuery->count(), 'pageSize' => 9]);
 //        $pages = new Pagination(['totalCount' => $productsQuery->count()]);
         $pages->pageSizeParam = false;
@@ -112,6 +112,24 @@ class CategoryController extends Controller
             }
         }
         return $sortedFilter;
+    }
+
+    public function getProductAttributeIds($getFilter, $filter)
+    {
+
+        $ids = [];
+        foreach ($filter as $agd) {
+            if (key_exists($agd['seo_url'], $getFilter)) {
+                $ads = [];
+                foreach ($agd['attrs'] as $ad) {
+                    if (in_array($ad['seo_url'], $getFilter[$agd['seo_url']])) {
+                        $ads[] = $ad['attribute_id'];
+                    }
+                }
+                $ids[] = $ads;
+            }
+        }
+        return $ids;
     }
 
 }

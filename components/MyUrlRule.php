@@ -42,7 +42,7 @@ class MyUrlRule implements UrlRuleInterface
                             if (isset($value))
                                 $urlParams .= "$key=$value&";
                         }
-                        $urlParams = '?' . rtrim($urlParams, '&');
+                        $urlParams = empty($urlParams) ? '' : '?' . rtrim($urlParams, '&');
                     }
 
                     return "{$url}{$filter}{$urlParams}";
