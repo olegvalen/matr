@@ -71,6 +71,8 @@ class CategoryController extends Controller
         list($data['description'], $data['keywords'], $data['robots'], $data['title'], $data['h1']) =
             $this->getMetaTags($category->name, $this->getSortedFilter($getFilter, $data['filter']), $data['filter'], $get);
 
+        $data['text_description'] = $category->categoryDescriptions->text_description;
+
         return $this->render('index', $data);
     }
 

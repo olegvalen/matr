@@ -18,6 +18,11 @@ class Category extends ActiveRecord
 
     }
 
+    public function getCategoryDescriptions()
+    {
+        return $this->hasOne(CategoryDescription::class, ['category_id' => 'category_id']);
+    }
+
 //    public function getCategoryPaths()
 //    {
 //        return $this->hasMany(CategoryPath::class, ['category_id' => 'category_id']);
@@ -36,7 +41,12 @@ class Category extends ActiveRecord
 
     public static function getCategoryQueryBySeoUrl($seoUrl)
     {
-        return Category::find()->where(['category.seo_url' => $seoUrl])->limit(1);
+        return Category::find()
+            ->joinWith([
+                'categoryDescriptions as cd' => function ($query) {
+                    $query->onCondition(['cd.language_id' => 1]);
+                }])
+            ->where(['category.seo_url' => $seoUrl])->limit(1);
     }
 
     public static function getFilter($categoryAQ)

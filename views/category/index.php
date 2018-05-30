@@ -76,5 +76,6 @@ $this->title = $title;
             <?php endif; ?>
         </div>
     </div>
+    <div class="row col-md-12"><?= $text_description ?></div>
 
 </div>
