@@ -1,8 +1,11 @@
 <?php
 
 use yii\helpers\Url;
-use yii\widgets\Breadcrumbs;
 
+$this->registerMetaTag(['name' => 'description', 'content' => $description]);
+$this->registerMetaTag(['name' => 'keywords', 'content' => $keywords]);
+$this->registerMetaTag(['name' => 'robots', 'content' => $robots]);
+$this->title = $title;
 ?>
 <div id="breadcrumbs">
     <div class="container">
@@ -36,7 +39,7 @@ use yii\widgets\Breadcrumbs;
 
         <div class="col-sm-9 item-grid">
             <div class="page-title">
-                <h1><?= $title ?></h1>
+                <h1><?= $h1 ?></h1>
             </div>
             <div class="toolbar clearfix">
                 <div class="sorter">

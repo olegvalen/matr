@@ -59,6 +59,9 @@ $config = [
                 ['class' => 'app\components\MyUrlRule'],
             ],
         ],
+        'myComponent' => [
+            'class' => 'app\components\MyComponent',
+        ],
     ],
     'params' => $params,
 ];
