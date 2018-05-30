@@ -1,10 +1,20 @@
 <?php
 
 use yii\helpers\Url;
+use yii\widgets\Breadcrumbs;
 
 ?>
-<div class="container">
+<div id="breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <?= $breadcrumbs ?>
+            </div>
+        </div>
+    </div>
+</div>
 
+<div class="container">
     <div class="row">
         <div class="col-sm-3 col-left">
             <div class="block block-account">

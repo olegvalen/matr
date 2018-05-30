@@ -18,6 +18,11 @@ class Category extends ActiveRecord
 
     }
 
+//    public function getCategoryPaths()
+//    {
+//        return $this->hasMany(CategoryPath::class, ['category_id' => 'category_id']);
+//    }
+
 //    public function getProducts()
 //    {
 //        return $this->hasMany(Product::class, ['category_id' => 'category_id']);
@@ -84,5 +89,15 @@ class Category extends ActiveRecord
         return $filter;
     }
 
+    public static function getCategoryParents($category_id)
+    {
+        return CategoryPath::find()
+            ->joinWith('category c')
+            ->where(['category_path.category_id' => $category_id])
+            ->orderBy('category_path.path_id')
+            ->all();
+    }
+
 }
+
 //

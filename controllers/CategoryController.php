@@ -13,6 +13,7 @@ use app\models\Product;
 use Yii;
 use yii\data\Pagination;
 use yii\web\Controller;
+use yii\widgets\Breadcrumbs;
 
 class CategoryController extends Controller
 {
@@ -36,6 +37,20 @@ class CategoryController extends Controller
 
         $categoryQuery = Category::getCategoryQueryBySeoUrl($get['category']);
         $category = $categoryQuery->one();
+
+        $categoryParents = Category::getCategoryParents($category->category_id);
+        $links = [];
+        foreach ($categoryParents as $key => $cp) {
+            if ($key == 0) continue;
+            $links[] = ['label' => $cp->category->name, 'url' => ["category/{$cp['path_id']}"]];
+        }
+        $links[] = $category['name'];
+
+        $data['breadcrumbs'] = Breadcrumbs::widget([
+            'options' => ['class' => 'breadcrumb'],
+            'itemTemplate' => "<li>{link}</li>\n",
+            'links' => $links,
+        ]);
 
         $data['filter'] = Category::getFilter($categoryQuery);
         $getFilter = $this->getGetFilter($get);
