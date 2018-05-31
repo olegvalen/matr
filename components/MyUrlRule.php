@@ -3,6 +3,7 @@
 namespace app\components;
 
 use app\models\Category;
+use app\models\Product;
 use yii\web\UrlRuleInterface;
 
 class MyUrlRule implements UrlRuleInterface
@@ -76,7 +77,14 @@ class MyUrlRule implements UrlRuleInterface
 
         if (count($parts) == 1) {
             //one word
-            return ['category/index', array('category' => $parts[0])];
+            $count = Category::find()->where(['seo_url' => $parts[0]])->count();
+            if ($count) {
+                return ['category/index', array('category' => $parts[0])];
+            }
+            $count = Product::find()->where(['seo_url' => $parts[0]])->count();
+            if ($count) {
+                return ['product/index', array('product' => $parts[0])];
+            }
         } elseif ($parts[1] == 'filter') {
             $params = ['category' => $parts[0], 'filter' => ''];
             $filters = explode(';', $parts[2]);

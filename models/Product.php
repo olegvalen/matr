@@ -12,6 +12,11 @@ class Product extends ActiveRecord
         return $this->hasMany(ProductAttribute::class, ['product_id' => 'product_id']);
     }
 
+    public function getCategory()
+    {
+        return $this->hasOne(Category::class, ['category_id' => 'category_id']);
+    }
+
     public static function getProductsByIds($ids)
     {
         return Product::find()->where(['product_id' => $ids])->asArray()->all();
@@ -19,14 +24,6 @@ class Product extends ActiveRecord
 
     public static function getProductsQueryByCategory($categoryId, $productAttributeIds)
     {
-//        return Product::find()
-//            ->joinWith([
-//                'productAttributes pa' => function ($query) use ($productAttributeIds) {
-//                    $query->filterWhere(['pa.attribute_id' => $productAttributeIds]);
-//                }
-//            ])
-//            ->where(['category_id' => $categoryId])
-//            ->distinct();
 
         if (!isset($productAttributeIds)) {
             return Product::find()->where(['category_id' => $categoryId]);
@@ -41,6 +38,13 @@ class Product extends ActiveRecord
             }
             return $productQuery->distinct();
         }
+    }
+
+    public static function getProductQueryBySeoUrl($seoUrl)
+    {
+        return Product::find()
+            ->joinWith('category c')
+            ->where(['product.seo_url' => $seoUrl])->limit(1);
     }
 
 }
