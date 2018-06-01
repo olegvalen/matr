@@ -31,14 +31,14 @@ $this->registerCssFile(Yii::$app->request->baseUrl . '/css/magiczoomplus.module.
                   method="post" id="product_addtocart_form">
                 <input name="form_key" type="hidden" value="wwX6LljT4CA0Q6Ch">
 
-                <div class="product-img-box">
+                <div class="product-img-box col-md-6">
                     <!-- Begin magiczoomplus -->
                     <div class="MagicToolboxContainer selectorsBottom minWidth">
                         <div class="magic-slide mt-active" data-magic-slide="zoom"><a id="MagicZoomPlusImage38950"
                                                                                       class="MagicZoom"
                                                                                       href="https://www.organize.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/7/1/71qvsmy3dfl._sl1500__1_.jpg"
                                                                                       title="1 Gallon Frosted Glass Water Bottle Jug with 38 mm Metal Screw Cap (Black, 4)"
-                                                                                      data-options="zoomWidth:600;zoomHeight:600;selectorTrigger:hover;lazyZoom:true;rightClick:false;zoomMode:preview;expandCaption:false;cssClass:white-bg;hint:off;"
+                                                                                      data-options="zoomWidth:600;zoomHeight:600;selectorTrigger:hover;lazyZoom:true;rightClick:true;zoomMode:preview;expandCaption:false;cssClass:white-bg;hint:off;"
                                                                                       data-mobile-options="zoomWidth:auto;zoomHeight:auto;lazyZoom:false;zoomMode:zoom;cssClass:;hint:off;textHoverZoomHint:Touch to zoom;textClickZoomHint:Double tap to zoom;textExpandHint:Tap to expand;"><img
                                         itemprop="image"
                                         src="https://www.organize.com/media/catalog/product/cache/1/image/650x650/9df78eab33525d08d6e5fb8d27136e95/7/1/71qvsmy3dfl._sl1500__1_.jpg"
@@ -96,7 +96,7 @@ $this->registerCssFile(Yii::$app->request->baseUrl . '/css/magiczoomplus.module.
                          class="invisible">
                 </div>
 
-                <div class="product-shop">
+                <div class="product-shop col-md-6">
                     <div class="price-info">
                         <!--                        <div class="price-box">-->
                         <span class="regular-price" id="product-price-38908"><span

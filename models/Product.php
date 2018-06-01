@@ -7,6 +7,15 @@ use yii\db\ActiveRecord;
 class Product extends ActiveRecord
 {
 
+    public function behaviors()
+    {
+        return [
+            'image' => [
+                'class' => 'rico\yii2images\behaviors\ImageBehave',
+            ]
+        ];
+    }
+
     public function getProductAttributes()
     {
         return $this->hasMany(ProductAttribute::class, ['product_id' => 'product_id']);
@@ -19,7 +28,7 @@ class Product extends ActiveRecord
 
     public static function getProductsByIds($ids)
     {
-        return Product::find()->where(['product_id' => $ids])->asArray()->all();
+        return Product::find()->where(['product_id' => $ids])->all();
     }
 
     public static function getProductsQueryByCategory($categoryId, $productAttributeIds)

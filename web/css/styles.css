@@ -5002,10 +5002,6 @@ label {
   overflow: hidden;
   line-height: 1.4;
 }
-.product-img-box {
-  width: 570px;
-  float: left;
-}
 .product-shop {
   padding-left: 30px;
   float: none;
@@ -5030,8 +5026,8 @@ label {
   margin-top: 30px;
 }
 .product-shop .add-to-cart .button {
-  margin: 0 0 30px;
-  padding: 0 30px;
+  margin-bottom: 30px;
+  padding: 0 24px;
   border: 0;
   vertical-align: top;
   font-size: 17px;
@@ -5086,7 +5082,7 @@ label {
   margin: 0 34px 15px 0;
 }
 .product-shop .add-to-links li a {
-  font-size: 20px;
+  font-size: 18px;
   width: 110px;
   font-weight: 700;
 }

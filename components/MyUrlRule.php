@@ -61,6 +61,11 @@ class MyUrlRule implements UrlRuleInterface
 //                }
 //            }
 //            return false;  // данное правило не применимо
+        } elseif (count($parts) == 3) {
+            // 1/images/image-by-item-and-alias
+            if ($parts[1] == 'images') {
+                return $params['item0'] . $params['item'] . $params['dirtyAlias'];
+            }
         }
     }
 
