@@ -6,9 +6,13 @@ use yii\db\ActiveRecord;
 
 class ProductOption extends ActiveRecord
 {
-//    public function getAttributeGroupDiscription()
-//    {
-//        return $this->hasOne(AttributeGroupDescription::className(), ['attribute_group_id' => 'attribute_group_id']);
-//    }
+    public function getMyAttribute()
+    {
+        return $this->hasOne(Attribute::class, ['attribute_id' => 'attribute_id']);
+    }
+
+    public function getAttributeDescription()
+    {
+        return $this->hasOne(AttributeDescription::class, ['attribute_id' => 'attribute_id']);
+    }
 }
-//

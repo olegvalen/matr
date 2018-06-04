@@ -876,7 +876,7 @@ label {
   }
   .add-to-links {
     border-top: 1px solid #e4e4e4;
-    padding: 30px 0 0;
+    padding-top: 30px;
     li {
       display: inline-block;
       margin: 0 34px 15px 0;
@@ -892,4 +892,128 @@ label {
       }
     }
   }
+  select {
+    width: 425px;
+    height: 30px;
+    max-width: 100%;
+    margin-bottom: 20px;
+    padding-left: 5px;
+  }
+}
+
+.block-account {
+  .block-title {
+    position: relative;
+    margin: 0;
+    padding: 20px 0;
+    border-bottom: 1px solid #e3e3e3;
+    strong {
+      font-size: 16px;
+      text-transform: uppercase;
+    }
+  }
+  li {
+    text-transform: uppercase;
+    border-bottom: 1px solid #e3e3e3;
+    padding: 8px 0;
+  }
+}
+
+.my-wishlist {
+  h1 {
+    padding-bottom: 3px;
+    margin-bottom: 30px;
+  }
+  fieldset {
+    min-width: 0;
+    padding: 0;
+    margin: 0;
+    border: 0;
+  }
+  .data-table {
+    th {
+      background-color: #363636;
+      color: #ffffff;
+      font-size: 17px;
+      text-align: center;
+      padding: 15px 10px;
+      text-transform: uppercase;
+      line-height: 1.4;
+      vertical-align: top;
+    }
+    tr:nth-child(odd) td {
+      background-color: #f7f7f7;
+    }
+    tbody td {
+      border-bottom: 1px solid silver;
+    }
+    td {
+      line-height: 1.2;
+      padding: 10px;
+      vertical-align: top;
+    }
+    a.product-image {
+      display: block;
+      width: 135px;
+      text-align: center;
+    }
+    .product-name {
+      margin: 0;
+      font-size: 14px;
+    }
+    .cart-cell {
+      text-align: center;
+    }
+    .price-box {
+      font-size: 12px;
+      display: inline-block;
+    }
+    .price-box .price {
+      color: #636363;
+    }
+    .qty-container {
+      display: block;
+      margin: 15px auto 0;
+      padding: 0;
+      background: transparent;
+      span {
+        width: 17px;
+        background-color: #fff;
+        border: 1px solid #e4e4e4;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 31px;
+        cursor: pointer;
+        display: inline-block;
+      }
+      input[type=text].qty {
+        width: 33px;
+        height: 32px;
+        border: 1px solid #e4e4e4;
+        border-left: 0;
+        border-right: 0;
+        vertical-align: top;
+        text-align: center;
+      }
+      input {
+        display: inline-block;
+      }
+    }
+    .btn-cart {
+      margin: 15px auto 0;
+    }
+  }
+}
+
+.button {
+  padding: 5px 12px;
+  line-height: 1.42857143;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
 }

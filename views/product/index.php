@@ -6,12 +6,10 @@ use app\assets\AppAsset;
 $this->registerJsFile(Yii::$app->request->baseUrl . '/js/magiczoomplus.js', ['depends' => [AppAsset::class]]);
 $this->registerCssFile(Yii::$app->request->baseUrl . '/css/magiczoomplus.css', ['depends' => [AppAsset::class]]);
 $this->registerCssFile(Yii::$app->request->baseUrl . '/css/magiczoomplus.module.css', ['depends' => [AppAsset::class]]);
-
-//$this->registerMetaTag(['name' => 'description', 'content' => $description]);
-//$this->registerMetaTag(['name' => 'keywords', 'content' => $keywords]);
-//$this->registerMetaTag(['name' => 'robots', 'content' => $robots]);
-//$this->title = $title;
-
+$this->registerMetaTag(['name' => 'description', 'content' => $product->productDescription->description]);
+$this->registerMetaTag(['name' => 'keywords', 'content' => $product->productDescription->keyword]);
+$this->title = $product->productDescription->title;
+$formatter = Yii::$app->formatter;
 ?>
 <div id="breadcrumbs">
     <div class="container">
@@ -25,8 +23,7 @@ $this->registerCssFile(Yii::$app->request->baseUrl . '/css/magiczoomplus.module.
 <div class="container">
     <div class="row">
         <div class="col-md-12 col-main">
-            <h1>1 Gallon Frosted Glass Water Bottle Jug with 38 mm Metal Screw Cap (Black, 4)</h1>
-
+            <h1><?= $product->productDescription->h1 ?></h1>
             <form action="https://www.organize.com/checkout/cart/add/uenc/aHR0cHM6Ly93d3cub3JnYW5pemUuY29tL3dhdGVyLXByb2R1Y3RzL3dhdGVyLWJvdHRsZXMvMS1nYWxsb24tYm90dGxlcy8xLWdhbGxvbi1mcm9zdGVkLWdsYXNzLXdhdGVyLWJvdHRsZS1qdWctd2l0aC0zOC1tbS1tZXRhbC1zY3Jldy1jYXAtYmxhY2stMTg3My5odG1sP19fX1NJRD1V/product/38950/form_key/wwX6LljT4CA0Q6Ch/"
                   method="post" id="product_addtocart_form">
                 <input name="form_key" type="hidden" value="wwX6LljT4CA0Q6Ch">
@@ -36,74 +33,37 @@ $this->registerCssFile(Yii::$app->request->baseUrl . '/css/magiczoomplus.module.
                     <div class="MagicToolboxContainer selectorsBottom minWidth">
                         <div class="magic-slide mt-active" data-magic-slide="zoom"><a id="MagicZoomPlusImage38950"
                                                                                       class="MagicZoom"
-                                                                                      href="https://www.organize.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/7/1/71qvsmy3dfl._sl1500__1_.jpg"
-                                                                                      title="1 Gallon Frosted Glass Water Bottle Jug with 38 mm Metal Screw Cap (Black, 4)"
+                                                                                      href="<?= "/{$product->getImage()->getPathToOrigin()}" ?>"
+                                                                                      title="<?= $product->name ?>"
                                                                                       data-options="zoomWidth:600;zoomHeight:600;selectorTrigger:hover;lazyZoom:true;rightClick:true;zoomMode:preview;expandCaption:false;cssClass:white-bg;hint:off;"
                                                                                       data-mobile-options="zoomWidth:auto;zoomHeight:auto;lazyZoom:false;zoomMode:zoom;cssClass:;hint:off;textHoverZoomHint:Touch to zoom;textClickZoomHint:Double tap to zoom;textExpandHint:Tap to expand;"><img
                                         itemprop="image"
-                                        src="https://www.organize.com/media/catalog/product/cache/1/image/650x650/9df78eab33525d08d6e5fb8d27136e95/7/1/71qvsmy3dfl._sl1500__1_.jpg"
-                                        alt="1 Gallon Frosted Glass Water Bottle Jug with 38 mm Metal Screw Cap (Black, 4)"/></a>
+                                        src="<?= "/{$product->getImage()->getPath('650x650')}" ?>"
+                                        alt="<?= $product->name ?>"/></a>
                         </div>
                         <div class="magic-slide" data-magic-slide="360"></div>
                         <div class="MagicToolboxSelectorsContainer">
                             <div id="MagicToolboxSelectors38950" class="">
-                                <a data-magic-slide-id="zoom"
-                                   data-zoom-id="MagicZoomPlusImage38950"
-                                   href="https://www.organize.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/7/1/71qvsmy3dfl._sl1500__1_.jpg"
-                                   data-image="https://www.organize.com/media/catalog/product/cache/1/image/650x650/9df78eab33525d08d6e5fb8d27136e95/7/1/71qvsmy3dfl._sl1500__1_.jpg"
-                                   title="1 Gallon Frosted Glass Water Bottle Jug with 38 mm Metal Screw Cap (Black, 4)"><img
-                                            src="https://www.organize.com/media/catalog/product/cache/1/thumbnail/65x65/9df78eab33525d08d6e5fb8d27136e95/7/1/71qvsmy3dfl._sl1500__1_.jpg"
-                                            alt="1 Gallon Frosted Glass Water Bottle Jug with 38 mm Metal Screw Cap (Black, 4)"/></a>
-                                <a data-magic-slide-id="zoom"
-                                   data-zoom-id="MagicZoomPlusImage38950"
-                                   href="https://www.organize.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/b/t/bt1ggfblk-4-3.jpg"
-                                   data-image="https://www.organize.com/media/catalog/product/cache/1/image/650x650/9df78eab33525d08d6e5fb8d27136e95/b/t/bt1ggfblk-4-3.jpg"
-                                   title="1 Gallon Frosted Glass Water Bottle Jug with 38 mm Metal Screw Cap (Black, 4)"><img
-                                            src="https://www.organize.com/media/catalog/product/cache/1/thumbnail/65x65/9df78eab33525d08d6e5fb8d27136e95/b/t/bt1ggfblk-4-3.jpg"
-                                            alt="1 Gallon Frosted Glass Water Bottle Jug with 38 mm Metal Screw Cap (Black, 4)"/></a>
-                                <a data-magic-slide-id="zoom"
-                                   data-zoom-id="MagicZoomPlusImage38950"
-                                   href="https://www.organize.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/b/t/bt1ggfblk-4-5.jpg"
-                                   data-image="https://www.organize.com/media/catalog/product/cache/1/image/650x650/9df78eab33525d08d6e5fb8d27136e95/b/t/bt1ggfblk-4-5.jpg"
-                                   title="1 Gallon Frosted Glass Water Bottle Jug with 38 mm Metal Screw Cap (Black, 4)"><img
-                                            src="https://www.organize.com/media/catalog/product/cache/1/thumbnail/65x65/9df78eab33525d08d6e5fb8d27136e95/b/t/bt1ggfblk-4-5.jpg"
-                                            alt="1 Gallon Frosted Glass Water Bottle Jug with 38 mm Metal Screw Cap (Black, 4)"/></a>
-                                <a data-magic-slide-id="zoom"
-                                   data-zoom-id="MagicZoomPlusImage38950"
-                                   href="https://www.organize.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/b/t/bt1ggfblk-4-2.jpg"
-                                   data-image="https://www.organize.com/media/catalog/product/cache/1/image/650x650/9df78eab33525d08d6e5fb8d27136e95/b/t/bt1ggfblk-4-2.jpg"
-                                   title="1 Gallon Frosted Glass Water Bottle Jug with 38 mm Metal Screw Cap (Black, 4)"><img
-                                            src="https://www.organize.com/media/catalog/product/cache/1/thumbnail/65x65/9df78eab33525d08d6e5fb8d27136e95/b/t/bt1ggfblk-4-2.jpg"
-                                            alt="1 Gallon Frosted Glass Water Bottle Jug with 38 mm Metal Screw Cap (Black, 4)"/></a>
-                                <a data-magic-slide-id="zoom"
-                                   data-zoom-id="MagicZoomPlusImage38950"
-                                   href="https://www.organize.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/b/t/bt1ggfblk-4-4.jpg"
-                                   data-image="https://www.organize.com/media/catalog/product/cache/1/image/650x650/9df78eab33525d08d6e5fb8d27136e95/b/t/bt1ggfblk-4-4.jpg"
-                                   title="1 Gallon Frosted Glass Water Bottle Jug with 38 mm Metal Screw Cap (Black, 4)"><img
-                                            src="https://www.organize.com/media/catalog/product/cache/1/thumbnail/65x65/9df78eab33525d08d6e5fb8d27136e95/b/t/bt1ggfblk-4-4.jpg"
-                                            alt="1 Gallon Frosted Glass Water Bottle Jug with 38 mm Metal Screw Cap (Black, 4)"/></a>
-                                <a data-magic-slide-id="zoom"
-                                   data-zoom-id="MagicZoomPlusImage38950"
-                                   href="https://www.organize.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/b/t/bt1ggfblk-4-6.jpg"
-                                   data-image="https://www.organize.com/media/catalog/product/cache/1/image/650x650/9df78eab33525d08d6e5fb8d27136e95/b/t/bt1ggfblk-4-6.jpg"
-                                   title="1 Gallon Frosted Glass Water Bottle Jug with 38 mm Metal Screw Cap (Black, 4)"><img
-                                            src="https://www.organize.com/media/catalog/product/cache/1/thumbnail/65x65/9df78eab33525d08d6e5fb8d27136e95/b/t/bt1ggfblk-4-6.jpg"
-                                            alt="1 Gallon Frosted Glass Water Bottle Jug with 38 mm Metal Screw Cap (Black, 4)"/></a>
+                                <?php foreach ($product->getImages() as $img): ?>
+                                    <a data-magic-slide-id="zoom"
+                                       data-zoom-id="MagicZoomPlusImage38950"
+                                       href=<?= "/{$img->getPathToOrigin()}" ?>
+                                       data-image=<?= "/{$img->getPath('650x650')}" ?>
+                                       title="<?= $product->name ?>"><img
+                                                src=<?= "/{$img->getPath('65x65')}" ?>
+                                                alt="<?= $product->name ?>"/></a>
+                                <?php endforeach; ?>
                             </div>
                         </div>
                     </div>
                     <img id="image" src="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA=" alt=""
                          class="invisible">
                 </div>
-
                 <div class="product-shop col-md-6">
                     <div class="price-info">
-                        <!--                        <div class="price-box">-->
-                        <span class="regular-price" id="product-price-38908"><span
-                                    class="price">$49.99</span></span>
-                        <!--                        </div>-->
+                        <span class="regular-price" id="product-price-38950"><span
+                                    class="price"><?= $formatter->asDecimal($price) ?> грн.</span></span>
                     </div>
-                    <!--                    <div class="clearfix"></div>-->
                     <div class="add-to-box">
                         <div class="add-to-cart">
                             <div class="qty-container">
@@ -118,6 +78,15 @@ $this->registerCssFile(Yii::$app->request->baseUrl . '/css/magiczoomplus.module.
                                 <span class="glyphicon glyphicon-shopping-cart"></span>В КОРЗИНУ
                             </button>
                         </div>
+                        <select name="size_id" id="size-option">
+                            <?php foreach ($options as $option): ?>
+                                <option value="<?= $option->attribute_id ?>"
+                                        data-price="<?= $formatter->asDecimal($option->value) ?> грн.">
+                                    <?= $option->attributeDescription->name ?>
+                                    (<?= $formatter->asDecimal($option->value) ?> грн.)
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
                         <ul class="add-to-links">
                             <li>
                                 <a href="https://www.organize.com/wishlist/index/add/product/38908/form_key/RjKOb7YV4mlGKUVL/"
@@ -134,11 +103,11 @@ $this->registerCssFile(Yii::$app->request->baseUrl . '/css/magiczoomplus.module.
                             </li>
                         </ul>
                     </div>
-
                 </div>
-
             </form>
-
         </div>
+    </div>
+    <div class="footer-text row col-md-12">
+        <?= \yii\helpers\Html::decode($product->productDescription->text_description) ?>
     </div>
 </div>

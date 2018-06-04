@@ -75,6 +75,12 @@ $config = [
         'myComponent' => [
             'class' => 'app\components\MyComponent',
         ],
+        'formatter' => [
+            'dateFormat' => 'dd.MM.yyyy',
+            'decimalSeparator' => ',',
+            'thousandSeparator' => ' ',
+            'currencyCode' => 'UAH',
+        ],
     ],
     'params' => $params,
 ];

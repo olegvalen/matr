@@ -16,7 +16,6 @@ $this->title = $title;
         </div>
     </div>
 </div>
-
 <div class="container">
     <div class="row">
         <div class="col-sm-3 col-left">
@@ -36,7 +35,6 @@ $this->title = $title;
                 </div>
             </div>
         </div>
-
         <div class="col-sm-9 item-grid">
             <div class="page-title">
                 <h1><?= $h1 ?></h1>
@@ -68,7 +66,6 @@ $this->title = $title;
                 </div>
                 <?= \yii\widgets\LinkPager::widget(['pagination' => $pages, 'prevPageLabel' => '<', 'nextPageLabel' => '>']); ?>
             </div>
-
             <?php if (!empty($products)): ?>
                 <?= $this->render('/site/carousel', ['products' => $products,]) ?>
             <?php else: ?>
@@ -77,5 +74,4 @@ $this->title = $title;
         </div>
     </div>
     <div class="footer-text row col-md-12"><?= $text_description ?></div>
-
 </div>

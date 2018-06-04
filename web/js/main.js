@@ -73,6 +73,10 @@ $(document).ready(function () {
     //     }
     // );
 
+    $("select[id^='size-option']").on('change', function () {
+        $('#product-price-38950 span').text($('option:selected', this).attr('data-price'));
+    });
+
     /******************************
      BOTTOM SCROLL TOP BUTTON
      ******************************/

@@ -9,7 +9,7 @@ use yii\helpers\Url;
             <a href="<?= Url::to("/{$item['seo_url']}") ?>"
                title="<?= $item['name'] ?>"
                class="product-image">
-                <img class="img-responsive" src="<?php echo "/{$item->getImage()->getPath('300x')}" ?>"
+                <img class="img-responsive" src="<?= "/{$item->getImage()->getPath('300x')}" ?>"
                      alt="<?= $item['name'] ?>">
             </a>
             <div class="product-info">

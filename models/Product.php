@@ -26,6 +26,11 @@ class Product extends ActiveRecord
         return $this->hasOne(Category::class, ['category_id' => 'category_id']);
     }
 
+    public function getProductDescription()
+    {
+        return $this->hasOne(ProductDescription::class, ['product_id' => 'product_id']);
+    }
+
     public static function getProductsByIds($ids)
     {
         return Product::find()->where(['product_id' => $ids])->all();
@@ -53,7 +58,23 @@ class Product extends ActiveRecord
     {
         return Product::find()
             ->joinWith('category c')
+            ->joinWith([
+                'productDescription pd' => function ($query) {
+                    $query->onCondition(['pd.language_id' => 1]);
+                }])
             ->where(['product.seo_url' => $seoUrl])->limit(1);
     }
 
+    public static function getProductOptions($product_id)
+    {
+        return ProductOption::find()
+            ->joinWith('myAttribute a')
+            ->joinWith(
+                ['attributeDescription ad' => function ($query) {
+                    $query->onCondition(['ad.language_id' => 1]);
+                }])
+            ->where(['product_option.product_id' => $product_id])
+            ->orderBy('a.sort_order')
+            ->all();
+    }
 }

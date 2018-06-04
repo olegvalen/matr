@@ -10,8 +10,10 @@ namespace app\controllers;
 
 use app\models\Category;
 use app\models\Product;
+use app\models\ProductOption;
 use Yii;
 use yii\data\Pagination;
+use yii\i18n\Formatter;
 use yii\web\Controller;
 use yii\widgets\Breadcrumbs;
 
@@ -43,6 +45,14 @@ class ProductController extends Controller
             'itemTemplate' => "<li>{link}</li>\n",
             'links' => $links,
         ]);
+
+        $data['product'] = $product;
+        $data['options'] = Product::getProductOptions($product->product_id);
+        if (count($data['options'])) {
+            $data['price'] = $data['options'][0]->value;
+        } else {
+            $data['price'] = 0;
+        };
 
 //        $data['filter'] = Category::getFilter($categoryQuery);
 //        $getFilter = $this->getGetFilter($get);
