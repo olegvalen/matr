@@ -28,7 +28,6 @@
                 <div class="page-title title-buttons">
                     <h1>Избранное</h1>
                 </div>
-
                 <form id="wishlist-view-form" action="https://www.organize.com/wishlist/index/update/wishlist_id/120/"
                       method="post">
                     <fieldset>
@@ -37,13 +36,12 @@
                             <thead>
                             <tr class="first last">
                                 <th></th>
-                                <th>Product Details and Comment</th>
-                                <th>Add to Cart</th>
+                                <th>Товары</th>
+                                <th>Количество</th>
                                 <th></th>
                             </tr>
                             </thead>
                             <tbody>
-
                             <tr id="item_1210" class="first odd">
                                 <td><a class="product-image"
                                        href="https://www.organize.com/vertical-file-sorter-blue.html"
@@ -60,14 +58,11 @@
                                 </td>
                                 <td>
                                     <div class="cart-cell">
-
-
                                         <div class="price-box">
                                                                 <span class="regular-price" id="product-price-15787">
                                             <span class="price">$17.63</span>                                    </span>
 
                                         </div>
-
                                         <div class="add-to-cart-alt">
                                             <div class="qty-container">
                                                 <span class="qty-minus">-</span><input type="text"
@@ -79,17 +74,15 @@
                                                     class="button btn-cart"><span><span>Add to Cart</span></span>
                                             </button>
                                         </div>
-
                                     </div>
                                 </td>
-                                <td class="last"><a href="https://www.organize.com/wishlist/index/configure/id/1210/"
-                                                    class="btn-cart-edit">Edit</a>
+                                <td class="last">
                                     <a href="https://www.organize.com/wishlist/index/remove/item/1210/"
                                        onclick="return confirmRemoveWishlistItem();" title="Remove Item"
-                                       class="btn-remove btn-remove2">Remove item</a>
+                                       class="btn-remove"><span
+                                                class="glyphicon glyphicon-remove"></span></a>
                                 </td>
                             </tr>
-
                             <tr id="item_1211" class="even">
                                 <td><a class="product-image"
                                        href="https://www.organize.com/3-tier-desk-organizer-blue.html"
@@ -107,14 +100,10 @@
                                 </td>
                                 <td>
                                     <div class="cart-cell">
-
-
                                         <div class="price-box">
                                                                 <span class="regular-price" id="product-price-15788">
                                             <span class="price">$24.49</span>                                    </span>
-
                                         </div>
-
                                         <div class="add-to-cart-alt">
                                             <div class="qty-container">
                                                 <span class="qty-minus">-</span><input type="text"
@@ -126,17 +115,15 @@
                                                     class="button btn-cart"><span><span>Add to Cart</span></span>
                                             </button>
                                         </div>
-
                                     </div>
                                 </td>
-                                <td class="last"><a href="https://www.organize.com/wishlist/index/configure/id/1211/"
-                                                    class="btn-cart-edit">Edit</a>
+                                <td class="last">
                                     <a href="https://www.organize.com/wishlist/index/remove/item/1211/"
                                        onclick="return confirmRemoveWishlistItem();" title="Remove Item"
-                                       class="btn-remove btn-remove2">Remove item</a>
+                                       class="btn-remove"><span
+                                                class="glyphicon glyphicon-remove"></span></a>
                                 </td>
                             </tr>
-
                             <tr id="item_1212" class="last odd">
                                 <td><a class="product-image"
                                        href="https://www.organize.com/graphic-hamper-washing-orange.html"
@@ -153,14 +140,10 @@
                                 </td>
                                 <td>
                                     <div class="cart-cell">
-
-
                                         <div class="price-box">
                                                                 <span class="regular-price" id="product-price-15761">
                                             <span class="price">$26.45</span>                                    </span>
-
                                         </div>
-
                                         <div class="add-to-cart-alt">
                                             <div class="qty-container">
                                                 <span class="qty-minus">-</span><input type="text"
@@ -172,33 +155,25 @@
                                                     class="button btn-cart"><span><span>Add to Cart</span></span>
                                             </button>
                                         </div>
-
                                     </div>
                                 </td>
-                                <td class="last"><a href="https://www.organize.com/wishlist/index/configure/id/1212/"
-                                                    class="btn-cart-edit">Edit</a>
+                                <td class="last">
                                     <a href="https://www.organize.com/wishlist/index/remove/item/1212/"
                                        onclick="return confirmRemoveWishlistItem();" title="Remove Item"
-                                       class="btn-remove btn-remove2">Remove item</a>
+                                       class="btn-remove"><span
+                                                class="glyphicon glyphicon-remove"></span></a>
                                 </td>
                             </tr>
-
                             </tbody>
                         </table>
                         <div class="buttons-set buttons-set2">
-
-                            <button type="submit" name="save_and_share" title="Share Wishlist" class="button btn-share">
-                                <span><span>Share Wishlist</span></span></button>
-
                             <button type="button" title="Add All to Cart" onclick="addAllWItemsToCart()"
                                     class="button btn-add"><span><span>Add All to Cart</span></span></button>
-
                             <button type="submit" name="do" title="Update Wishlist" class="button btn-update">
                                 <span><span>Update Wishlist</span></span></button>
                         </div>
                     </fieldset>
                 </form>
-
             </div>
         </div>
     </div>
