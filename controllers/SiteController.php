@@ -14,6 +14,7 @@ use app\models\ContactForm;
 
 class SiteController extends Controller
 {
+
     /**
      * {@inheritdoc}
      */
@@ -64,12 +65,10 @@ class SiteController extends Controller
     public function actionIndex()
     {
 
-        $modelSubscribeForm = new SubscribeForm();
         return $this->render('index', [
             'productsCheap' => Product::getProductsByIds([10, 1, 4, 5]),
             'productsPopular' => Product::getProductsByIds([2, 7, 11, 9]),
             'productsPremium' => Product::getProductsByIds([14, 12, 15, 13]),
-            'modelSubscribeForm' => $modelSubscribeForm,
         ]);
 
     }
@@ -160,5 +159,9 @@ class SiteController extends Controller
         $this->goBack();
     }
 
+    public function actionCompare()
+    {
+        return $this->render('compare');
+    }
+
 }
-//

@@ -22,7 +22,8 @@
                     <fieldset>
                         <table id="shopping-cart-table" class="data-table cart-table">
                             <colgroup>
-                                <col width="1"><col>
+                                <col width="1">
+                                <col>
                                 <col width="1">
                                 <col width="1">
                                 <col width="1">
@@ -33,7 +34,7 @@
                             <tr class="first last">
                                 <th rowspan="1">&nbsp;</th>
                                 <th rowspan="1"><span class="nobr">Наименование</span></th>
-                                <th rowspan="1" class="a-center"><span class="nobr">В избранное</span></th>
+                                <th rowspan="1" class="a-center"><span class="nobr">Избранное</span></th>
                                 <th class="a-center" colspan="1"><span class="nobr">Цена</span></th>
                                 <th rowspan="1" class="a-center">Количество</th>
                                 <th class="a-center" colspan="1">Сумма</th>
@@ -43,15 +44,15 @@
                             <tfoot>
                             <tr class="first last">
                                 <td colspan="50" class="a-right last">
-                                    <button type="button" title="Continue Shopping" class="button btn-continue"
-                                            onclick="setLocation('https://www.organize.com/')"><span><span>Continue Shopping</span></span>
+                                    <button type="button" title="Продолжить покупки" class="button btn-continue"
+                                            onclick="setLocation('https://www.organize.com/')"><span><span>Продолжить покупки</span></span>
                                     </button>
                                     <button type="submit" name="update_cart_action" value="update_qty"
-                                            title="Update Shopping Cart" class="button btn-update"><span><span>Update Shopping Cart</span></span>
+                                            title="Обновить корзину" class="button btn-update"><span><span>Обновить корзину</span></span>
                                     </button>
                                     <button type="submit" name="update_cart_action" value="empty_cart"
-                                            title="Clear Shopping Cart" class="button btn-empty" id="empty_cart_button">
-                                        <span><span>Clear Shopping Cart</span></span></button>
+                                            title="Очистить корзину" class="button btn-empty" id="empty_cart_button">
+                                        <span><span>Очистить корзину</span></span></button>
                                     <!--[if lt IE 8]>
                                     <input type="hidden" id="update_cart_action_container"/>
                                     <![endif]-->
@@ -74,9 +75,9 @@
                                             Compartment Acrylic Cosmetic Organizer</a>
                                     </h2>
                                 </td>
-                                <td class="a-center"><span class="th">Wishlist</span>
+                                <td class="a-center wishlist"><span class="th">Wishlist</span>
                                     <a href="https://www.organize.com/wishlist/index/fromcart/item/88021/"
-                                       class="link-wishlist use-ajax">Move</a>
+                                       class="link-wishlist use-ajax">Переместить</a>
                                 </td>
 
 
@@ -104,10 +105,10 @@
         </span>
                                 </td>
                                 <td class="a-center last">
-                                    <a href="https://www.organize.com/checkout/cart/configure/id/88021/"
-                                       title="Edit item parameters" class="btn-cart-edit">Edit</a>
                                     <a href="https://www.organize.com/checkout/cart/delete/id/88021/form_key/jrx4HwfMy8ihzQvq/uenc/aHR0cHM6Ly93d3cub3JnYW5pemUuY29tL2NoZWNrb3V0L2NhcnQv/"
-                                       title="Remove item" class="btn-remove btn-remove2">Remove item</a>
+                                       title="Remove item" class="btn-remove btn-remove2">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </a>
                                 </td>
                             </tr>
                             <tr class="last even">
@@ -125,9 +126,9 @@
                                             Acrylic Containers - Set of 3</a>
                                     </h2>
                                 </td>
-                                <td class="a-center"><span class="th">Wishlist</span>
+                                <td class="a-center wishlist"><span class="th">Wishlist</span>
                                     <a href="https://www.organize.com/wishlist/index/fromcart/item/88022/"
-                                       class="link-wishlist use-ajax">Move</a>
+                                       class="link-wishlist use-ajax">Переместить</a>
                                 </td>
 
 
@@ -155,10 +156,10 @@
         </span>
                                 </td>
                                 <td class="a-center last">
-                                    <a href="https://www.organize.com/checkout/cart/configure/id/88022/"
-                                       title="Edit item parameters" class="btn-cart-edit">Edit</a>
                                     <a href="https://www.organize.com/checkout/cart/delete/id/88022/form_key/jrx4HwfMy8ihzQvq/uenc/aHR0cHM6Ly93d3cub3JnYW5pemUuY29tL2NoZWNrb3V0L2NhcnQv/"
-                                       title="Remove item" class="btn-remove btn-remove2">Remove item</a>
+                                       title="Remove item" class="btn-remove btn-remove2">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </a>
                                 </td>
                             </tr>
                             </tbody>

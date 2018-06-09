@@ -4754,7 +4754,7 @@ label {
   font-weight: 600;
   border-bottom: 0;
   padding-bottom: 3px;
-  margin: 0 0 30px;
+  margin: 30px 0;
 }
 .col-main {
   margin: 30px 0;
@@ -4980,13 +4980,20 @@ label {
   margin: 0;
   border: 0;
 }
-.my-wishlist .btn-remove {
+.my-wishlist .buttons-set {
+  margin-top: 15px;
+  padding-top: 15px;
+  clear: both;
+  padding-top: 10px;
+  text-align: right;
+}
+.btn-remove {
   position: relative;
   display: inline-block;
   width: 30px;
   height: 30px;
 }
-.my-wishlist .btn-remove span {
+.btn-remove span {
   position: absolute;
   top: 0;
   left: 0;
@@ -5000,17 +5007,8 @@ label {
   text-align: center;
   text-indent: initial;
 }
-.my-wishlist .btn-remove span:hover {
+.btn-remove span:hover {
   background: #505050;
-}
-.my-wishlist .buttons-set {
-  margin-top: 15px;
-  padding-top: 15px;
-  clear: both;
-  margin: 10px 0 0;
-  padding-top: 10px;
-  border-top: 1px solid #ededed;
-  text-align: right;
 }
 .data-table th {
   background-color: #363636;
@@ -5051,14 +5049,9 @@ label {
 .data-table .price-box .price {
   color: #636363;
 }
-.data-table .qty-container {
-  display: block;
-  margin: 15px auto 0;
-  padding: 0;
-  background: transparent;
-}
 .data-table .qty-container span {
   width: 17px;
+  text-align: center;
   background-color: #fff;
   border: 1px solid #e4e4e4;
   font-weight: 700;
@@ -5090,8 +5083,11 @@ label {
   font-family: Arial, sans-serif;
   font-weight: 700;
 }
-.data-table a {
-  text-decoration: underline;
+.data-table .wishlist a {
+  text-decoration: underline !important;
+}
+.qty-container {
+  display: block;
 }
 .button {
   padding: 5px 12px;
@@ -5104,6 +5100,57 @@ label {
   -ms-user-select: none;
   background-image: none;
   border: 1px solid transparent;
+}
+.cart .page-title {
+  margin-bottom: 30px;
+}
+.cart .page-title h1 {
+  color: #000;
+}
+.cart .checkout-types {
+  float: right;
+}
+.cart .btn-checkout {
+  font-size: 18px;
+  font-weight: 700;
+  padding: 10px 73px 10px 19px;
+  position: relative;
+}
+.cart .glyphicon-chevron-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 18px;
+  line-height: 29px;
+  padding: 0 20px;
+  margin: 8px 0;
+  border-left: 1px solid #fff;
+}
+.cart .data-table {
+  width: 100%;
+}
+.cart .cart-table {
+  margin-bottom: 20px;
+}
+.cart .a-center {
+  text-align: center;
+}
+.cart .a-right {
+  text-align: right;
+}
+.cart .cart-table .qty-container {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+}
+.cart .cart-table td,
+.cart .cart-table .product-name {
+  line-height: 32px;
+}
+.page-title:after {
+  content: '';
+  display: table;
+  clear: both;
 }
 @media (max-width: 991px) {
   .search-btn {
@@ -5268,44 +5315,44 @@ label {
   .data-table .product-name {
     text-align: center;
   }
+  .data-table .th {
+    display: inline-block;
+  }
+  .data-table .th:after {
+    content: ': ';
+  }
   #wishlist-table tbody td.last {
     text-align: center !important;
   }
+  .cart .btn-checkout {
+    width: 100%;
+  }
+  .cart .checkout-types {
+    float: none;
+  }
+  table.cart-table td,
+  .buttons-set {
+    max-width: 300px;
+    margin: auto;
+    background: transparent !important;
+  }
+  .cart .a-center.last {
+    text-align: center !important;
+  }
+  .cart-table .button,
+  .buttons-set .button {
+    display: block;
+    float: none;
+    width: 100%;
+    margin: 8px auto;
+  }
 }
-.cart .page-title {
-  margin-bottom: 30px;
+.compare-table .img-center {
+  margin: 0 auto;
 }
-.cart .page-title h1 {
-  float: left;
-  color: #000;
+.compare-table a.link-wishlist {
+  text-decoration: underline !important;
 }
-.cart .checkout-types {
-  float: right;
-}
-.cart .btn-checkout {
-  font-size: 18px;
-  font-weight: 700;
-  padding: 10px 73px 10px 19px;
-  position: relative;
-}
-.cart .glyphicon-chevron-right {
-  position: absolute;
-  top: 0;
-  right: 0;
-  font-size: 18px;
-  line-height: 29px;
-  padding: 0 20px;
-  margin: 8px 0;
-  border-left: 1px solid #fff;
-}
-.cart .data-table {
-  width: 100%;
-}
-.cart .cart-table {
-  margin-bottom: 20px;
-}
-.page-title:after {
-  content: '';
-  display: table;
-  clear: both;
+.compare-table tr:nth-child(odd) td {
+  background-color: #f7f7f7;
 }

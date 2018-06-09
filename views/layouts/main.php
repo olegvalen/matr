@@ -8,6 +8,8 @@ use yii\helpers\Html;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 use yii\helpers\Url;
+use yii\bootstrap\ActiveForm;
+use app\models\SubscribeForm;
 
 AppAsset::register($this);
 ?>
@@ -48,6 +50,9 @@ AppAsset::register($this);
                         <li><a href="<?= Url::to(['site/wishlist']) ?>" title="Избранное">Избранное</a></li>
                         <li>
                             <a href="<?= Url::to(['site/cart']) ?>" title="Корзина">Корзина</a>
+                        </li>
+                        <li>
+                            <a href="<?= Url::to(['site/compare']) ?>" title="Сравнение">Сравнение</a>
                         </li>
                     </ul>
                 </div>
@@ -198,8 +203,34 @@ AppAsset::register($this);
     <div class="scroll-top">
         <span><a href="#"><span class="glyphicon glyphicon-chevron-up"></span></a></span>
     </div>
-    <?php $this->endBody() ?>
-
+    <div class="container">
+        <div class="row footer-banners">
+            <div class="col-md-6">
+                <i class="glyphicon glyphicon-envelope"></i>
+                <div class="subscribe-container">
+                    <?php $form = ActiveForm::begin([
+                        'action' => 'site/subscribe',
+                        'method' => 'post',
+                        'options' => ['class' => 'input-group'],
+                    ]); ?>
+                    <?= $form->field(new SubscribeForm(), 'email', [
+                        'options' => [
+                        ]
+                    ])->textInput()->input('email', ['placeholder' => 'Ваш e-mail'])->label(false) ?>
+                    <div class="input-group-btn">
+                        <?= Html::submitButton('ПОДПИСАТЬСЯ', ['class' => 'btn button', 'type' => 'submit']) ?>
+                    </div>
+                    <?php ActiveForm::end(); ?>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <i class="glyphicon glyphicon-earphone"></i>
+                <p><span class="call-us">ПОЗВОНИТЕ НАМ: </span><span><a
+                                href="tel:098-682-36-17">098-682-36-17</a></span>
+                </p>
+            </div>
+        </div>
+    </div>
     <footer>
         <div class="container">
             <div class="row">
@@ -231,7 +262,7 @@ AppAsset::register($this);
             </div>
         </div>
     </footer>
-
+    <?php $this->endBody() ?>
     </body>
     </html>
 <?php $this->endPage() ?>

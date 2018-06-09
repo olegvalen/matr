@@ -80,30 +80,4 @@ $this->title = 'My Yii Application';
             это
             проводник в мир здорового и комфортного сна!</h3>
     </div>
-    <div class="row footer-banners">
-        <div class="col-md-6">
-            <i class="glyphicon glyphicon-envelope"></i>
-            <div class="subscribe-container">
-                <?php $form = ActiveForm::begin([
-                    'action' => 'site/subscribe',
-                    'method' => 'post',
-                    'options' => ['class' => 'input-group'],
-                ]); ?>
-                <?= $form->field($modelSubscribeForm, 'email', [
-                    'options' => [
-                    ]
-                ])->textInput()->input('email', ['placeholder' => 'Ваш e-mail'])->label(false) ?>
-                <div class="input-group-btn">
-                    <?= Html::submitButton('ПОДПИСАТЬСЯ', ['class' => 'btn button', 'type' => 'submit']) ?>
-                </div>
-                <?php ActiveForm::end(); ?>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <i class="glyphicon glyphicon-earphone"></i>
-            <p><span class="call-us">ПОЗВОНИТЕ НАМ: </span><span><a href="tel:098-682-36-17">098-682-36-17</a></span>
-            </p>
-        </div>
-    </div>
 </div>
-<!--1-->
