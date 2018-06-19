@@ -67,8 +67,8 @@ $config = [
             'rules' => [
 //                'about' => 'site/about',
                 '/' => 'site/index',
-                '<action:(account|wishlist|cart|compare)>' => 'site/<action>',
-//                '<action:\w+>' => 'site/<action>',
+//                '<action:(account|wishlist|cart|compare)>' => 'site/<action>',
+                '<action:\w+>' => 'site/<action>',
                 ['class' => 'app\components\MyUrlRule'],
             ],
         ],
