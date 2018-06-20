@@ -45,7 +45,13 @@ AppAsset::register($this);
                                 class="glyphicon glyphicon-menu-hamburger"></i></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="<?= Url::to(['site/account']) ?>" title="Личный кабинет">Личный кабинет</a>
+                            <?php if (!Yii::$app->user->isGuest): ?>
+                                <a href="<?= Url::to(['site/account']) ?>"
+                                   title="Личный кабинет, <?= Yii::$app->user->identity->name ?>">Личный
+                                    кабинет, <?= Yii::$app->user->identity->name ?></a>
+                            <?php else: ?>
+                                <a href="<?= Url::to(['site/account']) ?>" title="Личный кабинет">Личный кабинет</a>
+                            <?php endif; ?>
                         </li>
                         <li><a href="<?= Url::to(['site/wishlist']) ?>" title="Избранное">Избранное</a></li>
                         <li>
@@ -53,6 +59,13 @@ AppAsset::register($this);
                         </li>
                         <li>
                             <a href="<?= Url::to(['site/compare']) ?>" title="Сравнение">Сравнение</a>
+                        </li>
+                        <li>
+                            <?php if (!Yii::$app->user->isGuest): ?>
+                                <a href="<?= Url::to(['site/logout']) ?>" title="Выход">Выход</a>
+                            <?php else: ?>
+                                <a href="<?= Url::to(['site/login']) ?>" title="Войти">Войти</a>
+                            <?php endif; ?>
                         </li>
                     </ul>
                 </div>

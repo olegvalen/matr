@@ -137,7 +137,19 @@ class SiteController extends Controller
 
     public function actionAccount()
     {
-        return $this->render('account');
+//        return $this->render('account');
+        if (!Yii::$app->user->isGuest) {
+            return $this->render('account');
+        }
+        $model = new LoginForm();
+        if ($model->load(Yii::$app->request->post()) && $model->login()) {
+//            return $this->goBack();
+            return $this->render('account');
+        }
+        $model->password = '';
+        return $this->render('login', [
+            'model' => $model,
+        ]);
     }
 
     public function actionWishlist()
