@@ -176,4 +176,14 @@ class SiteController extends Controller
         return $this->render('compare');
     }
 
+    public function actionNewcustomer()
+    {
+        return $this->render('newcustomer');
+    }
+
+    public function actionForgotPassword()
+    {
+        return $this->render('forgotpassword');
+    }
+
 }

@@ -5206,7 +5206,6 @@ label {
 }
 .col2-set .form-list li {
   float: left;
-  margin-bottom: 15px;
 }
 .col2-set .form-list .input-box,
 .col2-set .col-1 .buttons-set .button {
@@ -5458,5 +5457,11 @@ label {
     float: none;
     width: 100%;
     margin: 8px auto;
+  }
+  .col2-set h2 {
+    font-size: 16px;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+    border: 0;
   }
 }

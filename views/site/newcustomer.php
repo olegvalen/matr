@@ -2,5 +2,5 @@
 
 ?>
 <div class="container">
-    account
+    new customer
 </div>
