@@ -5237,6 +5237,103 @@ label {
 .col2-set .f-left {
   float: left !important;
 }
+.account-create h1 {
+  margin-bottom: 37px;
+  text-align: center;
+}
+.account-create form {
+  text-align: center;
+}
+.account-create form legend {
+  color: #000;
+}
+.account-create .content {
+  display: inline-block;
+  margin: 0 auto;
+  border: 1px solid #e4e4e4;
+  border-top: 3px solid #CD8250;
+  padding: 20px 60px 30px 30px;
+  font-size: 14px;
+}
+.account-create .fieldset {
+  float: left;
+  text-align: left;
+  margin-left: 30px;
+  margin-top: 40px;
+}
+.account-create .fieldset h2 {
+  font-size: 25px;
+  text-transform: uppercase;
+  margin-bottom: 40px;
+  border: 0;
+}
+.account-create .fieldset h2 span {
+  color: #CD8250;
+}
+.account-create .form-list > li {
+  margin-bottom: 15px;
+}
+.account-create .form-list .field {
+  margin-bottom: 10px;
+}
+.account-create .form-list input[type=text],
+.account-create .form-list input[type=password] {
+  height: 40px;
+  padding: 0 15px;
+  border-radius: 0;
+}
+.account-create .form-list .control {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.account-create .form-list .control .input-box {
+  padding: 0;
+  display: inline;
+  float: left;
+}
+.account-create .form-list .control label {
+  color: #505050;
+  margin: 0;
+  font-weight: 400;
+}
+.account-create .form-list .control input.checkbox {
+  margin-top: 3px;
+  margin-right: 10px;
+}
+.account-create .input-box {
+  padding-top: 2px;
+}
+.account-create .buttons-set {
+  max-width: 100%;
+  margin: 10px 0 0;
+  margin-left: 30px;
+  margin-top: 40px;
+  padding-top: 15px;
+  clear: both;
+  border-top: 1px solid #ededed;
+  text-align: right;
+}
+.account-create .buttons-set button.button {
+  float: right;
+  margin-left: 5px;
+}
+.account-create .button {
+  text-transform: uppercase;
+}
+input[type=email],
+input[type=search],
+input[type=number],
+input[type=password],
+input[type=tel],
+input[type=text] {
+  width: 365px;
+  max-width: 100%;
+}
+.input-text {
+  border: 1px solid silver;
+  background: #fff;
+  font-size: 15px;
+}
 @media (max-width: 991px) {
   .search-btn {
     display: table-cell;
@@ -5463,5 +5560,12 @@ label {
     text-transform: uppercase;
     margin-bottom: 40px;
     border: 0;
+  }
+  .account-create .form-list input[type=text],
+  .account-create .form-list input[type=password] {
+    width: 100%;
+  }
+  .account-create .fieldset {
+    float: none;
   }
 }
