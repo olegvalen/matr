@@ -2,6 +2,8 @@
 
 namespace app\controllers;
 
+use app\models\ForgotpasswordForm;
+use app\models\NewcustomerForm;
 use app\models\Product;
 use app\models\SubscribeForm;
 use Yii;
@@ -178,12 +180,26 @@ class SiteController extends Controller
 
     public function actionNewcustomer()
     {
-        return $this->render('newcustomer');
+        $model = new NewcustomerForm();
+        if ($model->load(Yii::$app->request->post()) && $model->newcustomer()) {
+            Yii::$app->session->setFlash('newcustomer.success', 'Профиль успешно создался!');
+            return $this->refresh();
+        }
+//        $model->password = '';
+//        $model->confirmation = '';
+        return $this->render('newcustomer', ['model' => $model,]);
     }
 
-    public function actionForgotPassword()
+    public function actionForgotpassword()
     {
-        return $this->render('forgotpassword');
+        $model = new ForgotpasswordForm();
+        if ($model->load(Yii::$app->request->post()) && $model->forgotpassword()) {
+            Yii::$app->session->setFlash('forgotpassword.success', 'На указанный e-mail выслано письмо с новым паролем!');
+            return $this->refresh();
+        }
+//        $model->password = '';
+//        $model->confirmation = '';
+        return $this->render('forgotpassword', ['model' => $model,]);
     }
 
 }

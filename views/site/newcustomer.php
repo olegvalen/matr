@@ -1,77 +1,69 @@
 <?php
 
+use yii\helpers\Html;
+use yii\bootstrap\ActiveForm;
+
 ?>
 <div class="container">
     <div class="row">
         <div class="col-md-12 col-main">
-            <div class="account-create">
+            <div class="account-main">
                 <h1>Создание профиля</h1>
-
-                <form action="https://www.organize.com/customer/account/createpost/" method="post" id="form-validate">
-                    <div class="content">
-                        <div class="fieldset">
-                            <h2 class="legend">Персональная <span>информация</span></h2>
-                            <ul class="form-list">
-                                <li class="fields">
-                                    <div class="customer-name">
-                                        <div class="field name-firstname">
-                                            <div class="input-box">
-                                                <input type="text" id="name" name="name" value=""
-                                                       title="Имя" maxlength="255"
-                                                       class="input-text required-entry" placeholder="Имя">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="input-box">
-                                        <input type="text" name="email" id="email_address" value=""
-                                               title="E-mail" class="input-text validate-email required-entry"
-                                               placeholder="E-mail">
-                                    </div>
-                                </li>
-                                <li class="control">
-                                    <div class="input-box">
-                                        <input type="checkbox" name="is_subscribed" title="Подписаться на новости"
-                                               value="1" id="is_subscribed" class="checkbox">
-                                    </div>
-                                    <label for="is_subscribed">Подписаться на новости</label>
-                                </li>
-                            </ul>
+                <?php $form = ActiveForm::begin(['id' => 'form-validate',]); ?>
+                <div class="content">
+                    <?php if (Yii::$app->session->hasFlash('newcustomer.success')): ?>
+                        <div class="alert alert-success alert-dismissible ok-alert" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                        aria-hidden="true">&times;</span></button>
+                            <?= Yii::$app->session->getFlash('newcustomer.success'); ?>
                         </div>
-
-                        <div class="fieldset">
-                            <h2 class="legend">Информация <span>о пароле</span></h2>
-                            <ul class="form-list">
-                                <li class="fields">
-                                    <div class="field">
+                    <?php endif; ?>
+                    <div class="fieldset">
+                        <h2 class="legend">Персональная <span>информация</span></h2>
+                        <ul class="form-list">
+                            <li class="fields">
+                                <div class="customer-name">
+                                    <div class="field name-firstname">
                                         <div class="input-box">
-                                            <input type="password" name="password" id="password" title="Пароль"
-                                                   class="input-text required-entry validate-password"
-                                                   placeholder="Пароль">
+                                            <?= $form->field($model, 'name')->textInput(['autofocus' => true, 'placeholder' => 'Имя'])->label(false) ?>
                                         </div>
                                     </div>
-                                    <div class="field">
-                                        <div class="input-box">
-                                            <input type="password" name="confirmation" title="Подтвердите пароль"
-                                                   id="confirmation"
-                                                   class="input-text required-entry validate-cpassword"
-                                                   placeholder="Подтвердите пароль">
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-
-                        </div>
-
-                        <div class="buttons-set">
-                            <button type="submit" title="Создать" class="button"><span>Создать</span>
-                            </button>
-                        </div>
-
+                                </div>
+                            </li>
+                            <li>
+                                <div class="input-box">
+                                    <?= $form->field($model, 'email')->textInput(['placeholder' => 'E-mail'])->label(false) ?>
+                                </div>
+                            </li>
+                            <li class="control">
+                                <div class="input-box">
+                                    <?= $form->field($model, 'is_subscribed')->checkbox() ?>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
-                </form>
-
+                    <div class="fieldset">
+                        <h2 class="legend">Информация <span>о пароле</span></h2>
+                        <ul class="form-list">
+                            <li class="fields">
+                                <div class="field">
+                                    <div class="input-box">
+                                        <?= $form->field($model, 'password')->passwordInput(['placeholder' => 'Пароль'])->label(false) ?>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="input-box">
+                                        <?= $form->field($model, 'confirmation')->passwordInput(['placeholder' => 'Подтвердите пароль'])->label(false) ?>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="buttons-set">
+                        <?= Html::submitButton('Создать', ['class' => 'button']) ?>
+                    </div>
+                </div>
+                <?php ActiveForm::end(); ?>
             </div>
         </div>
     </div>

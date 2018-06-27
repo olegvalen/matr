@@ -48,7 +48,15 @@ $config = [
             // send all mails to a file by default. You have to set
             // 'useFileTransport' to false and configure a transport
             // for the mailer to send real emails.
-            'useFileTransport' => true,
+            'useFileTransport' => false,
+            'transport' => [
+                'class' => 'Swift_SmtpTransport',
+                'host' => 'smtp.gmail.com',
+                'username' => 'matrasovich.com',
+                'password' => 'Gkjnbyf13',
+                'port' => '587',
+                'encryption' => 'tls',
+            ],
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
@@ -67,8 +75,8 @@ $config = [
             'rules' => [
 //                'about' => 'site/about',
                 '/' => 'site/index',
-//                '<action:(account|wishlist|cart|compare)>' => 'site/<action>',
-                '<action:\w+>' => 'site/<action>',
+                '<action:(account|wishlist|cart|compare|login|logout|newcustomer|forgotpassword)>' => 'site/<action>',
+//                '<action:\w+>' => 'site/<action>',
                 ['class' => 'app\components\MyUrlRule'],
             ],
         ],
