@@ -98,5 +98,42 @@ $(document).ready(function () {
         }, 800);
         return false;
     });
+
+    $('.link-wishlist').on('click', function (e) {
+        e.preventDefault();
+        var _this = $(this);
+        var id = _this.data('id');
+        // console.log(id);
+        $.ajax({
+            url: '/wishlist/add',
+            data: {id: id},
+            type: 'GET',
+            success: function (e) {
+                if (!e)
+                    alert('Error!');
+                // console.log(e);
+                _this.find('span').first().addClass('hover');
+                $('.ok-badge').first().text(e);
+            },
+            error: function () {
+                alert('Error!');
+            }
+        });
+    });
+
+    $('.link-wishlist222').on('click', function (e) {
+        e.preventDefault();
+        $.ajax({
+            url: '/wishlist/clearAll',
+            type: 'GET',
+            success: function (e) {
+                if (!e)
+                    alert('Error!');
+            },
+            error: function () {
+                alert('Error!');
+            }
+        });
+    });
+
 });
-// 1

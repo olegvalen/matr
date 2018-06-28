@@ -12,6 +12,7 @@ use yii\bootstrap\ActiveForm;
 use app\models\SubscribeForm;
 
 AppAsset::register($this);
+
 ?>
 <?php $this->beginPage() ?>
     <!DOCTYPE html>
@@ -53,7 +54,10 @@ AppAsset::register($this);
                                 <a href="<?= Url::to(['site/account']) ?>" title="Личный кабинет">Личный кабинет</a>
                             <?php endif; ?>
                         </li>
-                        <li><a href="<?= Url::to(['site/wishlist']) ?>" title="Избранное">Избранное</a></li>
+                        <li><a href="<?= Url::to(['site/wishlist']) ?>"
+                               title="Избранное">Избранное<?php echo isset($_SESSION['wishlist.qty']) ? '<span class="badge ok-badge">' . $_SESSION['wishlist.qty'] . '</span>' : '' ?>
+                            </a>
+                        </li>
                         <li>
                             <a href="<?= Url::to(['site/cart']) ?>" title="Корзина">Корзина</a>
                         </li>

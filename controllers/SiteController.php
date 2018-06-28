@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\ChangepasswordForm;
 use app\models\ForgotpasswordForm;
 use app\models\NewcustomerForm;
 use app\models\Product;
@@ -25,10 +26,10 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['logout'],
+                'only' => ['logout', 'changepassword', 'cart'],
                 'rules' => [
                     [
-                        'actions' => ['logout'],
+                        'actions' => ['logout', 'changepassword', 'cart'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -156,7 +157,13 @@ class SiteController extends Controller
 
     public function actionWishlist()
     {
-        return $this->render('wishlist');
+        $session = Yii::$app->session;
+        $session->open();
+        $data = [];
+        $data['wishlist'] = $session->get('wishlist');
+        $data['wishlist.qty'] = $session->get('wishlist.qty');
+        $data['wishlist.sum'] = $session->get('wishlist.sum');
+        return $this->render('wishlist', $data);
     }
 
     public function actionCart()
@@ -200,6 +207,25 @@ class SiteController extends Controller
 //        $model->password = '';
 //        $model->confirmation = '';
         return $this->render('forgotpassword', ['model' => $model,]);
+    }
+
+    public function actionChangepassword()
+    {
+//        if (!Yii::$app->user->isGuest) {
+//            return $this->goHome();
+//        }
+
+        $model = new ChangepasswordForm();
+        if ($model->load(Yii::$app->request->post()) && $model->changepassword()) {
+            Yii::$app->session->setFlash('changepassword.success', 'Пароль успешно изменен!');
+            return $this->refresh();
+        }
+
+
+//        $model->password = '';
+        return $this->render('changepassword', [
+            'model' => $model,
+        ]);
     }
 
 }

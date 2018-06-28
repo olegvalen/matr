@@ -75,7 +75,9 @@ $config = [
             'rules' => [
 //                'about' => 'site/about',
                 '/' => 'site/index',
-                '<action:(account|wishlist|cart|compare|login|logout|newcustomer|forgotpassword)>' => 'site/<action>',
+                '<action:(account|wishlist|cart|compare|login|logout|newcustomer|forgotpassword|changepassword)>' => 'site/<action>',
+                'wishlist/<action:\w+>' => 'wishlist/<action>',
+//                'wishlist/<id:\d+>' => 'wishlist/add',
 //                '<action:\w+>' => 'site/<action>',
                 ['class' => 'app\components\MyUrlRule'],
             ],
