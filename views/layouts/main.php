@@ -55,7 +55,8 @@ AppAsset::register($this);
                             <?php endif; ?>
                         </li>
                         <li><a href="<?= Url::to(['site/wishlist']) ?>"
-                               title="Избранное">Избранное<?php echo isset($_SESSION['wishlist.qty']) ? '<span class="badge ok-badge">' . $_SESSION['wishlist.qty'] . '</span>' : '' ?>
+                               title="Избранное">Избранное<span
+                                        class="badge ok-badge"><?php echo isset($_SESSION['wishlist.qty']) ? $_SESSION['wishlist.qty'] : '' ?></span>
                             </a>
                         </li>
                         <li>

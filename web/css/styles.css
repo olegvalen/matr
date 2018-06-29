@@ -5531,6 +5531,9 @@ input[type=text] {
   .data-table .th:after {
     content: ': ';
   }
+  #wishlist-table {
+    width: 100%;
+  }
   #wishlist-table tbody td.last {
     text-align: center !important;
   }
@@ -5552,7 +5555,7 @@ input[type=text] {
   .buttons-set .button {
     display: block;
     float: none;
-    width: 100%;
+    width: 90%;
     margin: 8px auto;
   }
   .col2-set h2 {

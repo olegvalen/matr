@@ -87,7 +87,6 @@ use yii\helpers\Url;
                             </div>
                         </fieldset>
                     </form>
-                    <?php $i = 1; ?>
                 <?php endif; ?>
 
             </div>
