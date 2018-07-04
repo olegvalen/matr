@@ -24,10 +24,8 @@ $formatter = Yii::$app->formatter;
     <div class="row">
         <div class="col-md-12 col-main">
             <h1><?= $product->productDescription->h1 ?></h1>
-            <form action="https://www.organize.com/checkout/cart/add/uenc/aHR0cHM6Ly93d3cub3JnYW5pemUuY29tL3dhdGVyLXByb2R1Y3RzL3dhdGVyLWJvdHRsZXMvMS1nYWxsb24tYm90dGxlcy8xLWdhbGxvbi1mcm9zdGVkLWdsYXNzLXdhdGVyLWJvdHRsZS1qdWctd2l0aC0zOC1tbS1tZXRhbC1zY3Jldy1jYXAtYmxhY2stMTg3My5odG1sP19fX1NJRD1V/product/38950/form_key/wwX6LljT4CA0Q6Ch/"
-                  method="post" id="product_addtocart_form">
-                <input name="form_key" type="hidden" value="wwX6LljT4CA0Q6Ch">
-
+            <form method="post" id="product_addtocart_form">
+                <!--                <input name="form_key" type="hidden" value="wwX6LljT4CA0Q6Ch">-->
                 <div class="product-img-box col-md-6">
                     <!-- Begin magiczoomplus -->
                     <div class="MagicToolboxContainer selectorsBottom minWidth">
@@ -56,8 +54,8 @@ $formatter = Yii::$app->formatter;
                             </div>
                         </div>
                     </div>
-                    <img id="image" src="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA=" alt=""
-                         class="invisible">
+                    <!--                    <img id="image" src="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA=" alt=""-->
+                    <!--                         class="invisible">-->
                 </div>
                 <div class="product-shop col-md-6">
                     <div class="price-info">
@@ -69,12 +67,12 @@ $formatter = Yii::$app->formatter;
                             <div class="qty-container">
                                 <label for="qty">Количество:</label>
                                 <span class="qty-minus">-</span><input type="text" name="qty" id="qty" maxlength="12"
-                                                                       value="0" title="Qty"
-                                                                       class="input-text qty"><span
+                                                                       value="1" title="Qty"
+                                                                       class="input-text qty" disabled><span
                                         class="qty-plus">+</span>
                             </div>
                             <button type="button" title="Add to Cart" id="product-addtocart-button"
-                                    class="button btn-cart" onclick="productAddToCartForm.submit(this)">
+                                    class="button btn-cart">
                                 <span class="glyphicon glyphicon-shopping-cart"></span>В КОРЗИНУ
                             </button>
                         </div>
@@ -89,14 +87,13 @@ $formatter = Yii::$app->formatter;
                         </select>
                         <ul class="add-to-links">
                             <li>
-                                <a href="https://www.organize.com/wishlist/index/add/product/38908/form_key/RjKOb7YV4mlGKUVL/"
-                                   onclick="productAddToCartForm.submitLight(this, this.href); return false;"
-                                   class="link-wishlist">
+                                <a href="<?= Url::to(['wishlist/add', 'id' => $product->product_id]) ?>"
+                                   class="link-wishlist" data-id="<?= $product->product_id ?>">
                                     <span class="glyphicon glyphicon-heart"></span>
                                     В ИЗБРАННОЕ</a>
                             </li>
                             <li>
-                                <a href="https://www.organize.com/catalog/product_compare/add/product/38908/uenc/aHR0cHM6Ly93d3cub3JnYW5pemUuY29tL3dhdGVyLXByb2R1Y3RzL3dhdGVyLWJvdHRsZXMvMS1nYWxsb24tYm90dGxlcy8xLWdhbGxvbi1mcm9zdGVkLWdsYXNzLXdhdGVyLWJvdHRsZS1qdWctd2l0aC0zOC1tbS1tZXRhbC1zY3Jldy1jYXAtYmxhY2stMTg3My5odG1s/form_key/RjKOb7YV4mlGKUVL/"
+                                <a href="#"
                                    class="link-compare">
                                     <span class="glyphicon glyphicon-duplicate"></span>
                                     В СРАВНЕНИЕ</a>

@@ -34,15 +34,60 @@ class WishlistController extends Controller
         return $session->get('wishlist.qty');
     }
 
-    public function actionClearAll()
+    public function actionClear()
     {
+        $id = Yii::$app->request->get('id');
+        $product = Product::findOne($id);
+        if (!$product) return false;
+
         $session = Yii::$app->session;
         $session->open();
-        $session->remove('wishlist');
-        $session->remove('wishlist.qty');
-        $session->remove('wishlist.sum');
-//        $this->layout = false;
-        return $this->render('wishlist');
+        $qty = $_SESSION['wishlist'][$id]['qty'];
+
+        $wishlist = new Wishlist();
+        $wishlist->clear($product);
+        return $qty;
     }
+
+    public function actionCart()
+    {
+        $id = Yii::$app->request->get('id');
+        $product = Product::findOne($id);
+        if (!$product) return false;
+
+        $session = Yii::$app->session;
+        $session->open();
+        $qty = $_SESSION['wishlist'][$id]['qty'];
+
+        $wishlist = new Wishlist();
+        $wishlist->cart($product);
+        return $qty;
+    }
+
+    public function actionMinusplus()
+    {
+        $id = Yii::$app->request->get('id');
+        $sign = Yii::$app->request->get('sign');
+        $product = Product::findOne($id);
+        if (!$product) return false;
+
+        $session = Yii::$app->session;
+        $session->open();
+
+        $wishlist = new Wishlist();
+        $wishlist->minusplus($product, $sign);
+        return true;
+    }
+
+//    public function actionClearAll()
+//    {
+//        $session = Yii::$app->session;
+//        $session->open();
+//        $session->remove('wishlist');
+//        $session->remove('wishlist.qty');
+//        $session->remove('wishlist.sum');
+////        $this->layout = false;
+//        return $this->render('wishlist');
+//    }
 
 }

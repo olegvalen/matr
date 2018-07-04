@@ -164,8 +164,8 @@ class SiteController extends Controller
             $data['wishlist'] = null;
         else {
             $data['wishlist'] = Yii::$app->myComponent->arrayCopy($session->get('wishlist'));
-            $data['wishlist.qty'] = $session->get('wishlist.qty');
-            $data['wishlist.sum'] = $session->get('wishlist.sum');
+            $data['wishlistQty'] = $session->get('wishlist.qty');
+            $data['wishlistSum'] = $session->get('wishlist.sum');
         }
         return $this->render('wishlist', $data);
     }

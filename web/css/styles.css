@@ -5522,7 +5522,8 @@ input[type=text] {
     display: block;
     text-align: center;
   }
-  .data-table .product-name {
+  .data-table .product-name,
+  .data-table .center {
     text-align: center;
   }
   .data-table .th {

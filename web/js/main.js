@@ -121,19 +121,137 @@ $(document).ready(function () {
         });
     });
 
-    $('.link-wishlist222').on('click', function (e) {
+    $('.btn-remove-id').on('click', function (e) {
         e.preventDefault();
+        var _this = $(this);
+        var id = _this.data('id');
         $.ajax({
-            url: '/wishlist/clearAll',
+            url: '/wishlist/clear',
+            data: {id: id},
             type: 'GET',
             success: function (e) {
-                if (!e)
-                    alert('Error!');
+                removeItemWishlist(_this, e);
             },
             error: function () {
                 alert('Error!');
             }
         });
     });
+
+    $('.btn-cart').on('click', function (e) {
+        e.preventDefault();
+        var _this = $(this);
+        var id = _this.data('id');
+        $.ajax({
+            url: '/wishlist/cart',
+            data: {id: id},
+            type: 'GET',
+            success: function (e) {
+                removeItemWishlist(_this, e);
+            },
+            error: function () {
+                alert('Error!');
+            }
+        });
+    });
+
+    $('.qty-minus,.qty-plus').on('click', function (e) {
+        e.preventDefault();
+        var _this = $(this);
+        var sign = 0;
+
+        var id = _this.data('id');
+        var className = _this.attr('class');
+        if (className === 'qty-minus') {
+            sign = -1;
+        }
+        else if (className === 'qty-plus') {
+            sign = 1;
+        } else {
+            return;
+        }
+
+        var input = _this.closest('.qty-container').find('input');
+        var qtyInput = parseInt(input.val());
+        if (qtyInput + sign <= 0) {
+            return;
+        }
+
+        $.ajax({
+            url: '/wishlist/minusplus',
+            data: {id: id, sign: sign},
+            type: 'GET',
+            success: function (e) {
+                // if (!e)
+                //     alert('Error!');
+
+                input.attr('value', qtyInput + sign);
+
+
+                var wishlistQty = parseInt($('.ok-badge').text());
+                wishlistQty += sign;
+                if (wishlistQty === 0) {
+                    wishlistQty = '';
+                }
+                $('.ok-badge').text(wishlistQty);
+
+                var cartCell = _this.closest('.cart-cell');
+                var price = cartCell.find('.ok-price').text().replace(' ', '');
+                price = addSeparators((qtyInput + sign) * parseInt(price), '.', '.', ' ');
+                price = price.toString().concat(' грн.');
+                cartCell.find('.ok-price-all').text(price);
+
+                refreshQtySum();
+
+            },
+            error: function () {
+                alert('Error!');
+            }
+        });
+    });
+
+    function removeItemWishlist(_this, e) {
+        _this.closest('.first.odd').remove();
+
+        var wishlistQty = parseInt($('.ok-badge').text());
+        wishlistQty -= e;
+        if (wishlistQty === 0) {
+            wishlistQty = '';
+        }
+        $('.ok-badge').text(wishlistQty);
+
+        refreshQtySum();
+
+        if ($('.cart-cell').length === 0) {
+            $('#wishlist-view-form').remove();
+        }
+    }
+
+    function refreshQtySum() {
+        var qty = 0, sum = 0, _qty = 0;
+        $('.cart-cell').each(function () {
+            _qty = parseInt($(this).find('.input-text.qty').val());
+            qty += _qty;
+            sum += _qty * parseInt($(this).find('.ok-price').text().replace(' ', ''));
+            // console.log(qty);
+        });
+        $('.wishlist-qty').text(qty + ' шт.');
+        $('.wishlist-sum').text(addSeparators(sum, '.', '.', ' '));
+    }
+
+    function addSeparators(nStr, inD, outD, sep) {
+        nStr += '';
+        var dpos = nStr.indexOf(inD);
+        var nStrEnd = '';
+        if (dpos !== -1) {
+            nStrEnd = outD + nStr.substring(dpos + 1, nStr.length);
+            nStr = nStr.substring(0, dpos);
+        }
+        var rgx = /(\d+)(\d{3})/;
+        while (rgx.test(nStr)) {
+            nStr = nStr.replace(rgx, '$1' + sep + '$2');
+        }
+        return nStr + nStrEnd;
+    }
 
 });
