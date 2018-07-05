@@ -54,13 +54,14 @@ AppAsset::register($this);
                                 <a href="<?= Url::to(['site/account']) ?>" title="Личный кабинет">Личный кабинет</a>
                             <?php endif; ?>
                         </li>
-                        <li><a href="<?= Url::to(['site/wishlist']) ?>"
+                        <li><a href="<?= Url::to(['wishlist/index']) ?>"
                                title="Избранное">Избранное<span
-                                        class="badge ok-badge"><?php echo isset($_SESSION['wishlist.qty']) ? $_SESSION['wishlist.qty'] : '' ?></span>
+                                        class="badge ok-badge-wishlist"><?php echo isset($_SESSION['wishlist.qty']) ? $_SESSION['wishlist.qty'] : '' ?></span>
                             </a>
                         </li>
                         <li>
-                            <a href="<?= Url::to(['site/cart']) ?>" title="Корзина">Корзина</a>
+                            <a href="<?= Url::to(['cart/index']) ?>" title="Корзина">Корзина<span
+                                        class="badge ok-badge ok-badge-cart"><?php echo \app\models\Cart::showCartQty() ?></span></a>
                         </li>
                         <li>
                             <a href="<?= Url::to(['site/compare']) ?>" title="Сравнение">Сравнение</a>

@@ -18,12 +18,21 @@ class WishlistController extends Controller
 
     public function actionIndex()
     {
+        $session = Yii::$app->session;
+        $session->open();
+        $data = [];
+        if (!$session->get('wishlist'))
+            $data['wishlist'] = null;
+        else {
+            $data['wishlist'] = Yii::$app->myComponent->arrayCopy($session->get('wishlist'));
+        }
+        return $this->render('index', $data);
     }
 
     public function actionAdd()
     {
         $id = Yii::$app->request->get('id');
-        $product = Product::findOne($id);
+        $product = Product::findOne(['product_id' => $id]);
         if (!$product) return false;
 
         $session = Yii::$app->session;
@@ -37,47 +46,69 @@ class WishlistController extends Controller
     public function actionClear()
     {
         $id = Yii::$app->request->get('id');
-        $product = Product::findOne($id);
+        $product = Product::findOne(['product_id' => $id]);
         if (!$product) return false;
 
         $session = Yii::$app->session;
         $session->open();
-        $qty = $_SESSION['wishlist'][$id]['qty'];
 
         $wishlist = new Wishlist();
         $wishlist->clear($product);
-        return $qty;
     }
 
     public function actionCart()
     {
+        if (Yii::$app->user->isGuest) {
+            Yii::$app->user->setReturnUrl('/wishlist');
+//            Yii::$app->user->setReturnUrl(Yii::$app->request->url);
+            return $this->redirect('/login');
+//            return false;
+        }
+
         $id = Yii::$app->request->get('id');
-        $product = Product::findOne($id);
+        $product = Product::findOne(['product_id' => $id]);
         if (!$product) return false;
 
         $session = Yii::$app->session;
         $session->open();
-        $qty = $_SESSION['wishlist'][$id]['qty'];
 
         $wishlist = new Wishlist();
         $wishlist->cart($product);
-        return $qty;
+        if (!$session->get('wishlist')) {
+            return $this->redirect('/cart');
+        }
     }
 
-    public function actionMinusplus()
+    public function actionCartall()
     {
-        $id = Yii::$app->request->get('id');
-        $sign = Yii::$app->request->get('sign');
-        $product = Product::findOne($id);
-        if (!$product) return false;
+        if (Yii::$app->user->isGuest) {
+            Yii::$app->user->setReturnUrl('/wishlist/cartall');
+            return $this->redirect('/login');
+//            return false;
+        }
 
         $session = Yii::$app->session;
         $session->open();
 
         $wishlist = new Wishlist();
-        $wishlist->minusplus($product, $sign);
-        return true;
+        $wishlist->cartall();
+        return $this->redirect('/cart');
     }
+
+//    public function actionMinusplus()
+//    {
+//        $id = Yii::$app->request->get('id');
+//        $sign = Yii::$app->request->get('sign');
+//        $product = Product::findOne($id);
+//        if (!$product) return false;
+//
+//        $session = Yii::$app->session;
+//        $session->open();
+//
+//        $wishlist = new Wishlist();
+//        $wishlist->minusplus($product, $sign);
+//        return true;
+//    }
 
 //    public function actionClearAll()
 //    {

@@ -66,22 +66,27 @@ $formatter = Yii::$app->formatter;
                         <div class="add-to-cart">
                             <div class="qty-container">
                                 <label for="qty">Количество:</label>
-                                <span class="qty-minus">-</span><input type="text" name="qty" id="qty" maxlength="12"
-                                                                       value="1" title="Qty"
-                                                                       class="input-text qty" disabled><span
-                                        class="qty-plus">+</span>
+                                <span class="qty-minus-cart" data-id="<?= $product->product_id ?>">-</span><input type="text"
+                                                                                                             name="qty"
+                                                                                                             id="qty"
+                                                                                                             maxlength="12"
+                                                                                                             value="1"
+                                                                                                             title="Qty"
+                                                                                                             class="input-text qty"
+                                                                                                             disabled><span
+                                        class="qty-plus-cart" data-id="<?= $product->product_id ?>">+</span>
                             </div>
                             <button type="button" title="Add to Cart" id="product-addtocart-button"
-                                    class="button btn-cart">
+                                    class="button btn-adto-cart" data-id="<?= $product->product_id ?>">
                                 <span class="glyphicon glyphicon-shopping-cart"></span>В КОРЗИНУ
                             </button>
                         </div>
                         <select name="size_id" id="size-option">
                             <?php foreach ($options as $option): ?>
                                 <option value="<?= $option->attribute_id ?>"
-                                        data-price="<?= $formatter->asDecimal($option->value) ?> грн.">
+                                        data-price="<?= $formatter->asInteger($option->value) ?> грн.">
                                     <?= $option->attributeDescription->name ?>
-                                    (<?= $formatter->asDecimal($option->value) ?> грн.)
+                                    (<?= $formatter->asInteger($option->value) ?> грн.)
                                 </option>
                             <?php endforeach; ?>
                         </select>

@@ -17,7 +17,7 @@ use yii\helpers\Url;
                             <tr class="first last">
                                 <th></th>
                                 <th>Товары</th>
-                                <th>Количество</th>
+                                <th></th>
                                 <th style="width: 100px"></th>
                             </tr>
                             </thead>
@@ -39,27 +39,27 @@ use yii\helpers\Url;
                                     </td>
                                     <td>
                                         <div class="cart-cell">
-                                            <div class="price-box">
+<!--                                            <div class="price-box">
                                                                 <span class="regular-price">
-                                            <span class="price ok-price"><?= Yii::$app->formatter->asInteger($item['price']) ?>
+                                            <span class="price ok-price"><?/*= Yii::$app->formatter->asInteger($item['price']) */?>
                                                 грн.</span></span>
                                             </div>
                                             <div class="add-to-cart-alt">
                                                 <div class="qty-container">
                                                     <span class="qty-minus"
-                                                          data-id="<?= $item['product']->product_id ?>">-</span><input
+                                                          data-id="<?/*= $item['product']->product_id */?>">-</span><input
                                                             type="text" class="input-text qty"
-                                                            value="<?= $item['qty'] ?>" disabled><span class="qty-plus"
-                                                                                                       data-id="<?= $item['product']->product_id ?>">+</span>
+                                                            value="<?/*= $item['qty'] */?>" disabled><span class="qty-plus"
+                                                                                                       data-id="<?/*= $item['product']->product_id */?>">+</span>
                                                 </div>
                                             </div>
                                             <div class="price-box">
                                                                 <span class="regular-price">
-                                            <span class="price ok-price-all"><?= Yii::$app->formatter->asInteger($item['price'] * $item['qty']) ?>
+                                            <span class="price ok-price-all"><?/*= Yii::$app->formatter->asInteger($item['price'] * $item['qty']) */?>
                                                 грн.</span></span>
                                             </div>
                                             <br>
-                                            <button type="button" title="В корзину" class="button btn-cart"
+-->                                            <button type="button" title="В корзину" class="button btn-cart"
                                                     data-id="<?= $item['product']->product_id ?>">
                                                 <span><span>В корзину</span></span>
                                             </button>
@@ -73,25 +73,25 @@ use yii\helpers\Url;
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
-                            <tr class="first odd">
+<!--                            <tr class="first odd">
                                 <td></td>
                                 <td><h3 class="center">Количество:</h3></td>
                                 <td></td>
-                                <td><h3 class="center wishlist-qty"><?= $wishlistQty ?> шт.</h3</td>
+                                <td><h3 class="center wishlist-qty"><?/*= $wishlistQty */?> шт.</h3</td>
                             </tr>
                             <tr class="first odd">
                                 <td></td>
                                 <td><h3 class="center">Сумма:</h3></td>
                                 <td></td>
                                 <td>
-                                    <h3 class="center wishlist-sum"><?= Yii::$app->formatter->asInteger($wishlistSum) ?></h3>
+                                    <h3 class="center wishlist-sum"><?/*= Yii::$app->formatter->asInteger($wishlistSum) */?></h3>
                                 </td>
                             </tr>
-                            </tbody>
+-->                            </tbody>
                         </table>
                         <div class="buttons-set buttons-set2">
-                            <button type="button" title="Добавить все в корзину" onclick="addAllToCart()"
-                                    class="button btn-add"><span><span>Добавить все в корзину</span></span></button>
+                            <button type="button" title="Добавить все в корзину"
+                                    class="button btn-cart-all"><span><span>Добавить все в корзину</span></span></button>
                         </div>
                     </fieldset>
                     </form>

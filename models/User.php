@@ -73,4 +73,12 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
         $this->auth_key = \Yii::$app->security->generateRandomString();
     }
 
+    public function getCarts()
+    {
+        return $this->hasMany(Cart::class, ['user_id' => 'id'])
+            ->joinWith('product p')
+            ->with('product')
+            ->all();
+    }
+
 }

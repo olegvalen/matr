@@ -77,6 +77,11 @@ $(document).ready(function () {
         $('#product-price-38950 span').text($('option:selected', this).attr('data-price'));
     });
 
+    $("select[class^='size-option']").on('change', function () {
+        var id = $(this).data('id');
+        $('.price-item' + id).text($('option:selected', this).attr('data-price'));
+    });
+
     /******************************
      BOTTOM SCROLL TOP BUTTON
      ******************************/
@@ -113,7 +118,7 @@ $(document).ready(function () {
                     alert('Error!');
                 // console.log(e);
                 _this.find('span').first().addClass('hover');
-                $('.ok-badge').first().text(e);
+                $('.ok-badge-wishlist').text(e);
             },
             error: function () {
                 alert('Error!');
@@ -129,8 +134,25 @@ $(document).ready(function () {
             url: '/wishlist/clear',
             data: {id: id},
             type: 'GET',
-            success: function (e) {
-                removeItemWishlist(_this, e);
+            success: function () {
+                removeItemWishlist(_this, false);
+            },
+            error: function () {
+                alert('Error!');
+            }
+        });
+    });
+
+    $('.btn-remove-cart').on('click', function (e) {
+        e.preventDefault();
+        var _this = $(this);
+        var id = _this.data('id');
+        $.ajax({
+            url: '/cart/clear',
+            data: {id: id},
+            type: 'GET',
+            success: function () {
+                removeItemCart(_this);
             },
             error: function () {
                 alert('Error!');
@@ -146,14 +168,51 @@ $(document).ready(function () {
             url: '/wishlist/cart',
             data: {id: id},
             type: 'GET',
-            success: function (e) {
-                removeItemWishlist(_this, e);
+            success: function () {
+                removeItemWishlist(_this, true);
             },
             error: function () {
-                alert('Error!');
+                // alert('Error2!');
             }
         });
     });
+
+    $('.btn-cart-all').on('click', function (e) {
+        e.preventDefault();
+        $.ajax({
+            url: '/wishlist/cartall',
+            type: 'GET',
+            success: function () {
+                // window.location.replace("/cart");
+            },
+            error: function () {
+                // alert('Error!');
+            }
+        });
+    });
+
+    // $('.btn-adto-cart').on('click', function (e) {
+    //     e.preventDefault();
+    //     var _this = $(this);
+    //     var id = _this.data('id');
+    //     $.ajax({
+    //         url: '/cart/add',
+    //         data: {id: id},
+    //         type: 'GET',
+    //         success: function (e) {
+    //             var cartQty = parseInt($('.ok-badge-cart').text());
+    //             cartQty -= e;
+    //             if (cartQty === 0) {
+    //                 cartQty = '';
+    //             }
+    //             $('.ok-badge-cart').text(cartQty);
+    //
+    //         },
+    //         error: function () {
+    //             // alert('Error2!');
+    //         }
+    //     });
+    // });
 
     $('.qty-minus,.qty-plus').on('click', function (e) {
         e.preventDefault();
@@ -181,7 +240,7 @@ $(document).ready(function () {
             url: '/wishlist/minusplus',
             data: {id: id, sign: sign},
             type: 'GET',
-            success: function (e) {
+            success: function () {
                 // if (!e)
                 //     alert('Error!');
 
@@ -210,20 +269,63 @@ $(document).ready(function () {
         });
     });
 
-    function removeItemWishlist(_this, e) {
+    $('.qty-minus-cart,.qty-plus-cart').on('click', function (e) {
+        e.preventDefault();
+        var _this = $(this);
+        var sign = 0;
+
+        var id = _this.data('id');
+        var className = _this.attr('class');
+        if (className === 'qty-minus-cart') {
+            sign = -1;
+        }
+        else if (className === 'qty-plus-cart') {
+            sign = 1;
+        } else {
+            return;
+        }
+
+        var input = _this.closest('.qty-container').find('input');
+        var qtyInput = parseInt(input.val());
+        if (qtyInput + sign <= 0) {
+            return;
+        }
+        input.attr('value', qtyInput + sign);
+    });
+
+    function removeItemWishlist(_this, removeToCart) {
         _this.closest('.first.odd').remove();
 
-        var wishlistQty = parseInt($('.ok-badge').text());
-        wishlistQty -= e;
+        var wishlistQty = parseInt($('.ok-badge-wishlist').text());
+        wishlistQty -= 1;
         if (wishlistQty === 0) {
             wishlistQty = '';
         }
-        $('.ok-badge').text(wishlistQty);
+        $('.ok-badge-wishlist').text(wishlistQty);
 
-        refreshQtySum();
+        if (removeToCart) {
+            var cartQty = parseInt($('.ok-badge-cart').text());
+            cartQty = isNaN(cartQty) ? 1 : cartQty + 1;
+            $('.ok-badge-cart').text(cartQty);
+        }
 
         if ($('.cart-cell').length === 0) {
             $('#wishlist-view-form').remove();
+        }
+    }
+
+    function removeItemCart(_this) {
+        _this.closest('.first.odd').remove();
+
+        var cartQty = parseInt($('.ok-badge-cart').text());
+        cartQty -= 1;
+        if (cartQty === 0) {
+            cartQty = '';
+        }
+        $('.ok-badge-cart').text(cartQty);
+
+        if ($('.qty-container').length === 0) {
+            $('.checkout-types, #cart-view-form').remove();
         }
     }
 

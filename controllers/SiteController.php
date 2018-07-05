@@ -83,13 +83,26 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
-        if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
-        }
+//        if (!Yii::$app->user->isGuest) {
+////            return $this->goHome();
+////            return $this->goBack();
+//            return $this->redirect(Yii::$app->user->getReturnUrl());
+//        }
+//
+//        $model = new LoginForm();
+//        if ($model->load(Yii::$app->request->post()) && $model->login()) {
+//            return $this->goBack();
+//        }
+//
+//        $model->password = '';
+//        return $this->render('login', [
+//            'model' => $model,
+//        ]);
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+            return $this->redirect(Yii::$app->user->getReturnUrl());
+//            return $this->goBack();
         }
 
         $model->password = '';
@@ -155,25 +168,31 @@ class SiteController extends Controller
         ]);
     }
 
-    public function actionWishlist()
-    {
-        $session = Yii::$app->session;
-        $session->open();
-        $data = [];
-        if (!$session->get('wishlist'))
-            $data['wishlist'] = null;
-        else {
-            $data['wishlist'] = Yii::$app->myComponent->arrayCopy($session->get('wishlist'));
-            $data['wishlistQty'] = $session->get('wishlist.qty');
-            $data['wishlistSum'] = $session->get('wishlist.sum');
-        }
-        return $this->render('wishlist', $data);
-    }
+//    public function actionWishlist()
+//    {
+//        $session = Yii::$app->session;
+//        $session->open();
+//        $data = [];
+//        if (!$session->get('wishlist'))
+//            $data['wishlist'] = null;
+//        else {
+//            $data['wishlist'] = Yii::$app->myComponent->arrayCopy($session->get('wishlist'));
+//        }
+//        return $this->render('wishlist', $data);
+//    }
 
-    public function actionCart()
-    {
-        return $this->render('cart');
-    }
+//    public function actionCart()
+//    {
+//        $data = [];
+//        $carts = Yii::$app->getUser()->getIdentity()->carts;
+//        foreach ($carts as $cart) {
+//            $arr = [];
+//            $arr['cart'] = $cart;
+//            $arr['options'] = Product::getProductOptions($cart->product_id);
+//            $data['carts'][] = $arr;
+//        }
+//        return $this->render('cart', $data);
+//    }
 
     public function actionSubscribe()
     {

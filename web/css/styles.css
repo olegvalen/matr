@@ -4949,12 +4949,16 @@ label {
   font-size: 26px;
   float: left;
 }
-.product-shop select {
+.product-shop select,
+.product-name select {
   width: 425px;
   height: 30px;
   max-width: 100%;
   margin-bottom: 20px;
   padding-left: 5px;
+}
+.product-name select {
+  width: 325px;
 }
 .block-account .block-title {
   position: relative;
@@ -5072,9 +5076,6 @@ label {
 }
 .data-table .qty-container input {
   display: inline-block;
-}
-.data-table .btn-cart {
-  margin: 15px auto 0;
 }
 .data-table .th {
   display: none;
@@ -5334,6 +5335,15 @@ input[type=text] {
   background: #fff;
   font-size: 15px;
 }
+.ok-alert {
+  margin-bottom: 0;
+  border-radius: 0;
+}
+.ok-badge-wishlist,
+.ok-badge-cart {
+  background-color: #CD8250;
+  margin-left: 2px;
+}
 @media (max-width: 991px) {
   .search-btn {
     display: table-cell;
@@ -5406,6 +5416,9 @@ input[type=text] {
   .col2-set .col-1 .buttons-set .button,
   .col2-set .col-2 .buttons-set .button {
     width: 100%;
+  }
+  .product-name select {
+    width: 170px;
   }
 }
 @media (min-width: 768px) {
@@ -5572,12 +5585,4 @@ input[type=text] {
   .account-main .fieldset {
     float: none;
   }
-}
-.ok-alert {
-  margin-bottom: 0;
-  border-radius: 0;
-}
-.ok-badge {
-  background-color: #CD8250;
-  margin-left: 2px;
 }
