@@ -12,8 +12,8 @@ use yii\helpers\Url;
                     </div>
                     <div class="block-content">
                         <ul>
-                            <li><a href="<?= Url::to(['site/wishlist']) ?>">Избранное</a></li>
-                            <li><a href="<?= Url::to(['site/cart']) ?>">Корзина</a></li>
+                            <li><a href="<?= Url::to(['wishlist/index']) ?>">Избранное</a></li>
+                            <li><a href="<?= Url::to(['cart/index']) ?>">Корзина</a></li>
                             <li><a href="<?= Url::to(['site/compare']) ?>">Сравнение</a></li>
                             <li><a href="<?= Url::to(['site/changepassword']) ?>">Изменение пароля</a></li>
                             <li><a href="<?= Url::to(['site/logout']) ?>">Выход</a></li>

@@ -49,7 +49,8 @@ use yii\helpers\Url;
                                 <tr class="first last">
                                     <td colspan="50" class="a-right last">
                                         <button type="button" title="Продолжить покупки" class="button btn-continue"
-                                                onclick="setLocation('https://www.organize.com/')"><span><span>Продолжить покупки</span></span>
+                                                onclick="location.href='http://sites';">
+                                            <span><span>Продолжить покупки</span></span>
                                         </button>
                                         <button type="submit" name="update_cart_action" value="update_qty"
                                                 title="Сохранить корзину" class="button btn-update"><span><span>Сохранить корзину</span></span>
@@ -58,16 +59,14 @@ use yii\helpers\Url;
                                                 title="Очистить корзину" class="button btn-empty"
                                                 id="empty_cart_button">
                                             <span><span>Очистить корзину</span></span></button>
-                                        <!--[if lt IE 8]>
-                                        <input type="hidden" id="update_cart_action_container"/>
-                                        <![endif]-->
                                     </td>
                                 </tr>
                                 </tfoot>
                                 <tbody>
 
                                 <?php foreach ($carts as $item): ?>
-                                    <tr class="first odd">
+                                    <tr class="first odd tr-row" data-id="<?= $item['cart']->product->product_id ?>"
+                                        data-attribute-id="<?= $item['cart']->attribute_id ?>">
                                         <td>
                                             <a href="<?= Url::to("/{$item['cart']->product->seo_url}") ?>"
                                                title="<?= $item['cart']->product->name ?>" class="product-image">
@@ -81,10 +80,11 @@ use yii\helpers\Url;
                                                 <a href="<?= Url::to("/{$item['cart']->product->seo_url}") ?>"><?= $item['cart']->product->name ?></a><br>
                                                 <select name="size_id" class="size-option"
                                                         data-id="<?= $item['cart']->product->product_id ?>">
-                                                    <option>заполните размер</option>
+                                                    <option data-price="0">заполните размер</option>
                                                     <?php foreach ($item['options'] as $option): ?>
-                                                        <option value="<?= $option->attribute_id ?>"
-                                                                data-price="<?= Yii::$app->formatter->asInteger($option->value) ?>">
+                                                        <option data-attribute-id="<?= $option->attribute_id ?>"
+                                                                data-price="<?= Yii::$app->formatter->asInteger($option->value) ?>"
+                                                            <?= $option->attribute_id == $item['cart']->attribute_id ? ' selected' : '' ?>>
                                                             <?= $option->attributeDescription->name ?>
                                                             (<?= Yii::$app->formatter->asInteger($option->value) ?>
                                                             грн.)
@@ -94,8 +94,9 @@ use yii\helpers\Url;
                                             </h2>
                                         </td>
                                         <td class="a-center wishlist"><span class="th">Wishlist</span>
-                                            <a href="https://www.organize.com/wishlist/index/fromcart/item/88021/"
-                                               class="link-wishlist use-ajax">Переместить</a>
+                                            <a href="#"
+                                               class="cart-to-wishlist"
+                                               data-id="<?= $item['cart']->product->product_id ?>">Переместить</a>
                                         </td>
 
 
@@ -108,12 +109,13 @@ use yii\helpers\Url;
                                         <!-- inclusive price starts here -->
                                         <td class="a-center"><span class="th">Qty</span>
                                             <div class="qty-container">
-                                                <span class="qty-minus">-</span><input type="text"
-                                                                                       value="<?= $item['cart']->qty ?>"
-                                                                                       maxlength="12" title="Количество"
-                                                                                       class="input-text qty"
-                                                                                       disabled><span
-                                                        class="qty-plus">+</span>
+                                                <span class="qty-minus-cart">-</span><input type="text"
+                                                                                            value="<?= $item['cart']->qty ?>"
+                                                                                            maxlength="12"
+                                                                                            title="Количество"
+                                                                                            class="input-text qty"
+                                                                                            disabled><span
+                                                        class="qty-plus-cart">+</span>
                                             </div>
                                         </td>
 
@@ -121,7 +123,7 @@ use yii\helpers\Url;
                                         <td class="a-right"><span class="th">Сумма</span>
                                             <span class="cart-price">
 
-                                                <span class="price"><?= Yii::$app->formatter->asInteger($item['cart']->product->price * $item['cart']->qty) ?></span>
+                                                <span class="price sum"><?= Yii::$app->formatter->asInteger($item['cart']->product->price * $item['cart']->qty) ?></span>
         </span>
                                         </td>
                                         <td class="a-center last">
@@ -133,6 +135,20 @@ use yii\helpers\Url;
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
+
+                                <tr class="first odd">
+                                    <td colspan="5"><span class="center"><strong>Количество:</strong></span></td>
+                                    <td><span class="center cart-qty"><strong><?= $cartQty ?></strong></span></td>
+                                    <td></td>
+                                </tr>
+                                <tr class="first odd">
+                                    <td colspan="5"><span class="center"><strong>Сумма:</strong></span></td>
+                                    <td>
+                                        <span class="center cart-sum"><strong><?= Yii::$app->formatter->asInteger($cartSum) ?></strong></span>
+                                    </td>
+                                    <td></td>
+                                </tr>
+
 
                                 </tbody>
                             </table>

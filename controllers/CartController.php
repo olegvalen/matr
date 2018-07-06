@@ -33,6 +33,8 @@ class CartController extends Controller
             $arr['options'] = Product::getProductOptions($cart->product_id);
             $data['carts'][] = $arr;
         }
+        $data['cartQty'] = 1000;
+        $data['cartSum'] = 2000;
         return $this->render('index', $data);
     }
 
@@ -50,22 +52,30 @@ class CartController extends Controller
     public function actionClear()
     {
         $product_id = Yii::$app->request->get('id');
+        $product = Product::findOne(['product_id' => $product_id]);
+        if (!$product) return false;
+
         Cart::clear($product_id);
     }
 
-    public function actionCart()
+    public function actionWishlist()
     {
-//        if (Yii::$app->user->isGuest) {
-//            $this->redirect('/login');
-//            return false;
-//        }
-//
-//        $id = Yii::$app->request->get('id');
-//        $product = Product::findOne($id);
-//        if (!$product) return false;
-//
-//        $wishlist = new Wishlist();
-//        $wishlist->cart($product);
+        $product_id = Yii::$app->request->get('id');
+        $product = Product::findOne(['product_id' => $product_id]);
+        if (!$product) return false;
+
+        Cart::clear($product_id);
+
+        $wishlist = new Wishlist();
+        $wishlist->add($product);
+    }
+
+    public function actionChangeattribute()
+    {
+        $product_id = Yii::$app->request->get('id');
+        $attribute_id = Yii::$app->request->get('attribute_id');
+        $attribute_idOld = Yii::$app->request->get('attribute_idOld') !== '' ? Yii::$app->request->get('attribute_idOld') : null;
+        return Cart::changeattribute($product_id, $attribute_id, $attribute_idOld);
     }
 
     public function actionCartall()

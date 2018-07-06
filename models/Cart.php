@@ -26,15 +26,9 @@ class Cart extends ActiveRecord
         return $q ? $q->qty : '';
     }
 
-    public function add($product)
+    public static function add($product)
     {
-//        if (!isset($_SESSION['wishlist'][$product->product_id])) {
-//            $_SESSION['wishlist'][$product->product_id] = [
-//                'product' => $product,
-//                'name' => $product->name,
-//            ];
-//            $_SESSION['wishlist.qty'] = isset($_SESSION['wishlist.qty']) ? $_SESSION['wishlist.qty'] + 1 : 1;
-//        }
+
     }
 
     public static function clear($product_id)
@@ -42,6 +36,18 @@ class Cart extends ActiveRecord
         $cart = Cart::find()->where(['user_id' => Yii::$app->user->getId(), 'product_id' => $product_id])->one();
         if ($cart)
             $cart->delete();
+    }
+
+    public static function changeattribute($product_id, $attribute_id, $attriburte_idOld)
+    {
+        $cart = Cart::find()->where(['user_id' => Yii::$app->user->getId(), 'product_id' => $product_id, 'attribute_id' => $attriburte_idOld])->one();
+        if ($cart) {
+            $cart->attribute_id = $attribute_id;
+//            $cart->price = $price;
+            $cart->save();
+            return true;
+        } else
+            return false;
     }
 
     public function cart($product)

@@ -78,8 +78,29 @@ $(document).ready(function () {
     });
 
     $("select[class^='size-option']").on('change', function () {
-        var id = $(this).data('id');
-        $('.price-item' + id).text($('option:selected', this).attr('data-price'));
+        var self = $(this);
+        var id = self.data('id');
+        var attribute_idOld = self.closest('.first.odd.tr-row').data('attribute-id');
+        var attribute_id = $('option:selected', this).data('attribute-id');
+        // console.log(id);
+        // console.log(attribute_idOld);
+        // console.log(attribute_id);
+
+        $.ajax({
+            url: '/cart/changeattribute',
+            data: {id: id, attribute_id: attribute_id, attribute_idOld: attribute_idOld},
+            type: 'GET',
+            success: function (e) {
+                if (e) {
+                    self.closest('.first.odd.tr-row').data('attribute-id', attribute_id);
+                    $('.price-item' + id).text($('option:selected', self).data('price'));
+                    refreshQtySum();
+                }
+            },
+            error: function () {
+                // alert('Error!');
+            }
+        });
     });
 
     /******************************
@@ -126,6 +147,27 @@ $(document).ready(function () {
         });
     });
 
+    $('.cart-to-wishlist').on('click', function (e) {
+        e.preventDefault();
+        var _this = $(this);
+        var id = _this.data('id');
+        $.ajax({
+            url: '/cart/wishlist',
+            data: {id: id},
+            type: 'GET',
+            success: function (e) {
+                removeItemCart(_this, true, true);
+                console.log(1);
+                console.log(typeof e);
+            },
+            error: function (e) {
+                // alert('Error2!');
+                console.log(2);
+                console.log(typeof e);
+            }
+        });
+    });
+
     $('.btn-remove-id').on('click', function (e) {
         e.preventDefault();
         var _this = $(this);
@@ -152,10 +194,10 @@ $(document).ready(function () {
             data: {id: id},
             type: 'GET',
             success: function () {
-                removeItemCart(_this);
+                removeItemCart(_this, false, true);
             },
             error: function () {
-                alert('Error!');
+                // alert('Error!');
             }
         });
     });
@@ -214,60 +256,60 @@ $(document).ready(function () {
     //     });
     // });
 
-    $('.qty-minus,.qty-plus').on('click', function (e) {
-        e.preventDefault();
-        var _this = $(this);
-        var sign = 0;
-
-        var id = _this.data('id');
-        var className = _this.attr('class');
-        if (className === 'qty-minus') {
-            sign = -1;
-        }
-        else if (className === 'qty-plus') {
-            sign = 1;
-        } else {
-            return;
-        }
-
-        var input = _this.closest('.qty-container').find('input');
-        var qtyInput = parseInt(input.val());
-        if (qtyInput + sign <= 0) {
-            return;
-        }
-
-        $.ajax({
-            url: '/wishlist/minusplus',
-            data: {id: id, sign: sign},
-            type: 'GET',
-            success: function () {
-                // if (!e)
-                //     alert('Error!');
-
-                input.attr('value', qtyInput + sign);
-
-
-                var wishlistQty = parseInt($('.ok-badge').text());
-                wishlistQty += sign;
-                if (wishlistQty === 0) {
-                    wishlistQty = '';
-                }
-                $('.ok-badge').text(wishlistQty);
-
-                var cartCell = _this.closest('.cart-cell');
-                var price = cartCell.find('.ok-price').text().replace(' ', '');
-                price = addSeparators((qtyInput + sign) * parseInt(price), '.', '.', ' ');
-                price = price.toString().concat(' грн.');
-                cartCell.find('.ok-price-all').text(price);
-
-                refreshQtySum();
-
-            },
-            error: function () {
-                alert('Error!');
-            }
-        });
-    });
+    // $('.qty-minus,.qty-plus').on('click', function (e) {
+    //     e.preventDefault();
+    //     var _this = $(this);
+    //     var sign = 0;
+    //
+    //     var id = _this.data('id');
+    //     var className = _this.attr('class');
+    //     if (className === 'qty-minus') {
+    //         sign = -1;
+    //     }
+    //     else if (className === 'qty-plus') {
+    //         sign = 1;
+    //     } else {
+    //         return;
+    //     }
+    //
+    //     var input = _this.closest('.qty-container').find('input');
+    //     var qtyInput = parseInt(input.val());
+    //     if (qtyInput + sign <= 0) {
+    //         return;
+    //     }
+    //
+    //     $.ajax({
+    //         url: '/wishlist/minusplus',
+    //         data: {id: id, sign: sign},
+    //         type: 'GET',
+    //         success: function () {
+    //             // if (!e)
+    //             //     alert('Error!');
+    //
+    //             input.attr('value', qtyInput + sign);
+    //
+    //
+    //             var wishlistQty = parseInt($('.ok-badge').text());
+    //             wishlistQty += sign;
+    //             if (wishlistQty === 0) {
+    //                 wishlistQty = '';
+    //             }
+    //             $('.ok-badge').text(wishlistQty);
+    //
+    //             var cartCell = _this.closest('.cart-cell');
+    //             var price = cartCell.find('.ok-price').text().replace(' ', '');
+    //             price = addSeparators((qtyInput + sign) * parseInt(price), '.', '.', ' ');
+    //             price = price.toString().concat(' грн.');
+    //             cartCell.find('.ok-price-all').text(price);
+    //
+    //             refreshQtySum();
+    //
+    //         },
+    //         error: function () {
+    //             alert('Error!');
+    //         }
+    //     });
+    // });
 
     $('.qty-minus-cart,.qty-plus-cart').on('click', function (e) {
         e.preventDefault();
@@ -291,6 +333,16 @@ $(document).ready(function () {
             return;
         }
         input.attr('value', qtyInput + sign);
+
+        var cartQty = parseInt($('.ok-badge-cart').text());
+        cartQty += sign;
+        if (cartQty === 0) {
+            cartQty = '';
+        }
+        $('.ok-badge-cart').text(cartQty);
+
+        refreshQtySum();
+
     });
 
     function removeItemWishlist(_this, removeToCart) {
@@ -314,32 +366,71 @@ $(document).ready(function () {
         }
     }
 
-    function removeItemCart(_this) {
+    function removeItemCart(_this, refreshBadgeWishlist, refreshBadgeCart) {
         _this.closest('.first.odd').remove();
 
-        var cartQty = parseInt($('.ok-badge-cart').text());
-        cartQty -= 1;
-        if (cartQty === 0) {
-            cartQty = '';
+        if (refreshBadgeWishlist) {
+            var wishlistQty = parseInt($('.ok-badge-wishlist').text());
+            wishlistQty = isNaN(wishlistQty) ? 1 : wishlistQty + 1;
+            $('.ok-badge-wishlist').text(wishlistQty);
         }
-        $('.ok-badge-cart').text(cartQty);
+
+        if (refreshBadgeCart) {
+            var cartQty = parseInt($('.ok-badge-cart').text());
+            cartQty = cartQty === 1 ? '' : cartQty - 1;
+            $('.ok-badge-cart').text(cartQty);
+        }
 
         if ($('.qty-container').length === 0) {
             $('.checkout-types, #cart-view-form').remove();
         }
+        refreshQtySum();
     }
 
+    // function refreshQtySum() {
+    //     var qty = 0, sum = 0, _qty = 0;
+    //     $('.cart-cell').each(function () {
+    //         _qty = parseInt($(this).find('.input-text.qty').val());
+    //         qty += _qty;
+    //         sum += _qty * parseInt($(this).find('.ok-price').text().replace(' ', ''));
+    //         // console.log(qty);
+    //     });
+    //     $('.wishlist-qty').text(qty + ' шт.');
+    //     $('.wishlist-sum').text(addSeparators(sum, '.', '.', ' '));
+    // }
+
     function refreshQtySum() {
-        var qty = 0, sum = 0, _qty = 0;
-        $('.cart-cell').each(function () {
-            _qty = parseInt($(this).find('.input-text.qty').val());
+        var _price = 0, _qty = 0, _sum = 0, qty = 0, sum = 0;
+        $('.first.odd.tr-row').each(function () {
+            var _this = $(this);
+            var id = _this.data('id');
+            _price = parseInt(_this.find('.price-item' + id).text().replace(' ', ''));
+            _qty = parseInt(_this.find('.input-text.qty').val());
+            _sum = _price * _qty;
+            _this.find('.price.sum').text(addSeparators(_sum, '.', '.', ' '));
             qty += _qty;
-            sum += _qty * parseInt($(this).find('.ok-price').text().replace(' ', ''));
-            // console.log(qty);
+            sum += _sum;
         });
-        $('.wishlist-qty').text(qty + ' шт.');
-        $('.wishlist-sum').text(addSeparators(sum, '.', '.', ' '));
+        $('.cart-qty strong').text(qty);
+        $('.cart-sum strong').text(addSeparators(sum, '.', '.', ' '));
     }
+
+    // function refreshCart() {
+    //     var _price = 0, _qty = 0, _sum = 0, qty = 0, sum = 0;
+    //     $('.first.odd.tr-row').each(function () {
+    //         var _this = $(this);
+    //         var id = _this.data('id');
+    //         _price = parseInt(_this.find('.price-item' + id).text().replace(' ', ''));
+    //         _qty = parseInt(_this.find('.input-text.qty').val());
+    //         // console.log(_qty);
+    //         _sum = _price * _qty;
+    //         _this.find('.price.sum').text(addSeparators(_sum, '.', '.', ' '));
+    //         qty += _qty;
+    //         sum += _sum;
+    //     });
+    //     $('.cart-qty strong').text(qty);
+    //     $('.cart-sum strong').text(addSeparators(sum, '.', '.', ' '));
+    // }
 
     function addSeparators(nStr, inD, outD, sep) {
         nStr += '';
