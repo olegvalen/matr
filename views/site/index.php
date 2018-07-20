@@ -5,8 +5,6 @@ use yii\bootstrap\ActiveForm;
 
 /* @var $this yii\web\View */
 
-$this->title = 'My Yii Application';
-
 ?>
 
 <div class="container-fluid">

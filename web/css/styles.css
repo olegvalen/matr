@@ -3812,7 +3812,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .pagination > li > a:focus,
 .pagination > li > span:focus {
   z-index: 2;
-  color: #CD8250;
+  color: #8e83bc;
   background-color: transparent;
   border-color: transparent;
 }
@@ -4318,14 +4318,14 @@ body {
 }
 .top-menu {
   background-color: #EDEDED;
-  border-top: 3px solid #CD8250;
+  border-top: 3px solid #8e83bc;
 }
 .top-menu1 > a {
   font-size: 15px;
   line-height: 14px;
   padding: 17px 18px 20px 18px;
   background-color: #fff;
-  color: #CD8250;
+  color: #8e83bc;
   float: left;
 }
 .top-menu2 .dropdown-menu {
@@ -4347,11 +4347,11 @@ body {
   font-size: 14px;
 }
 .top-menu2 > ul > li a:hover {
-  background-color: #CD8250;
+  background-color: #8e83bc;
   color: #fff;
 }
 .top-menu2 .dropdown-toggle :hover {
-  color: #CD8250;
+  color: #8e83bc;
 }
 .top-menu2 .nav-btn.dropdown-toggle {
   display: none;
@@ -4383,7 +4383,7 @@ a span {
 }
 .logo-container {
   display: block;
-  margin: 30px 0 26px;
+  margin: 50px 0 26px;
 }
 .navbar-search,
 .shop-cart {
@@ -4406,7 +4406,7 @@ a span {
 }
 .navbar-search button {
   color: #fff;
-  background-color: #CD8250;
+  background-color: #8e83bc;
   height: 52px;
   width: 52px;
   font-size: 18px;
@@ -4415,8 +4415,8 @@ a span {
 }
 .navbar-search .btn-default:hover {
   color: #fff;
-  background-color: #CD8250;
-  border-color: #CD8250;
+  background-color: #8e83bc;
+  border-color: #8e83bc;
 }
 .navbar-search .input-group-btn {
   left: 1px;
@@ -4433,7 +4433,7 @@ a span {
   line-height: 52px;
   padding: 14px 18px 17px 18px;
   color: #fff;
-  background: #CD8250;
+  background: #8e83bc;
 }
 .cart-info {
   padding: 9px 26px 0;
@@ -4445,7 +4445,7 @@ a span {
   line-height: 1.3em;
 }
 .cart-info .items {
-  color: #CD8250;
+  color: #8e83bc;
 }
 .search-btn {
   display: none;
@@ -4455,7 +4455,7 @@ a span {
   padding-right: 0 !important;
 }
 .nav-container {
-  border-top: 4px solid #CD8250;
+  border-top: 4px solid #8e83bc;
   background: #252525;
 }
 ul {
@@ -4529,14 +4529,15 @@ ul {
   border-top: 1px solid #d7d7d7;
 }
 .item-grid .price-box {
-  color: #CD8250;
+  color: #8e83bc;
   font-size: 22px;
 }
-.item-grid h3 > a:hover {
-  color: #CD8250;
+.item-grid .text-center > a:hover {
+  color: #8e83bc;
 }
-.item-grid h3 {
+.item-grid .text-center {
   width: 98%;
+  font-size: 17px;
 }
 .item-grid .product-hover {
   height: 61px;
@@ -4554,13 +4555,13 @@ ul {
 .item-grid .product-hover ul li :hover span,
 .item-grid .product-hover ul li .hover {
   color: #fff;
-  background-color: #CD8250;
+  background-color: #8e83bc;
 }
 .scroll-top {
   position: fixed;
   right: 10%;
   bottom: 30px;
-  background-color: #CD8250;
+  background-color: #8e83bc;
   opacity: 0;
   right: 30px;
   width: 45px;
@@ -4597,7 +4598,7 @@ footer .footer-block {
 }
 .footer-banners .glyphicon-envelope,
 .footer-banners .glyphicon-earphone {
-  color: #CD8250;
+  color: #8e83bc;
   border: 3px solid #ebebeb;
   border-radius: 50%;
   float: left;
@@ -4620,7 +4621,7 @@ footer .footer-block {
   padding: 22px 0;
 }
 .footer-banners p a {
-  color: #CD8250;
+  color: #8e83bc;
 }
 #w0 {
   max-width: 400px;
@@ -4645,7 +4646,7 @@ footer .footer-block {
 }
 button {
   color: #fff;
-  background: #CD8250;
+  background: #8e83bc;
 }
 button:hover {
   color: #fff !important;
@@ -4654,14 +4655,14 @@ button:hover {
 .easycatalog-grid .item ul li {
   line-height: 25px;
 }
-.easycatalog-grid .item h5 {
-  font-size: 17px;
+.easycatalog-grid .item div {
+  font-weight: 700;
 }
 a {
   color: #505050;
 }
 a:hover {
-  color: #CD8250;
+  color: #8e83bc;
 }
 label {
   color: #505050;
@@ -4698,7 +4699,7 @@ label {
 }
 /* When the checkbox is checked, add a blue background */
 .container-label input:checked ~ .checkmark {
-  background-color: #CD8250;
+  background-color: #8e83bc;
 }
 /* Create the checkmark/indicator (hidden when not checked) */
 .checkmark:after {
@@ -4801,7 +4802,7 @@ label {
   line-height: 31px;
 }
 .toolbar .toolbar-dropdown .dropdown-menu {
-  border-top: 3px solid #CD8250;
+  border-top: 3px solid #8e83bc;
   background: #fff;
   -webkit-box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.15);
   -moz-box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.15);
@@ -4878,7 +4879,7 @@ label {
 .product-shop .regular-price .price {
   font-size: 40px;
   font-weight: 700;
-  color: #CD8250;
+  color: #8e83bc;
 }
 .product-shop .add-to-cart {
   margin-top: 30px;
@@ -4971,7 +4972,6 @@ label {
   text-transform: uppercase;
 }
 .block-account li {
-  text-transform: uppercase;
   border-bottom: 1px solid #e3e3e3;
   padding: 8px 0;
 }
@@ -5003,7 +5003,7 @@ label {
   top: 0;
   left: 0;
   color: #fff;
-  background: #CD8250;
+  background: #8e83bc;
   font-size: 13px;
   border-radius: 50%;
   width: 30px;
@@ -5187,7 +5187,7 @@ label {
 }
 .col2-set .content {
   border: 1px solid #e4e4e4;
-  border-top-color: #CD8250;
+  border-top-color: #8e83bc;
   border-top-width: 3px;
   padding: 20px 30px 30px 30px;
   margin-bottom: 55px;
@@ -5200,7 +5200,7 @@ label {
   border: 0;
 }
 .col2-set h2 span {
-  color: #CD8250;
+  color: #8e83bc;
 }
 .col2-set .form-list li:first-child,
 .col2-set .col-1 .buttons-set .button {
@@ -5253,7 +5253,7 @@ label {
   display: inline-block;
   margin: 0 auto;
   border: 1px solid #e4e4e4;
-  border-top: 3px solid #CD8250;
+  border-top: 3px solid #8e83bc;
   padding: 20px 60px 30px 30px;
   font-size: 14px;
 }
@@ -5270,7 +5270,7 @@ label {
   border: 0;
 }
 .account-main .fieldset h2 span {
-  color: #CD8250;
+  color: #8e83bc;
 }
 .account-main .form-list > li {
   margin-bottom: 15px;
@@ -5341,8 +5341,13 @@ input[type=text] {
 }
 .ok-badge-wishlist,
 .ok-badge-cart {
-  background-color: #CD8250;
+  background-color: #8e83bc;
   margin-left: 2px;
+}
+.footer-block div {
+  margin-bottom: 10px;
+  font-weight: 700;
+  font-size: 16px;
 }
 @media (max-width: 991px) {
   .search-btn {
@@ -5357,7 +5362,7 @@ input[type=text] {
   .top-menu2 .dropdown-menu {
     position: absolute;
     right: 14px;
-    border-top: 3px solid #CD8250;
+    border-top: 3px solid #8e83bc;
     background: #fff;
     -webkit-box-shadow: 3px 3px 10px 0 rgba(0, 0, 0, 0.15);
     -moz-box-shadow: 3px 3px 10px 0 rgba(0, 0, 0, 0.15);
@@ -5448,16 +5453,16 @@ input[type=text] {
     padding: 10px;
     float: left;
   }
-  .easycatalog-grid h5 {
+  .easycatalog-grid div {
     margin: 0 0 8px;
+    font-weight: 700;
   }
-  .easycatalog-grid h5 a {
-    font-size: 17px;
-    font-weight: normal;
+  .easycatalog-grid div a {
+    font-weight: 700;
     text-decoration: none;
   }
-  .easycatalog-grid h5 a:hover {
-    color: #CD8250;
+  .easycatalog-grid div a:hover {
+    color: #8e83bc;
   }
   .easycatalog-grid img {
     width: 194px;

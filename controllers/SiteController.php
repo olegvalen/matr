@@ -26,10 +26,10 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['logout', 'changepassword', 'cart'],
+                'only' => ['logout', 'change-password', 'cart'],
                 'rules' => [
                     [
-                        'actions' => ['logout', 'changepassword', 'cart'],
+                        'actions' => ['logout', 'change-password', 'cart'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -67,6 +67,10 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+
+        $this->view->title = 'Matrasovish.com.ua';
+        $this->view->registerMetaTag(['name' => 'description', 'content' => 'Интернет-магазин Matrasovish.com.ua. Матрасы, наматрасники, подушки, одеяла, товары для сна. Официальная гарантия. Доставка по всей Украине.']);
+        $this->view->registerMetaTag(['name' => 'keywords', 'content' => 'интернет, магазин, Matrasovish.com.ua, матрас, наматрасник, подушка, одеяло , товары для сна, купить, куплю, в Днепре, в Украине, Днепр, Украина']);
 
         return $this->render('index', [
             'productsCheap' => Product::getProductsByIds([10, 1, 4, 5]),
@@ -153,7 +157,12 @@ class SiteController extends Controller
 
     public function actionAccount()
     {
-//        return $this->render('account');
+        $this->view->title = 'Matrasovish.com.ua | Личный кабинет';
+        $this->view->registerMetaTag(['name' => 'description', 'content' => 'Личный кабинет. Интернет-магазин Matrasovich.com.ua']);
+        $this->view->registerMetaTag(['name' => 'keywords', 'content' => 'Личный кабинет на Matrasovich.com.ua']);
+        $this->view->registerMetaTag(['name' => 'robots', 'content' => 'noindex,nofollow']);
+
+        //        return $this->render('account');
         if (!Yii::$app->user->isGuest) {
             return $this->render('account');
         }
@@ -205,11 +214,20 @@ class SiteController extends Controller
 
     public function actionCompare()
     {
+        $this->view->title = 'Matrasovish.com.ua | Сравнение';
+        $this->view->registerMetaTag(['name' => 'description', 'content' => 'Сравнение. Интернет-магазин Matrasovich.com.ua']);
+        $this->view->registerMetaTag(['name' => 'keywords', 'content' => 'Сравнение на Matrasovich.com.ua']);
+        $this->view->registerMetaTag(['name' => 'robots', 'content' => 'noindex,nofollow']);
         return $this->render('compare');
     }
 
-    public function actionNewcustomer()
+    public function actionNewCustomer()
     {
+        $this->view->title = 'Matrasovish.com.ua | Новый покупатель';
+        $this->view->registerMetaTag(['name' => 'description', 'content' => 'Новый покупатель. Интернет-магазин Matrasovich.com.ua']);
+        $this->view->registerMetaTag(['name' => 'keywords', 'content' => 'Новый покупатель на Matrasovich.com.ua']);
+        $this->view->registerMetaTag(['name' => 'robots', 'content' => 'noindex,nofollow']);
+
         $model = new NewcustomerForm();
         if ($model->load(Yii::$app->request->post()) && $model->newcustomer()) {
             Yii::$app->session->setFlash('newcustomer.success', 'Профиль успешно создался!');
@@ -217,11 +235,16 @@ class SiteController extends Controller
         }
 //        $model->password = '';
 //        $model->confirmation = '';
-        return $this->render('newcustomer', ['model' => $model,]);
+        return $this->render('newCustomer', ['model' => $model,]);
     }
 
-    public function actionForgotpassword()
+    public function actionForgotPassword()
     {
+        $this->view->title = 'Matrasovish.com.ua | Забыли пароль';
+        $this->view->registerMetaTag(['name' => 'description', 'content' => 'Забыли пароль. Интернет-магазин Matrasovich.com.ua']);
+        $this->view->registerMetaTag(['name' => 'keywords', 'content' => 'Забыли пароль на Matrasovich.com.ua']);
+        $this->view->registerMetaTag(['name' => 'robots', 'content' => 'noindex,nofollow']);
+
         $model = new ForgotpasswordForm();
         if ($model->load(Yii::$app->request->post()) && $model->forgotpassword()) {
             Yii::$app->session->setFlash('forgotpassword.success', 'На указанный e-mail выслано письмо с новым паролем!');
@@ -229,14 +252,19 @@ class SiteController extends Controller
         }
 //        $model->password = '';
 //        $model->confirmation = '';
-        return $this->render('forgotpassword', ['model' => $model,]);
+        return $this->render('forgotPassword', ['model' => $model,]);
     }
 
-    public function actionChangepassword()
+    public function actionChangePassword()
     {
 //        if (!Yii::$app->user->isGuest) {
 //            return $this->goHome();
 //        }
+
+        $this->view->title = 'Matrasovish.com.ua | Изменение пароля';
+        $this->view->registerMetaTag(['name' => 'description', 'content' => 'Изменение пароля. Интернет-магазин Matrasovich.com.ua']);
+        $this->view->registerMetaTag(['name' => 'keywords', 'content' => 'Изменение пароля на Matrasovich.com.ua']);
+        $this->view->registerMetaTag(['name' => 'robots', 'content' => 'noindex,nofollow']);
 
         $model = new ChangepasswordForm();
         if ($model->load(Yii::$app->request->post()) && $model->changepassword()) {
@@ -246,9 +274,41 @@ class SiteController extends Controller
 
 
 //        $model->password = '';
-        return $this->render('changepassword', [
+        return $this->render('changePassword', [
             'model' => $model,
         ]);
     }
 
+    public function actionAboutUs()
+    {
+        $this->view->title = 'Matrasovish.com.ua | О нас';
+        $this->view->registerMetaTag(['name' => 'description', 'content' => 'О нас. Интернет-магазин Matrasovich.com.ua']);
+        $this->view->registerMetaTag(['name' => 'keywords', 'content' => 'О нас на Matrasovich.com.ua']);
+        return $this->render('aboutUs');
+    }
+
+    public function actionPrivacy()
+    {
+        $this->view->title = 'Matrasovish.com.ua | Политика безопасности';
+        $this->view->registerMetaTag(['name' => 'description', 'content' => 'Политика безопасности. Интернет-магазин Matrasovich.com.ua']);
+        $this->view->registerMetaTag(['name' => 'keywords', 'content' => 'Политика безопасности на Matrasovich.com.ua']);
+        return $this->render('privacy');
+    }
+
+    public function actionTerms()
+    {
+        $this->view->title = 'Matrasovish.com.ua | Условия соглашения';
+        $this->view->registerMetaTag(['name' => 'description', 'content' => 'Условия соглашения. Интернет-магазин Matrasovich.com.ua']);
+        $this->view->registerMetaTag(['name' => 'keywords', 'content' => 'Условия соглашения на Matrasovich.com.ua']);
+        return $this->render('terms');
+    }
+
+    public function actionSearch()
+    {
+        $this->view->title = 'Matrasovish.com.ua | Поиск';
+        $this->view->registerMetaTag(['name' => 'description', 'content' => 'Поиск. Интернет-магазин Matrasovich.com.ua']);
+        $this->view->registerMetaTag(['name' => 'keywords', 'content' => 'Поиск на Matrasovich.com.ua']);
+        $this->view->registerMetaTag(['name' => 'robots', 'content' => 'noindex,nofollow']);
+        return $this->render('search');
+    }
 }

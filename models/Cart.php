@@ -13,6 +13,11 @@ class Cart extends ActiveRecord
         return $this->hasOne(Product::class, ['product_id' => 'product_id']);
     }
 
+    public function getProductOption()
+    {
+        return $this->hasOne(ProductOption::class, ['product_id' => 'product_id', 'attribute_id' => 'attribute_id']);
+    }
+
     public static function showCartQty()
     {
         if (Yii::$app->user->isGuest)
@@ -38,16 +43,29 @@ class Cart extends ActiveRecord
             $cart->delete();
     }
 
-    public static function changeattribute($product_id, $attribute_id, $attriburte_idOld)
+    public static function changeattribute($product_id, $attribute_id, $attribute_idOld)
     {
-        $cart = Cart::find()->where(['user_id' => Yii::$app->user->getId(), 'product_id' => $product_id, 'attribute_id' => $attriburte_idOld])->one();
+        $cart = Cart::find()
+            ->where(['user_id' => Yii::$app->user->getId(), 'product_id' => $product_id, 'attribute_id' => $attribute_idOld])->one();
+        $price = ProductOption::find()->where(['product_id' => $product_id, 'attribute_id' => $attribute_id])->one();
         if ($cart) {
             $cart->attribute_id = $attribute_id;
-//            $cart->price = $price;
+            $cart->price = $price != null ? $price->value : 0;
             $cart->save();
             return true;
-        } else
-            return false;
+        }
+        return false;
+    }
+
+    public static function changeqty($product_id, $attribute_id, $sign)
+    {
+        $cart = Cart::find()
+            ->where(['user_id' => Yii::$app->user->getId(), 'product_id' => $product_id, 'attribute_id' => $attribute_id])->one();
+        if ($cart) {
+            $cart->updateCounters(['qty' => $sign]);
+            return true;
+        }
+        return false;
     }
 
     public function cart($product)

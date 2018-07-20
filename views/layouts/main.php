@@ -23,8 +23,8 @@ AppAsset::register($this);
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <?= Html::csrfMetaTags() ?>
         <title><?= Html::encode($this->title) ?></title>
-        <link rel="icon" href="https://www.organize.com/media/favicon/default/favicon_1.png" type="image/x-icon"/>
-        <link rel="shortcut icon" href="https://www.organize.com/media/favicon/default/favicon_1.png"
+        <link rel="icon" href="<?= Url::to('@web/images/cart.png') ?>" type="image/x-icon"/>
+        <link rel="shortcut icon" href="<?= Url::to('@web/images/cart.png') ?>"
               type="image/x-icon"/>
         <link href='//fonts.googleapis.com/css?family=Roboto:300,400,600,700,800' rel='stylesheet' type='text/css'/>
         <link href='https://fonts.googleapis.com/css?family=Oswald:300,400,600,700,800' rel='stylesheet'
@@ -83,36 +83,37 @@ AppAsset::register($this);
             <div class="row">
                 <div class="col-md-3 logo-container">
                     <a href="<?= Url::to(['/']) ?>">
-                        <img src="https://www.organize.com/skin/frontend/cartown/default/images/media/logo.png"
-                             alt="Organize.com " class="img-responsive"></a>
+                        <img src="<?= Url::to('@web/images/logo.png') ?>"
+                             alt="Matrasovich.com.ua" class="img-responsive"></a>
                 </div>
                 <div class="col-md-5 search-container">
-                    <form class="navbar-search" action="https://www.organize.com/catalogsearch/result/" method="get">
+                    <form class="navbar-search" method="get">
                         <div class="input-group">
                             <input type="text" class="form-control search-query" placeholder="Поиск" name="search"
                                    maxlength="128" autocomplete="off">
                             <div class="input-group-btn">
-                                <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i>
+                                <button class="btn btn-default btn-search" type="submit">
+                                    <i class="glyphicon glyphicon-search"></i>
                                 </button>
                             </div>
-                            <div style="border-left: 1px #fff solid;"></div>
-                            <div class="input-group-btn search-btn">
-                                <button class="btn btn-default" type="submit"><i
-                                            class="glyphicon glyphicon-shopping-cart"></i>
-                                </button>
-                            </div>
-                        </div>
+                            <!--                            <div style="border-left: 1px #fff solid;"></div>
+                                                        <div class="input-group-btn search-btn">
+                                                            <button class="btn btn-default" type="submit"><i
+                                                                        class="glyphicon glyphicon-shopping-cart"></i>
+                                                            </button>
+                                                        </div>
+                            -->                        </div>
                     </form>
                 </div>
-                <div class="col-md-4 shop-cart">
-                    <a href="https://www.organize.com/checkout/cart/">
-                        <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a>
-                    <p class="cart-info">
-                        <span>Shopping Cart: </span><span class="price">$0.00</span><br>
-                        <span>now in your cart </span><span class="items">0 <span>item(s)</span></span>
-                    </p>
-                </div>
-            </div>
+                <!--                <div class="col-md-4 shop-cart">
+                                    <a href="https://www.organize.com/checkout/cart/">
+                                        <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a>
+                                    <p class="cart-info">
+                                        <span>Shopping Cart: </span><span class="price">$0.00</span><br>
+                                        <span>now in your cart </span><span class="items">0 <span>item(s)</span></span>
+                                    </p>
+                                </div>
+                -->            </div>
         </div>
     </div>
 
@@ -128,17 +129,17 @@ AppAsset::register($this);
                                     <div class="easycatalogimg">
                                         <ul class="easycatalog-grid">
                                             <li class="item">
-                                                <h5>
+                                                <div>
                                                     <a href="<?= Url::to(['category/index', 'category' => 'toppery', 'filter' => '', 'categoryFilter' => 'nedorogie']) ?>"
-                                                       title="Недорогие">Недорогие</a></h5>
+                                                       title="Недорогие">Недорогие</a></div>
                                             </li>
                                             <li class="item">
-                                                <h5>
+                                                <div>
                                                     <a href="<?= Url::to(['category/index', 'category' => 'toppery', 'filter' => '', 'categoryFilter' => 'premium']) ?>"
-                                                       title="Премиум">Премиум</a></h5>
+                                                       title="Премиум">Премиум</a></div>
                                             </li>
                                             <li class="item">
-                                                <h5>Размеры</h5>
+                                                <div>Размеры</div>
                                                 <ul>
                                                     <li>
                                                         <a href="<?= Url::to(['category/index', 'category' => 'toppery', 'filter' => '', 'sizeFilter' => '90x190']) ?>"
@@ -176,7 +177,7 @@ AppAsset::register($this);
                                                 </ul>
                                             </li>
                                             <li class="item">
-                                                <h5>Наполнитель</h5>
+                                                <div>Наполнитель</div>
                                                 <ul>
                                                     <li>
                                                         <a href="<?= Url::to(['category/index', 'category' => 'toppery', 'filter' => '', 'fillFilter' => 'iskussvennyy-puh']) ?>"
@@ -190,7 +191,7 @@ AppAsset::register($this);
                                                 </ul>
                                             </li>
                                             <li class="item">
-                                                <h5>Чехол</h5>
+                                                <div>Чехол</div>
                                                 <ul>
                                                     <li>
                                                         <a href="<?= Url::to(['category/index', 'category' => 'toppery', 'filter' => '', 'coverFilter' => 'microfiber']) ?>"
@@ -254,28 +255,18 @@ AppAsset::register($this);
         <div class="container">
             <div class="row">
                 <div class="col-md-3 footer-block">
-                    <h4>Информация</h4>
+                    <div>Информация</div>
                     <ul>
-                        <li><a href="{{ information.href|raw }}">О нас</a></li>
-                        <li><a href="{{ information.href|raw }}">Политика безопастности</a></li>
-                        <li><a href="{{ information.href|raw }}">Условия соглашения</a></li>
-                        <li><a href="{{ information.href|raw }}">Новости</a></li>
+                        <li><a href="<?= Url::to(['site/about-us']) ?>">О нас</a></li>
+                        <li><a href="<?= Url::to(['site/privacy']) ?>">Политика безопастности</a></li>
+                        <li><a href="<?= Url::to(['site/terms']) ?>">Условия соглашения</a></li>
                     </ul>
                 </div>
                 <div class="col-md-3 footer-block">
-                    <h4>Служба поддержки</h4>
+                    <div>Личный данные</div>
                     <ul>
-                        <li><a href="{{ contact|raw }}">Связаться с нами</a></li>
-                        <li><a href="{{ return|raw }}">Карта сайта</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-3 footer-block">
-                    <h4>Личный кабинет</h4>
-                    <ul>
-                        <li><a href="{{ return|raw }}">Личный кабинет</a></li>
-                        <li><a href="{{ return|raw }}">История заказов</a></li>
-                        <li><a href="{{ return|raw }}">Мои закладки</a></li>
-                        <li><a href="{{ return|raw }}">Рассылка новостей</a></li>
+                        <li><a href="<?= Url::to(['site/account']) ?>">Личный кабинет</a></li>
+                        <li><a href="<?= Url::to(['wishlist/index']) ?>">Мои закладки</a></li>
                     </ul>
                 </div>
             </div>

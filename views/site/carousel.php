@@ -13,10 +13,10 @@ use yii\helpers\Url;
                      alt="<?= $item['name'] ?>">
             </a>
             <div class="product-info">
-                <h3 class="text-center">
+                <div class="text-center">
                     <a href="<?= Url::to("/{$item->seo_url}") ?>"
                        title="<?= $item->name ?>">
-                        <?= $item->name ?></a></h3>
+                        <?= $item->name ?></a></div>
                 <div class="desc-border"></div>
                 <div class="price-box-original">
                     <div class="price-box text-center"><span
@@ -37,13 +37,13 @@ use yii\helpers\Url;
                                 <span class="glyphicon glyphicon glyphicon-heart<?php echo isset($_SESSION['wishlist']) && key_exists($item->product_id, $_SESSION['wishlist']) ? ' hover' : '' ?>"></span>
                             </a>
                         </li>
-                        <li>
+<!--                        <li>
                             <a href="#"
                                title="В сравнение" class="link-compare">
                                 <span class="glyphicon glyphicon-duplicate"></span>
                             </a>
                         </li>
-                    </ul>
+-->                    </ul>
                 </div>
             </div>
         </li>

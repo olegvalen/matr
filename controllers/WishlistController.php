@@ -18,6 +18,11 @@ class WishlistController extends Controller
 
     public function actionIndex()
     {
+        $this->view->title = 'Matrasovish.com.ua | Избранное';
+        $this->view->registerMetaTag(['name' => 'description', 'content' => 'Избранное. Интернет-магазин Matrasovich.com.ua']);
+        $this->view->registerMetaTag(['name' => 'keywords', 'content' => 'Избранное на Matrasovich.com.ua']);
+        $this->view->registerMetaTag(['name' => 'robots', 'content' => 'noindex,nofollow']);
+
         $session = Yii::$app->session;
         $session->open();
         $data = [];

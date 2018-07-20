@@ -82,7 +82,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             </ul>
                             <div class="buttons-set">
                                 <?= $form->field($model, 'rememberMe')->checkbox() ?>
-                                <a href="<?= Url::to(['site/forgotpassword']) ?>">Забыли
+                                <a href="<?= Url::to(['site/forgot-password']) ?>">Забыли
                                     пароль?</a>
                                 <?= Html::submitButton('Войти', ['class' => 'button f-left', 'name' => 'login-button']) ?>
                             </div>
@@ -93,7 +93,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             <h2>новый <span>пользователь</span></h2>
                             <div class="buttons-set">
                                 <button type="button" title="Создать" class="button"
-                                        onclick="window.location='<?= Url::to(['site/newcustomer']) ?>';">
+                                        onclick="window.location='<?= Url::to(['site/new-customer']) ?>';">
                                     <span><span>Создать</span></span></button>
                             </div>
                         </div>

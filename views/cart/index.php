@@ -102,7 +102,7 @@ use yii\helpers\Url;
 
                                         <td class="a-right"><span class="th">Цена</span>
                                             <span class="cart-price">
-                                                <span class="price price-item<?= $item['cart']->product->product_id ?>"><?= Yii::$app->formatter->asInteger($item['cart']->product->price) ?></span>
+                                                <span class="price price-item<?= $item['cart']->product->product_id ?>"><?= Yii::$app->formatter->asInteger($item['cart']->price) ?></span>
             </span>
 
                                         </td>
@@ -123,7 +123,7 @@ use yii\helpers\Url;
                                         <td class="a-right"><span class="th">Сумма</span>
                                             <span class="cart-price">
 
-                                                <span class="price sum"><?= Yii::$app->formatter->asInteger($item['cart']->product->price * $item['cart']->qty) ?></span>
+                                                <span class="price sum"><?= Yii::$app->formatter->asInteger($item['cart']->price * $item['cart']->qty) ?></span>
         </span>
                                         </td>
                                         <td class="a-center last">

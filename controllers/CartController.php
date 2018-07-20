@@ -19,6 +19,10 @@ class CartController extends Controller
 
     public function actionIndex()
     {
+        $this->view->title = 'Matrasovish.com.ua | Корзина';
+        $this->view->registerMetaTag(['name' => 'description', 'content' => 'Корзина. Интернет-магазин Matrasovich.com.ua']);
+        $this->view->registerMetaTag(['name' => 'keywords', 'content' => 'Корзина на Matrasovich.com.ua']);
+        $this->view->registerMetaTag(['name' => 'robots', 'content' => 'noindex,nofollow']);
         if (Yii::$app->getUser()->isGuest) {
             Yii::$app->user->setReturnUrl(Yii::$app->request->url);
             return $this->redirect('/login');
@@ -26,15 +30,19 @@ class CartController extends Controller
 
         $data = [];
         $data['carts'] = [];
+        $data['cartQty'] = 0;
+        $data['cartSum'] = 0;
         $carts = Yii::$app->getUser()->getIdentity()->carts;
         foreach ($carts as $cart) {
             $arr = [];
             $arr['cart'] = $cart;
             $arr['options'] = Product::getProductOptions($cart->product_id);
             $data['carts'][] = $arr;
+            $data['cartQty'] += $cart['qty'];
+            $data['cartSum'] += $cart['qty'] * $cart['price'];
         }
-        $data['cartQty'] = 1000;
-        $data['cartSum'] = 2000;
+//        $data['cartQty'] = 1000;
+//        $data['cartSum'] = 2000;
         return $this->render('index', $data);
     }
 
@@ -76,6 +84,14 @@ class CartController extends Controller
         $attribute_id = Yii::$app->request->get('attribute_id');
         $attribute_idOld = Yii::$app->request->get('attribute_idOld') !== '' ? Yii::$app->request->get('attribute_idOld') : null;
         return Cart::changeattribute($product_id, $attribute_id, $attribute_idOld);
+    }
+
+    public function actionChangeqty()
+    {
+        $product_id = Yii::$app->request->get('id');
+        $attribute_id = Yii::$app->request->get('attribute_id') !== '' ? Yii::$app->request->get('attribute_id') : null;
+        $sign = Yii::$app->request->get('sign');
+        return Cart::changeqty($product_id, $attribute_id, $sign);
     }
 
     public function actionCartall()

@@ -4,9 +4,9 @@
 <div class="container">
     <div class="row">
         <div class="page-title title-buttons">
-            <h1>Сравнение</h1>
+            <h1>Извините, страница в разработке</h1>
         </div>
-        <table class="table compare-table">
+     <!--   <table class="table compare-table">
             <thead>
             <tr>
                 <th></th>
@@ -96,6 +96,6 @@
                        class="link-wishlist">В избранное</a></td>
             </tr>
             </tbody>
-        </table>
+        </table>-->
     </div>
 </div>

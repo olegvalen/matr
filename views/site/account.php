@@ -15,7 +15,7 @@ use yii\helpers\Url;
                             <li><a href="<?= Url::to(['wishlist/index']) ?>">Избранное</a></li>
                             <li><a href="<?= Url::to(['cart/index']) ?>">Корзина</a></li>
                             <li><a href="<?= Url::to(['site/compare']) ?>">Сравнение</a></li>
-                            <li><a href="<?= Url::to(['site/changepassword']) ?>">Изменение пароля</a></li>
+                            <li><a href="<?= Url::to(['site/change-password']) ?>">Изменение пароля</a></li>
                             <li><a href="<?= Url::to(['site/logout']) ?>">Выход</a></li>
                         </ul>
                     </div>

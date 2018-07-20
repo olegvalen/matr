@@ -7,7 +7,7 @@ body {
 
 .top-menu {
   background-color: #EDEDED;
-  border-top: 3px solid #CD8250;
+  border-top: 3px solid @main-color;
 }
 
 .top-menu1 > a {
@@ -15,7 +15,7 @@ body {
   line-height: 14px;
   padding: 17px 18px 20px 18px;
   background-color: #fff;
-  color: #CD8250;
+  color: @main-color;
   float: left;
 }
 
@@ -39,13 +39,13 @@ body {
       font-size: 14px;
     }
     a:hover {
-      background-color: #CD8250;
+      background-color: @main-color;
       color: #fff;
     }
   }
   .dropdown-toggle {
     :hover {
-      color: #CD8250;
+      color: @main-color;
     }
   }
   .nav-btn.dropdown-toggle {
@@ -84,7 +84,7 @@ a, a span {
 
 .logo-container {
   display: block;
-  margin: 30px 0 26px;
+  margin: 50px 0 26px;
 }
 
 .navbar-search, .shop-cart {
@@ -110,7 +110,7 @@ a, a span {
 .navbar-search {
   button {
     color: #fff;
-    background-color: #CD8250;
+    background-color: @main-color;
     height: 52px;
     width: 52px;
     font-size: 18px;
@@ -119,8 +119,8 @@ a, a span {
   }
   .btn-default:hover {
     color: #fff;
-    background-color: #CD8250;
-    border-color: #CD8250;
+    background-color: @main-color;
+    border-color: @main-color;
   }
   .input-group-btn {
     left: 1px;
@@ -140,7 +140,7 @@ a, a span {
   line-height: 52px;
   padding: 14px 18px 17px 18px;
   color: #fff;
-  background: #CD8250;
+  background: @main-color;
 }
 
 .cart-info {
@@ -152,7 +152,7 @@ a, a span {
     line-height: 1.3em;
   }
   .items {
-    color: #CD8250;
+    color: @main-color;
   }
 }
 
@@ -166,7 +166,7 @@ a, a span {
 }
 
 .nav-container {
-  border-top: 4px solid #CD8250;
+  border-top: 4px solid @main-color;
   background: #252525;
 }
 
@@ -244,14 +244,15 @@ ul {
     border-top: 1px solid #d7d7d7;
   }
   .price-box {
-    color: #CD8250;
+    color: @main-color;
     font-size: 22px;
   }
-  h3 > a:hover {
-    color: #CD8250;
+  .text-center > a:hover {
+    color: @main-color;
   }
-  h3 {
+  .text-center {
     width: 98%;
+    font-size: 17px;
   }
   .product-hover {
     height: 61px;
@@ -268,7 +269,7 @@ ul {
         }
         :hover span, .hover {
           color: #fff;
-          background-color: #CD8250;
+          background-color: @main-color;
         }
       }
     }
@@ -279,7 +280,7 @@ ul {
   position: fixed;
   right: 10%;
   bottom: 30px;
-  background-color: #CD8250;
+  background-color: @main-color;
   //padding: 20px;
   opacity: 0;
   right: 30px;
@@ -322,7 +323,7 @@ footer {
 
 .footer-banners {
   .glyphicon-envelope, .glyphicon-earphone {
-    color: #CD8250;
+    color: @main-color;
     border: 3px solid #ebebeb;
     border-radius: 50%;
     float: left;
@@ -344,7 +345,7 @@ footer {
     font-size: 22px;
     padding: 22px 0;
     a {
-      color: #CD8250;
+      color: @main-color;
     }
   }
 }
@@ -375,7 +376,7 @@ footer {
 
 button {
   color: #fff;
-  background: #CD8250;
+  background: @main-color;
   &:hover {
     color: #fff !important;
     background: #505050;
@@ -387,8 +388,8 @@ button {
     ul li {
       line-height: 25px;
     }
-    h5 {
-      font-size: 17px;
+    div {
+      font-weight: 700;
     }
   }
 }
@@ -396,7 +397,7 @@ button {
 a {
   color: #505050;
   &:hover {
-    color: #CD8250;
+    color: @main-color;
   }
 }
 
@@ -442,7 +443,7 @@ label {
 
 /* When the checkbox is checked, add a blue background */
 .container-label input:checked ~ .checkmark {
-  background-color: #CD8250;
+  background-color: @main-color;
 }
 
 /* Create the checkmark/indicator (hidden when not checked) */
@@ -554,7 +555,7 @@ label {
       line-height: 31px;
     }
     .dropdown-menu {
-      border-top: 3px solid #CD8250;
+      border-top: 3px solid @main-color;
       background: #fff;
       -webkit-box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.15);
       -moz-box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.15);
@@ -647,7 +648,7 @@ label {
     .price {
       font-size: 40px;
       font-weight: 700;
-      color: #CD8250;
+      color: @main-color;
     }
   }
   .add-to-cart {
@@ -745,7 +746,7 @@ label {
     }
   }
   li {
-    text-transform: uppercase;
+    //text-transform: uppercase;
     border-bottom: 1px solid #e3e3e3;
     padding: 8px 0;
   }
@@ -783,7 +784,7 @@ label {
     top: 0;
     left: 0;
     color: #fff;
-    background: #CD8250;
+    background: @main-color;
     font-size: 13px;
     border-radius: 50%;
     width: 30px;
@@ -1003,7 +1004,7 @@ label {
   }
   .content {
     border: 1px solid #e4e4e4;
-    border-top-color: #CD8250;
+    border-top-color: @main-color;
     border-top-width: 3px;
     padding: 20px 30px 30px 30px;
     margin-bottom: 55px;
@@ -1015,7 +1016,7 @@ label {
     margin-bottom: 40px;
     border: 0;
     span {
-      color: #CD8250;
+      color: @main-color;
     }
   }
   .form-list li:first-child, .col-1 .buttons-set .button {
@@ -1072,7 +1073,7 @@ label {
     display: inline-block;
     margin: 0 auto;
     border: 1px solid #e4e4e4;
-    border-top: 3px solid #CD8250;
+    border-top: 3px solid @main-color;
     padding: 20px 60px 30px 30px;
     font-size: 14px;
   }
@@ -1087,7 +1088,7 @@ label {
       margin-bottom: 40px;
       border: 0;
       span {
-        color: #CD8250;
+        color: @main-color;
       }
     }
   }
@@ -1161,10 +1162,15 @@ input[type=email], input[type=search], input[type=number], input[type=password],
 }
 
 .ok-badge-wishlist, .ok-badge-cart {
-  background-color: #CD8250;
+  background-color: @main-color;
   margin-left: 2px;
 }
 
+.footer-block div {
+  margin-bottom: 10px;
+  font-weight: 700;
+  font-size: 16px;
+}
 //MEDIA
 @media (max-width: 991px) {
   .search-btn {
@@ -1181,7 +1187,7 @@ input[type=email], input[type=search], input[type=number], input[type=password],
       //display: none;
       position: absolute;
       right: 14px;
-      border-top: 3px solid #CD8250;
+      border-top: 3px solid @main-color;
       background: #fff;
       -webkit-box-shadow: 3px 3px 10px 0 rgba(0, 0, 0, 0.15);
       -moz-box-shadow: 3px 3px 10px 0 rgba(0, 0, 0, 0.15);
@@ -1280,15 +1286,15 @@ input[type=email], input[type=search], input[type=number], input[type=password],
       padding: 10px;
       float: left;
     }
-    h5 {
+    div {
       margin: 0 0 8px;
+      font-weight: 700;
       a {
-        font-size: 17px;
-        font-weight: normal;
+        font-weight: 700;
         text-decoration: none;
       }
       a:hover {
-        color: #CD8250;
+        color: @main-color;
       }
     }
     img {
