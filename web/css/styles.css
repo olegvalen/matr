@@ -4383,7 +4383,7 @@ a span {
 }
 .logo-container {
   display: block;
-  margin: 50px 0 26px;
+  margin: 20px 0 26px;
 }
 .navbar-search,
 .shop-cart {
@@ -5144,6 +5144,7 @@ label {
   margin: 0;
   padding: 0;
   background: transparent;
+  text-align: center;
 }
 .cart .cart-table td,
 .cart .cart-table .product-name {

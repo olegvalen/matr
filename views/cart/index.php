@@ -52,9 +52,6 @@ use yii\helpers\Url;
                                                 onclick="location.href='http://sites';">
                                             <span><span>Продолжить покупки</span></span>
                                         </button>
-                                        <button type="submit" name="update_cart_action" value="update_qty"
-                                                title="Сохранить корзину" class="button btn-update"><span><span>Сохранить корзину</span></span>
-                                        </button>
                                         <button type="submit" name="update_cart_action" value="empty_cart"
                                                 title="Очистить корзину" class="button btn-empty"
                                                 id="empty_cart_button">

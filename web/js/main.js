@@ -202,6 +202,39 @@ $(document).ready(function () {
         });
     });
 
+    $('.button.btn-empty').on('click', function (e) {
+        e.preventDefault();
+        $.ajax({
+            url: '/cart/clearall',
+            type: 'GET',
+            success: function () {
+                removeItemCartAll();
+            },
+            error: function () {
+                // alert('Error!');
+            }
+        });
+    });
+
+    $('.button.btn-proceed-checkout.btn-checkout').on('click', function (e) {
+        e.preventDefault();
+        $.ajax({
+            url: '/cart/checkout',
+            type: 'GET',
+            success: function (data) {
+                var obj = JSON.parse(data);
+                if (obj.error) {
+                    alert(obj.error.msg);
+                }
+                $(document).find('h1').after("<div class='alert alert-success alert-dismissible ok-alert' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>Заказ успешно оформлен! Ждите звонка от представителя магазина!</div>");
+                removeItemCartAll();
+            },
+            error: function () {
+                // alert('Error!');
+            }
+        });
+    });
+
     $('.btn-cart').on('click', function (e) {
         e.preventDefault();
         var _this = $(this);
@@ -401,6 +434,11 @@ $(document).ready(function () {
             $('.checkout-types, #cart-view-form').remove();
         }
         refreshQtySum();
+    }
+
+    function removeItemCartAll() {
+        $('.ok-badge-cart').text('');
+        $('.checkout-types, #cart-view-form').remove();
     }
 
     // function refreshQtySum() {

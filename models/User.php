@@ -10,9 +10,9 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
     /**
      * {@inheritdoc}
      */
-    public static function findIdentity($id)
+    public static function findIdentity($user_id)
     {
-        return static::findOne($id);
+        return static::findOne($user_id);
     }
 
     /**
@@ -38,7 +38,7 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
      */
     public function getId()
     {
-        return $this->id;
+        return $this->user_id;
     }
 
     /**
@@ -75,7 +75,7 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
 
     public function getCarts()
     {
-        return $this->hasMany(Cart::class, ['user_id' => 'id'])
+        return $this->hasMany(Cart::class, ['user_id' => 'user_id'])
             ->joinWith('product p')
             ->with('product')
             ->all();

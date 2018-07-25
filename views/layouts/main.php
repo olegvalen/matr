@@ -63,10 +63,10 @@ AppAsset::register($this);
                             <a href="<?= Url::to(['cart/index']) ?>" title="Корзина">Корзина<span
                                         class="badge ok-badge ok-badge-cart"><?php echo \app\models\Cart::showCartQty() ?></span></a>
                         </li>
-                        <li>
-                            <a href="<?= Url::to(['site/compare']) ?>" title="Сравнение">Сравнение</a>
+<!--                        <li>
+                            <a href="<?/*= Url::to(['site/compare']) */?>" title="Сравнение">Сравнение</a>
                         </li>
-                        <li>
+-->                        <li>
                             <?php if (!Yii::$app->user->isGuest): ?>
                                 <a href="<?= Url::to(['site/logout']) ?>" title="Выход">Выход</a>
                             <?php else: ?>
@@ -106,7 +106,7 @@ AppAsset::register($this);
                     </form>
                 </div>
                 <!--                <div class="col-md-4 shop-cart">
-                                    <a href="https://www.organize.com/checkout/cart/">
+                                    <a href="#">
                                         <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a>
                                     <p class="cart-info">
                                         <span>Shopping Cart: </span><span class="price">$0.00</span><br>

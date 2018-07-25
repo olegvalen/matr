@@ -4,6 +4,7 @@ namespace app\models;
 
 use yii\db\ActiveRecord;
 use Yii;
+use yii\db\Exception;
 
 class Cart extends ActiveRecord
 {
@@ -41,6 +42,74 @@ class Cart extends ActiveRecord
         $cart = Cart::find()->where(['user_id' => Yii::$app->user->getId(), 'product_id' => $product_id])->one();
         if ($cart)
             $cart->delete();
+    }
+
+    public static function clearAll()
+    {
+        Cart::deleteAll(['user_id' => Yii::$app->user->getId()]);
+    }
+
+    public static function checktout()
+    {
+        $user_id = Yii::$app->user->getId();
+
+        try {
+            $carts = Cart::find()->where(['user_id' => Yii::$app->user->getId()])->all();
+            if ($carts) {
+
+//                foreach ($carts as $cart) {
+//                    if ($cart->attribute_id == null) {
+//                        throw new Exception('Не заполнен размер!');
+//                    }
+//                }
+//
+//                foreach ($carts as $cart) {
+//                    $price = ProductOption::find()->where(['product_id' => $cart->product_id, 'attribute_id' => $cart->attribute_id])->one();
+//                    $cart->price = $price != null ? $price->value : 0;
+//                }
+//
+//                $qtyTotal = 0;
+//                $sumTotal = 0;
+//                foreach ($carts as $cart) {
+//                    $qtyTotal += $cart->qty;
+//                    $sumTotal += $cart->qty * $cart->price;
+//                }
+//
+//                $order = new Order();
+//                $order->user_id = $user_id;
+//                $order->qty = $qtyTotal;
+//                $order->sum = $sumTotal;
+//                $order->date_added = date("Y-m-d H:i:s");
+//                $order->save();
+//
+//                $order_id = Yii::$app->db->getLastInsertID();
+//                foreach ($carts as $cart) {
+//                    $order_product = new OrderProduct();
+//                    $order_product->order_id = $order_id;
+//                    $order_product->product_id = $cart->product_id;
+//                    $order_product->attribute_id = $cart->attribute_id;
+//                    $order_product->qty = $cart->qty;
+//                    $order_product->price = $cart->price;
+//                    $order_product->save();
+//                }
+//
+//                Cart::clearAll();
+
+//                Yii::$app->mailer->compose()->
+//                setFrom(['matrasovich.com@gmail.com' => 'Matrasovich.com.ua'])->
+//                setTo('matrasovich.com@gmail.com')->
+//                setSubject('Новый заказ!!!')->
+//                send();
+
+                echo json_encode([]);
+            }
+        } catch (Exception $e) {
+            echo json_encode(array(
+                'error' => array(
+                    'msg' => $e->getMessage(),
+                )
+            ));
+        }
     }
 
     public static function changeattribute($product_id, $attribute_id, $attribute_idOld)

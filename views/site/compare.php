@@ -12,18 +12,18 @@
                 <th></th>
                 <th></th>
                 <th><a class="product-image" href="#"
-                       onclick="setPLocation('https://www.organize.com/1-gallon-frosted-glass-water-bottle-jug-with-38-mm-metal-screw-cap-black-5077.html', true)"
+                       onclick="setPLocation('#', true)"
                        title="1 Gallon Frosted Glass Water Bottle Jug with 38 mm Metal Screw Cap (Blue, 4)">
-                        <img src="https://www.organize.com/media/catalog/product/cache/1/small_image/250x/040ec09b1e35df139433887a97daa66f/8/1/81b65zbf1yl._sl1500__1.jpg"
-                             data-retina="https://www.organize.com/media/catalog/product/cache/1/small_image/250x/040ec09b1e35df139433887a97daa66f/8/1/81b65zbf1yl._sl1500__1.jpg"
+                        <img src="#"
+                             data-retina="#"
                              class="img-responsive img-center"
                              alt="1 Gallon Frosted Glass Water Bottle Jug with 38 mm Metal Screw Cap (Blue, 4)">
                     </a></th>
                 <th><a class="product-image" href="#"
-                       onclick="setPLocation('https://www.organize.com/1-gallon-frosted-glass-water-bottle-jug-with-38-mm-metal-screw-cap-black-5076.html', true)"
+                       onclick="setPLocation('#', true)"
                        title="1 Gallon Frosted Glass Water Bottle Jug with 38 mm Metal Screw Cap (Blue, 1)">
-                        <img src="https://www.organize.com/media/catalog/product/cache/1/small_image/250x/040ec09b1e35df139433887a97daa66f/7/1/71w49tkfikl._sl1500__1.jpg"
-                             data-retina="https://www.organize.com/media/catalog/product/cache/1/small_image/250x/040ec09b1e35df139433887a97daa66f/7/1/71w49tkfikl._sl1500__1.jpg"
+                        <img src="#"
+                             data-retina="#"
                              class="img-responsive img-center"
                              alt="1 Gallon Frosted Glass Water Bottle Jug with 38 mm Metal Screw Cap (Blue, 1)">
                     </a></th>
@@ -34,12 +34,12 @@
                 <th scope="row"></th>
                 <td>Наименование</td>
                 <td><a href="#"
-                       onclick="setPLocation('https://www.organize.com/1-gallon-frosted-glass-water-bottle-jug-with-38-mm-metal-screw-cap-black-5077.html', true)"
+                       onclick="setPLocation('#', true)"
                        title="1 Gallon Frosted Glass Water Bottle Jug with 38 mm Metal Screw Cap (Blue, 4)">1
                         Gallon Frosted Glass Water Bottle Jug with 38 mm Metal Screw Cap (Blue, 4)</a>
                 </td>
                 <td><a href="#"
-                       onclick="setPLocation('https://www.organize.com/1-gallon-frosted-glass-water-bottle-jug-with-38-mm-metal-screw-cap-black-5076.html', true)"
+                       onclick="setPLocation('#', true)"
                        title="1 Gallon Frosted Glass Water Bottle Jug with 38 mm Metal Screw Cap (Blue, 1)">1
                         Gallon Frosted Glass Water Bottle Jug with 38 mm Metal Screw Cap (Blue, 1)</a>
             </tr>
@@ -76,12 +76,12 @@
                 <td></td>
                 <td>
                     <button type="button" title="В корзину" class="button btn-cart"
-                            onclick="setPLocation('https://www.organize.com/checkout/cart/add/product/38900/uenc/aHR0cHM6Ly93d3cub3JnYW5pemUuY29tL2N1c3RvbWVyL2FjY291bnQv/form_key/odmbateOGeBZbCoN/', true)">
+                            onclick="setPLocation('#', true)">
                         <span>В корзину</span></button>
                 </td>
                 <td>
                     <button type="button" title="В корзину" class="button btn-cart"
-                            onclick="setPLocation('https://www.organize.com/checkout/cart/add/product/38900/uenc/aHR0cHM6Ly93d3cub3JnYW5pemUuY29tL2N1c3RvbWVyL2FjY291bnQv/form_key/odmbateOGeBZbCoN/', true)">
+                            onclick="setPLocation('#', true)">
                         <span>В корзину</span></button>
                 </td>
             </tr>
@@ -89,10 +89,10 @@
                 <th scope="row"></th>
                 <td></td>
                 <td>
-                    <a href="https://www.organize.com/wishlist/index/add/uenc/aHR0cHM6Ly93d3cub3JnYW5pemUuY29tL2N1c3RvbWVyL2FjY291bnQvP19fX1NJRD1T/product/38901/form_key/odmbateOGeBZbCoN/"
+                    <a href="#"
                        class="link-wishlist">В избранное</a></td>
                 <td>
-                    <a href="https://www.organize.com/wishlist/index/add/uenc/aHR0cHM6Ly93d3cub3JnYW5pemUuY29tL2N1c3RvbWVyL2FjY291bnQvP19fX1NJRD1T/product/38901/form_key/odmbateOGeBZbCoN/"
+                    <a href="#"
                        class="link-wishlist">В избранное</a></td>
             </tr>
             </tbody>

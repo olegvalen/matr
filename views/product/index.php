@@ -97,12 +97,12 @@ $formatter = Yii::$app->formatter;
                                     <span class="glyphicon glyphicon-heart"></span>
                                     В ИЗБРАННОЕ</a>
                             </li>
-                            <li>
-                                <a href="#"
-                                   class="link-compare">
-                                    <span class="glyphicon glyphicon-duplicate"></span>
-                                    В СРАВНЕНИЕ</a>
-                            </li>
+<!--                            <li>-->
+<!--                                <a href="#"-->
+<!--                                   class="link-compare">-->
+<!--                                    <span class="glyphicon glyphicon-duplicate"></span>-->
+<!--                                    В СРАВНЕНИЕ</a>-->
+<!--                            </li>-->
                         </ul>
                     </div>
                 </div>

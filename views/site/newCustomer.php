@@ -35,6 +35,11 @@ use yii\bootstrap\ActiveForm;
                                     <?= $form->field($model, 'email')->textInput(['placeholder' => 'E-mail'])->label(false) ?>
                                 </div>
                             </li>
+                            <li>
+                                <div class="input-box">
+                                    <?= $form->field($model, 'phone')->textInput(['placeholder' => 'Телефон'])->label(false) ?>
+                                </div>
+                            </li>
                             <li class="control">
                                 <div class="input-box">
                                     <?= $form->field($model, 'is_subscribed')->checkbox() ?>

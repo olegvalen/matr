@@ -12,6 +12,7 @@ class NewcustomerForm extends Model
     public $password;
     public $confirmation;
     public $is_subscribed = true;
+    public $phone;
 
     public function rules()
     {
@@ -19,9 +20,11 @@ class NewcustomerForm extends Model
             ['name', 'required', 'message' => 'Необходимо заполнить "Имя"'],
             ['email', 'required', 'message' => 'Необходимо заполнить "E-mail"'],
             ['password', 'required', 'message' => 'Необходимо заполнить "Пароль"'],
+            ['phone', 'required', 'message' => 'Необходимо заполнить "Телефон"'],
             ['confirmation', 'required', 'message' => 'Необходимо заполнить "Подтверждение пароля"'],
             [['name'], 'trim'],
             ['email', 'email'],
+            [['phone'], 'string', 'max' => 13],
             ['confirmation', 'confirmPassword'],
             ['is_subscribed', 'boolean'],
         ];
@@ -50,6 +53,7 @@ class NewcustomerForm extends Model
             $user->password = Yii::$app->security->generatePasswordHash($this->password);
             $user->generateAuthKey();
             $user->is_subscribed = $this->is_subscribed;
+            $user->phone = $this->phone;
             $user->save();
             return true;
         }

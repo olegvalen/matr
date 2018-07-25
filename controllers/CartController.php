@@ -66,6 +66,16 @@ class CartController extends Controller
         Cart::clear($product_id);
     }
 
+    public function actionClearall()
+    {
+        Cart::clearAll();
+    }
+
+    public function actionCheckout()
+    {
+        Cart::checktout();
+    }
+
     public function actionWishlist()
     {
         $product_id = Yii::$app->request->get('id');
