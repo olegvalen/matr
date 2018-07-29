@@ -15,4 +15,10 @@ class ProductOption extends ActiveRecord
     {
         return $this->hasOne(AttributeDescription::class, ['attribute_id' => 'attribute_id']);
     }
+
+    public static function getPrice($product_id, $attribute_id)
+    {
+        $price = ProductOption::find()->where(['product_id' => $product_id, 'attribute_id' => $attribute_id])->one();
+        return $price != null ? $price->value : 0;
+    }
 }

@@ -11,6 +11,7 @@ namespace app\controllers;
 use app\models\Cart;
 use app\models\Product;
 use app\models\Wishlist;
+use yii\helpers\Url;
 use yii\web\Controller;
 use Yii;
 
@@ -48,13 +49,17 @@ class CartController extends Controller
 
     public function actionAdd()
     {
-//        $id = Yii::$app->request->get('id');
-//        $product = Product::findOne($id);
-//        if (!$product) return false;
-//
-//        $wishlist = new Wishlist();
-//        $wishlist->add($product);
-//        return $session->get('wishlist.qty');
+        if (Yii::$app->user->isGuest) {
+            Yii::$app->user->setReturnUrl(Yii::$app->request->get('pathname'));
+            return $this->redirect('/login');
+        }
+
+        $product_id = Yii::$app->request->get('id');
+        $attribute_id = Yii::$app->request->get('attribute_id') !== '' ? Yii::$app->request->get('attribute_id') : null;
+        $product = Product::findOne(['product_id' => $product_id]);
+        if (!$product) return false;
+
+        Cart::add($product_id, $attribute_id);
     }
 
     public function actionClear()

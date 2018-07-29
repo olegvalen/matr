@@ -27,7 +27,7 @@ use yii\helpers\Url;
                     <ul>
                         <li>
                             <a href="#"
-                               title="В корзину" class="link-cart">
+                               title="В корзину" class="link-cart" data-id="<?= $item->product_id ?>">
                                 <span class="glyphicon glyphicon-shopping-cart"></span>
                             </a>
                         </li>
@@ -37,13 +37,13 @@ use yii\helpers\Url;
                                 <span class="glyphicon glyphicon glyphicon-heart<?php echo isset($_SESSION['wishlist']) && key_exists($item->product_id, $_SESSION['wishlist']) ? ' hover' : '' ?>"></span>
                             </a>
                         </li>
-<!--                        <li>
-                            <a href="#"
-                               title="В сравнение" class="link-compare">
-                                <span class="glyphicon glyphicon-duplicate"></span>
-                            </a>
-                        </li>
--->                    </ul>
+                        <!--                        <li>
+                                                    <a href="#"
+                                                       title="В сравнение" class="link-compare">
+                                                        <span class="glyphicon glyphicon-duplicate"></span>
+                                                    </a>
+                                                </li>
+                        -->                    </ul>
                 </div>
             </div>
         </li>

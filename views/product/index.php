@@ -64,9 +64,9 @@ $formatter = Yii::$app->formatter;
                     </div>
                     <div class="add-to-box">
                         <div class="add-to-cart">
-                            <div class="qty-container">
+<!--                            <div class="qty-container">
                                 <label for="qty">Количество:</label>
-                                <span class="qty-minus-cart" data-id="<?= $product->product_id ?>">-</span><input type="text"
+                                <span class="qty-minus-cart" data-id="<?/*= $product->product_id */?>">-</span><input type="text"
                                                                                                              name="qty"
                                                                                                              id="qty"
                                                                                                              maxlength="12"
@@ -74,9 +74,9 @@ $formatter = Yii::$app->formatter;
                                                                                                              title="Qty"
                                                                                                              class="input-text qty"
                                                                                                              disabled><span
-                                        class="qty-plus-cart" data-id="<?= $product->product_id ?>">+</span>
+                                        class="qty-plus-cart" data-id="<?/*= $product->product_id */?>">+</span>
                             </div>
-                            <button type="button" title="Add to Cart" id="product-addtocart-button"
+-->                            <button type="button" title="Add to Cart" id="product-addtocart-button"
                                     class="button btn-adto-cart" data-id="<?= $product->product_id ?>">
                                 <span class="glyphicon glyphicon-shopping-cart"></span>В КОРЗИНУ
                             </button>

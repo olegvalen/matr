@@ -67,12 +67,6 @@ $(document).ready(function () {
         }
     );
 
-    // $('.dropdown-toggle').click(function () {
-    //         var self = $(this);
-    //         self.find('.dropdown-menu').toggle(128);
-    //     }
-    // );
-
     $("select[id^='size-option']").on('change', function () {
         $('#product-price-38950 span').text($('option:selected', this).attr('data-price'));
     });
@@ -92,14 +86,16 @@ $(document).ready(function () {
             success: function (e) {
                 if (e) {
                     self.closest('.first.odd.tr-row').data('attribute-id', attribute_id);
-                    // console.log();
                     $('.price-item' + id).text($('option:selected', self).data('price'));
                     refreshQtySum();
                 }
             },
-            error: function () {
-                // alert('Error!');
-            }
+            beforeSend: function () {
+                $('#loader').show();
+            },
+            complete: function () {
+                $('#loader').hide();
+            },
         });
     });
 
@@ -129,7 +125,6 @@ $(document).ready(function () {
         e.preventDefault();
         var _this = $(this);
         var id = _this.data('id');
-        // console.log(id);
         $.ajax({
             url: '/wishlist/add',
             data: {id: id},
@@ -137,13 +132,15 @@ $(document).ready(function () {
             success: function (e) {
                 if (!e)
                     alert('Error!');
-                // console.log(e);
                 _this.find('span').first().addClass('hover');
                 $('.ok-badge-wishlist').text(e);
             },
-            error: function () {
-                alert('Error!');
-            }
+            beforeSend: function () {
+                $('#loader').show();
+            },
+            complete: function () {
+                $('#loader').hide();
+            },
         });
     });
 
@@ -157,14 +154,13 @@ $(document).ready(function () {
             type: 'GET',
             success: function (e) {
                 removeItemCart(_this, true, true);
-                console.log(1);
-                console.log(typeof e);
             },
-            error: function (e) {
-                // alert('Error2!');
-                console.log(2);
-                console.log(typeof e);
-            }
+            beforeSend: function () {
+                $('#loader').show();
+            },
+            complete: function () {
+                $('#loader').hide();
+            },
         });
     });
 
@@ -179,9 +175,12 @@ $(document).ready(function () {
             success: function () {
                 removeItemWishlist(_this, false);
             },
-            error: function () {
-                alert('Error!');
-            }
+            beforeSend: function () {
+                $('#loader').show();
+            },
+            complete: function () {
+                $('#loader').hide();
+            },
         });
     });
 
@@ -196,9 +195,12 @@ $(document).ready(function () {
             success: function () {
                 removeItemCart(_this, false, true);
             },
-            error: function () {
-                // alert('Error!');
-            }
+            beforeSend: function () {
+                $('#loader').show();
+            },
+            complete: function () {
+                $('#loader').hide();
+            },
         });
     });
 
@@ -210,9 +212,12 @@ $(document).ready(function () {
             success: function () {
                 removeItemCartAll();
             },
-            error: function () {
-                // alert('Error!');
-            }
+            beforeSend: function () {
+                $('#loader').show();
+            },
+            complete: function () {
+                $('#loader').hide();
+            },
         });
     });
 
@@ -229,9 +234,12 @@ $(document).ready(function () {
                 $(document).find('h1').after("<div class='alert alert-success alert-dismissible ok-alert' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>Заказ успешно оформлен! Ждите звонка от представителя магазина!</div>");
                 removeItemCartAll();
             },
-            error: function () {
-                // alert('Error!');
-            }
+            beforeSend: function () {
+                $('#loader').show();
+            },
+            complete: function () {
+                $('#loader').hide();
+            },
         });
     });
 
@@ -246,9 +254,40 @@ $(document).ready(function () {
             success: function () {
                 removeItemWishlist(_this, true);
             },
-            error: function () {
-                // alert('Error2!');
-            }
+            beforeSend: function () {
+                $('#loader').show();
+            },
+            complete: function () {
+                $('#loader').hide();
+            },
+        });
+    });
+
+    $('.btn-adto-cart,.link-cart').on('click', function (e) {
+        e.preventDefault();
+        var self = $(this);
+        var id = self.data('id');
+        var attribute_id = $('option:selected', $(document).find('#size-option')).val();
+        if (attribute_id === undefined) {
+            attribute_id = '';
+        }
+
+        $.ajax({
+            url: '/cart/add',
+            data: {id: id, attribute_id: attribute_id, pathname: window.location.pathname},
+            type: 'GET',
+            success: function () {
+                var cartQty = parseInt($('.ok-badge-cart').text());
+                cartQty = isNaN(cartQty) ? 1 : cartQty + 1;
+                $('.ok-badge-cart').text(cartQty);
+
+            },
+            beforeSend: function () {
+                $('#loader').show();
+            },
+            complete: function () {
+                $('#loader').hide();
+            },
         });
     });
 
@@ -260,89 +299,14 @@ $(document).ready(function () {
             success: function () {
                 // window.location.replace("/cart");
             },
-            error: function () {
-                // alert('Error!');
-            }
+            beforeSend: function () {
+                $('#loader').show();
+            },
+            complete: function () {
+                $('#loader').hide();
+            },
         });
     });
-
-    // $('.btn-adto-cart').on('click', function (e) {
-    //     e.preventDefault();
-    //     var _this = $(this);
-    //     var id = _this.data('id');
-    //     $.ajax({
-    //         url: '/cart/add',
-    //         data: {id: id},
-    //         type: 'GET',
-    //         success: function (e) {
-    //             var cartQty = parseInt($('.ok-badge-cart').text());
-    //             cartQty -= e;
-    //             if (cartQty === 0) {
-    //                 cartQty = '';
-    //             }
-    //             $('.ok-badge-cart').text(cartQty);
-    //
-    //         },
-    //         error: function () {
-    //             // alert('Error2!');
-    //         }
-    //     });
-    // });
-
-    // $('.qty-minus,.qty-plus').on('click', function (e) {
-    //     e.preventDefault();
-    //     var _this = $(this);
-    //     var sign = 0;
-    //
-    //     var id = _this.data('id');
-    //     var className = _this.attr('class');
-    //     if (className === 'qty-minus') {
-    //         sign = -1;
-    //     }
-    //     else if (className === 'qty-plus') {
-    //         sign = 1;
-    //     } else {
-    //         return;
-    //     }
-    //
-    //     var input = _this.closest('.qty-container').find('input');
-    //     var qtyInput = parseInt(input.val());
-    //     if (qtyInput + sign <= 0) {
-    //         return;
-    //     }
-    //
-    //     $.ajax({
-    //         url: '/wishlist/minusplus',
-    //         data: {id: id, sign: sign},
-    //         type: 'GET',
-    //         success: function () {
-    //             // if (!e)
-    //             //     alert('Error!');
-    //
-    //             input.attr('value', qtyInput + sign);
-    //
-    //
-    //             var wishlistQty = parseInt($('.ok-badge').text());
-    //             wishlistQty += sign;
-    //             if (wishlistQty === 0) {
-    //                 wishlistQty = '';
-    //             }
-    //             $('.ok-badge').text(wishlistQty);
-    //
-    //             var cartCell = _this.closest('.cart-cell');
-    //             var price = cartCell.find('.ok-price').text().replace(' ', '');
-    //             price = addSeparators((qtyInput + sign) * parseInt(price), '.', '.', ' ');
-    //             price = price.toString().concat(' грн.');
-    //             cartCell.find('.ok-price-all').text(price);
-    //
-    //             refreshQtySum();
-    //
-    //         },
-    //         error: function () {
-    //             alert('Error!');
-    //         }
-    //     });
-    // });
 
     $('.qty-minus-cart,.qty-plus-cart').on('click', function (e) {
         e.preventDefault();
@@ -352,8 +316,6 @@ $(document).ready(function () {
         var firstOdd = self.closest('.first.odd.tr-row');
         var id = firstOdd.data('id');
         var attribute_id = firstOdd.data('attribute-id');
-        // console.log(id);
-        // console.log(attribute_id);
         var className = self.attr('class');
         if (className === 'qty-minus-cart') {
             sign = -1;
@@ -376,7 +338,6 @@ $(document).ready(function () {
             type: 'GET',
             success: function (e) {
                 if (e) {
-                    console.log('yes');
                     input.attr('value', qtyInput + sign);
 
                     var cartQty = parseInt($('.ok-badge-cart').text());
@@ -388,9 +349,12 @@ $(document).ready(function () {
                     refreshQtySum();
                 }
             },
-            error: function () {
-                // alert('Error!');
-            }
+            beforeSend: function () {
+                $('#loader').show();
+            },
+            complete: function () {
+                $('#loader').hide();
+            },
         });
     });
 
@@ -441,18 +405,6 @@ $(document).ready(function () {
         $('.checkout-types, #cart-view-form').remove();
     }
 
-    // function refreshQtySum() {
-    //     var qty = 0, sum = 0, _qty = 0;
-    //     $('.cart-cell').each(function () {
-    //         _qty = parseInt($(this).find('.input-text.qty').val());
-    //         qty += _qty;
-    //         sum += _qty * parseInt($(this).find('.ok-price').text().replace(' ', ''));
-    //         // console.log(qty);
-    //     });
-    //     $('.wishlist-qty').text(qty + ' шт.');
-    //     $('.wishlist-sum').text(addSeparators(sum, '.', '.', ' '));
-    // }
-
     function refreshQtySum() {
         var _price = 0, _qty = 0, _sum = 0, qty = 0, sum = 0;
         $('.first.odd.tr-row').each(function () {
@@ -468,23 +420,6 @@ $(document).ready(function () {
         $('.cart-qty strong').text(qty);
         $('.cart-sum strong').text(addSeparators(sum, '.', '.', ' '));
     }
-
-    // function refreshCart() {
-    //     var _price = 0, _qty = 0, _sum = 0, qty = 0, sum = 0;
-    //     $('.first.odd.tr-row').each(function () {
-    //         var _this = $(this);
-    //         var id = _this.data('id');
-    //         _price = parseInt(_this.find('.price-item' + id).text().replace(' ', ''));
-    //         _qty = parseInt(_this.find('.input-text.qty').val());
-    //         // console.log(_qty);
-    //         _sum = _price * _qty;
-    //         _this.find('.price.sum').text(addSeparators(_sum, '.', '.', ' '));
-    //         qty += _qty;
-    //         sum += _sum;
-    //     });
-    //     $('.cart-qty strong').text(qty);
-    //     $('.cart-sum strong').text(addSeparators(sum, '.', '.', ' '));
-    // }
 
     function addSeparators(nStr, inD, outD, sep) {
         nStr += '';

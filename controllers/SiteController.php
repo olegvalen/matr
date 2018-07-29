@@ -6,6 +6,7 @@ use app\models\ChangepasswordForm;
 use app\models\ForgotpasswordForm;
 use app\models\NewcustomerForm;
 use app\models\Product;
+use app\models\Subscribe;
 use app\models\SubscribeForm;
 use Yii;
 use yii\filters\AccessControl;
@@ -207,7 +208,8 @@ class SiteController extends Controller
     {
         $model = new SubscribeForm();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            echo 'Email is valid';
+//            echo 'Email is valid';
+            Subscribe::subscribe(Yii::$app->request->post()['SubscribeForm']['email']);
         }
         $this->goBack();
     }

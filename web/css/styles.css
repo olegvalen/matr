@@ -4383,7 +4383,7 @@ a span {
 }
 .logo-container {
   display: block;
-  margin: 20px 0 26px;
+  margin: 15px 0 26px;
 }
 .navbar-search,
 .shop-cart {
@@ -5591,4 +5591,10 @@ input[type=text] {
   .account-main .fieldset {
     float: none;
   }
+}
+#loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 100;
 }

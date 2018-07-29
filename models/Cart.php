@@ -32,9 +32,22 @@ class Cart extends ActiveRecord
         return $q ? $q->qty : '';
     }
 
-    public static function add($product)
+    public static function add($product_id, $attribute_id)
     {
-
+        $cart = Cart::find()->where(['user_id' => Yii::$app->user->getId(), 'product_id' => $product_id, 'attribute_id' => $attribute_id])->one();
+        if ($cart) {
+            $cart->qty += 1;
+            $cart->price = ProductOption::getPrice($product_id, $attribute_id);
+            $cart->save();
+        } else {
+            $cart = new Cart();
+            $cart->user_id = Yii::$app->user->getId();
+            $cart->product_id = $product_id;
+            $cart->attribute_id = $attribute_id;
+            $cart->qty = 1;
+            $cart->price = ProductOption::getPrice($product_id, $attribute_id);
+            $cart->save();
+        }
     }
 
     public static function clear($product_id)
@@ -57,43 +70,42 @@ class Cart extends ActiveRecord
             $carts = Cart::find()->where(['user_id' => Yii::$app->user->getId()])->all();
             if ($carts) {
 
-//                foreach ($carts as $cart) {
-//                    if ($cart->attribute_id == null) {
-//                        throw new Exception('Не заполнен размер!');
-//                    }
-//                }
-//
-//                foreach ($carts as $cart) {
-//                    $price = ProductOption::find()->where(['product_id' => $cart->product_id, 'attribute_id' => $cart->attribute_id])->one();
-//                    $cart->price = $price != null ? $price->value : 0;
-//                }
-//
-//                $qtyTotal = 0;
-//                $sumTotal = 0;
-//                foreach ($carts as $cart) {
-//                    $qtyTotal += $cart->qty;
-//                    $sumTotal += $cart->qty * $cart->price;
-//                }
-//
-//                $order = new Order();
-//                $order->user_id = $user_id;
-//                $order->qty = $qtyTotal;
-//                $order->sum = $sumTotal;
-//                $order->date_added = date("Y-m-d H:i:s");
-//                $order->save();
-//
-//                $order_id = Yii::$app->db->getLastInsertID();
-//                foreach ($carts as $cart) {
-//                    $order_product = new OrderProduct();
-//                    $order_product->order_id = $order_id;
-//                    $order_product->product_id = $cart->product_id;
-//                    $order_product->attribute_id = $cart->attribute_id;
-//                    $order_product->qty = $cart->qty;
-//                    $order_product->price = $cart->price;
-//                    $order_product->save();
-//                }
-//
-//                Cart::clearAll();
+                foreach ($carts as $cart) {
+                    if ($cart->attribute_id == null) {
+                        throw new Exception('Не заполнен размер!');
+                    }
+                }
+
+                foreach ($carts as $cart) {
+                    $cart->price = ProductOption::getPrice($cart->product_id, $cart->attribute_id);
+                }
+
+                $qtyTotal = 0;
+                $sumTotal = 0;
+                foreach ($carts as $cart) {
+                    $qtyTotal += $cart->qty;
+                    $sumTotal += $cart->qty * $cart->price;
+                }
+
+                $order = new Order();
+                $order->user_id = $user_id;
+                $order->qty = $qtyTotal;
+                $order->sum = $sumTotal;
+                $order->date_added = date("Y-m-d H:i:s");
+                $order->save();
+
+                $order_id = Yii::$app->db->getLastInsertID();
+                foreach ($carts as $cart) {
+                    $order_product = new OrderProduct();
+                    $order_product->order_id = $order_id;
+                    $order_product->product_id = $cart->product_id;
+                    $order_product->attribute_id = $cart->attribute_id;
+                    $order_product->qty = $cart->qty;
+                    $order_product->price = $cart->price;
+                    $order_product->save();
+                }
+
+                Cart::clearAll();
 
 //                Yii::$app->mailer->compose()->
 //                setFrom(['matrasovich.com@gmail.com' => 'Matrasovich.com.ua'])->
@@ -116,10 +128,9 @@ class Cart extends ActiveRecord
     {
         $cart = Cart::find()
             ->where(['user_id' => Yii::$app->user->getId(), 'product_id' => $product_id, 'attribute_id' => $attribute_idOld])->one();
-        $price = ProductOption::find()->where(['product_id' => $product_id, 'attribute_id' => $attribute_id])->one();
         if ($cart) {
             $cart->attribute_id = $attribute_id;
-            $cart->price = $price != null ? $price->value : 0;
+            $cart->price = ProductOption::getPrice($product_id, $attribute_id);
             $cart->save();
             return true;
         }
