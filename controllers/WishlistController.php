@@ -65,7 +65,6 @@ class WishlistController extends Controller
     {
         if (Yii::$app->user->isGuest) {
             Yii::$app->user->setReturnUrl('/wishlist');
-//            Yii::$app->user->setReturnUrl(Yii::$app->request->url);
             return $this->redirect('/login');
 //            return false;
         }
@@ -99,31 +98,5 @@ class WishlistController extends Controller
         $wishlist->cartall();
         return $this->redirect('/cart');
     }
-
-//    public function actionMinusplus()
-//    {
-//        $id = Yii::$app->request->get('id');
-//        $sign = Yii::$app->request->get('sign');
-//        $product = Product::findOne($id);
-//        if (!$product) return false;
-//
-//        $session = Yii::$app->session;
-//        $session->open();
-//
-//        $wishlist = new Wishlist();
-//        $wishlist->minusplus($product, $sign);
-//        return true;
-//    }
-
-//    public function actionClearAll()
-//    {
-//        $session = Yii::$app->session;
-//        $session->open();
-//        $session->remove('wishlist');
-//        $session->remove('wishlist.qty');
-//        $session->remove('wishlist.sum');
-////        $this->layout = false;
-//        return $this->render('wishlist');
-//    }
 
 }

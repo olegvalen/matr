@@ -11,4 +11,3 @@ class Customer extends ActiveRecord
         return $this->hasMany(Order::class, ['customer_id' => 'id']);
     }
 }
-//

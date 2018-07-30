@@ -67,13 +67,4 @@ class Wishlist extends Model
         }
     }
 
-//    public function minusplus($product, $sign)
-//    {
-//        if (isset($_SESSION['wishlist'][$product->product_id])) {
-//            $_SESSION['wishlist'][$product->product_id]['qty'] += $sign;
-//            $_SESSION['wishlist.qty'] = isset($_SESSION['wishlist.qty']) ? $_SESSION['wishlist.qty'] + $sign : $sign;
-//            $_SESSION['wishlist.sum'] = isset($_SESSION['wishlist.sum']) ? $_SESSION['wishlist.sum'] + $sign * $product->price : $sign * $product->price;
-//        }
-//    }
-
 }

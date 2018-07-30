@@ -6,6 +6,4 @@ use yii\db\ActiveRecord;
 
 class AttributeGroupDescription extends ActiveRecord
 {
-
 }
-//

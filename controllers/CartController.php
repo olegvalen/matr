@@ -42,8 +42,6 @@ class CartController extends Controller
             $data['cartQty'] += $cart['qty'];
             $data['cartSum'] += $cart['qty'] * $cart['price'];
         }
-//        $data['cartQty'] = 1000;
-//        $data['cartSum'] = 2000;
         return $this->render('index', $data);
     }
 
@@ -108,32 +106,5 @@ class CartController extends Controller
         $sign = Yii::$app->request->get('sign');
         return Cart::changeqty($product_id, $attribute_id, $sign);
     }
-
-    public function actionCartall()
-    {
-//        $wishlist = new Wishlist();
-//        $wishlist->cartall();
-    }
-
-//    public function actionMinusplus()
-//    {
-//        $id = Yii::$app->request->get('id');
-//        $sign = Yii::$app->request->get('sign');
-//        $product = Product::findOne($id);
-//        if (!$product) return false;
-//
-//        $wishlist = new Wishlist();
-//        $wishlist->minusplus($product, $sign);
-//        return true;
-//    }
-
-//    public function actionClearAll()
-//    {
-//        $session->remove('wishlist');
-//        $session->remove('wishlist.qty');
-//        $session->remove('wishlist.sum');
-////        $this->layout = false;
-//        return $this->render('wishlist');
-//    }
 
 }

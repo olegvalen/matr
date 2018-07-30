@@ -22,4 +22,3 @@ class AttributeGroup extends ActiveRecord
     }
 
 }
-//

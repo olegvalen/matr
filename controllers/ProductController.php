@@ -54,24 +54,6 @@ class ProductController extends Controller
             $data['price'] = 0;
         };
 
-//        $data['filter'] = Category::getFilter($categoryQuery);
-//        $getFilter = $this->getGetFilter($get);
-//        $data['filter'] = $this->addUrlToFilter($get['category'], $data['filter'], $getFilter);
-//        $data['title'] = $category->name;
-//
-//        $productsQuery = Product::getProductsQueryByCategory($category->category_id, $this->getProductAttributeIds($getFilter, $data['filter']));
-//        $pages = new Pagination(['totalCount' => $productsQuery->count(), 'pageSize' => 9]);
-//        $pages->pageSizeParam = false;
-//
-//        $products = $productsQuery->offset($pages->offset)->orderBy($sortOrder)->limit($pages->limit)->all();
-//        $data['products'] = $products;
-//        $data['pages'] = $pages;
-//
-//        list($data['description'], $data['keywords'], $data['robots'], $data['title'], $data['h1']) =
-//            $this->getMetaTags($category->name, $this->getSortedFilter($getFilter, $data['filter']), $data['filter'], $get);
-//
-//        $data['text_description'] = $category->categoryDescriptions->text_description;
-
         return $this->render('index', $data);
     }
 

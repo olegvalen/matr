@@ -45,7 +45,6 @@ class CategoryController extends Controller
             if ($key == 0) continue;
             $links[] = ['label' => $cp->category->name, 'url' => ["category/{$cp['path_id']}"]];
         }
-//        $links[] = $category['name'];
         $links[] = $category->name;
 
         $data['breadcrumbs'] = Breadcrumbs::widget([
@@ -61,7 +60,6 @@ class CategoryController extends Controller
 
         $productsQuery = Product::getProductsQueryByCategory($category->category_id, $this->getProductAttributeIds($getFilter, $data['filter']));
         $pages = new Pagination(['totalCount' => $productsQuery->count(), 'pageSize' => 9]);
-//        $pages = new Pagination(['totalCount' => $productsQuery->count()]);
         $pages->pageSizeParam = false;
 
         $products = $productsQuery->offset($pages->offset)->orderBy($sortOrder)->limit($pages->limit)->all();

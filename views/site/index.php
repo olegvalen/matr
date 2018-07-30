@@ -7,7 +7,7 @@ use yii\bootstrap\ActiveForm;
 
 ?>
 
-<div class="container-fluid">
+<div class="container">
     <div class="row">
         <?php echo Html::img('@web/images/banner.jpg', ['alt' => 'Matrasovich', 'class' => 'img-responsive img-banner']) ?>
     </div>
