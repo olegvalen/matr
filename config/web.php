@@ -27,6 +27,7 @@ $config = [
 //                'imageCompressionQuality' => 100, // Optional. Default value is 85.
         ],
     ],
+    'timeZone' => 'Europe/Kiev',
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
@@ -51,10 +52,15 @@ $config = [
             'useFileTransport' => false,
             'transport' => [
                 'class' => 'Swift_SmtpTransport',
-                'host' => 'smtp.gmail.com',
-                'username' => 'matrasovich.com',
-                'password' => 'Gkjnbyf13',
-                'port' => '587',
+//                'host' => 'smtp.gmail.com',
+//                'username' => 'matrasovich.com',
+//                'password' => 'Gkjnbyf13',
+//                'port' => '587',
+//                'encryption' => 'tls',
+                'host' => 'mail.adm.tools',
+                'username' => 'admin@matrasovich.com.ua',
+                'password' => 'T3nbC8X_',
+                'port' => '25',
                 'encryption' => 'tls',
             ],
         ],
@@ -76,7 +82,7 @@ $config = [
 //                'about' => 'site/about',
                 '/' => 'site/index',
 //                '<action:(account|wishlist|cart|compare|login|logout|newcustomer|forgotpassword|changepassword)>' => 'site/<action>',
-                '<action:(account|compare|login|logout|new-customer|forgot-password|change-password|about-us|privacy|terms|search)>' => 'site/<action>',
+                '<action:(account|compare|login|logout|new-customer|forgot-password|change-password|about-us|privacy|terms|search|study)>' => 'site/<action>',
                 'wishlist' => 'wishlist/index',
                 'wishlist/<action:\w+>' => 'wishlist/<action>',
                 'cart' => 'cart/index',

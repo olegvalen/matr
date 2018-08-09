@@ -20,7 +20,8 @@ class AppAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/styles.css',
+//        'css/styles.css',
+        'css/bulmastyles.css',
     ];
     public $js = [
         'js/main.js',
@@ -28,8 +29,6 @@ class AppAsset extends AssetBundle
     ];
     public $depends = [
         'yii\web\YiiAsset',
-        'yii\bootstrap\BootstrapPluginAsset',
+//        'yii\bootstrap\BootstrapPluginAsset',
     ];
 }
-//
-

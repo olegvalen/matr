@@ -4,36 +4,36 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
 ?>
-<div class="container">
-    <div class="row">
-        <div class="col-md-12 col-main">
-            <div class="account-main">
-                <h1>Восстановление пароля</h1>
-                <?php $form = ActiveForm::begin(['id' => 'form-validate',]); ?>
-                <div class="content">
-                    <?php if (Yii::$app->session->hasFlash('forgotpassword.success')): ?>
-                        <div class="alert alert-success alert-dismissible ok-alert" role="alert">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                                        aria-hidden="true">&times;</span></button>
-                            <?= Yii::$app->session->getFlash('forgotpassword.success'); ?>
+<section class="section">
+    <div class="container">
+        <h1 class="title">Восстановление пароля</h1>
+        <?php if (Yii::$app->session->hasFlash('forgotpassword.success')): ?>
+            <div class="notification is-success">
+                <button class="delete"></button><?= Yii::$app->session->getFlash('forgotpassword.success'); ?>
+            </div>
+        <?php endif; ?>
+        <?php $form = ActiveForm::begin(['id' => 'form-validate',]); ?>
+        <div class="columns">
+            <div class="column is-half-desktop">
+                <div class="box ok-box">
+                    <span class="is-uppercase is-size-4">Введите</span> <span
+                            class="is-uppercase is-size-4 has-text-primary">e-mail</span>
+                    <div class="section">
+                        <div class="field">
+                            <div class="control has-icons-left">
+                                <span class="icon is-left"><i class="fas fa-envelope"></i></span>
+                                <?= $form->field($model, 'email')->textInput(['autofocus' => true, 'placeholder' => 'E-mail', 'class' => 'input primary'])->label(false) ?>
+                            </div>
                         </div>
-                    <?php endif; ?>
-                    <div class="fieldset">
-                        <h2 class="legend">Восстановление <span>пароля</span></h2>
-                        <ul class="form-list">
-                            <li>
-                                <div class="input-box">
-                                    <?= $form->field($model, 'email')->textInput(['autofocus'=>true, 'placeholder' => 'E-mail'])->label(false) ?>
-                                </div>
-                            </li>
-                        </ul>
                     </div>
-                    <div class="buttons-set">
-                        <?= Html::submitButton('Восстановить', ['class' => 'button']) ?>
+                    <div class="field">
+                        <div class="control">
+                            <button class="button is-primary is-medium">Восстановить</button>
+                        </div>
                     </div>
                 </div>
-                <?php ActiveForm::end(); ?>
             </div>
         </div>
+        <?php ActiveForm::end(); ?>
     </div>
-</div>
+</section>

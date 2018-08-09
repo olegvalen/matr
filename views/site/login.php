@@ -11,52 +11,58 @@ use yii\helpers\Url;
 $this->title = 'Войдите в личный кабинет или зарегистрируйтесь';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="container main-container col1-layout">
-    <div class="row">
-        <div class="col-md-12 col-main">
-            <div class="account-login">
-                <div class="page-title">
-                    <h1><?= Html::encode($this->title) ?></h1>
-                </div>
-
-                <?php $form = ActiveForm::begin(['id' => 'login-form',]); ?>
-                <div class="col2-set">
-                    <div class="col-1 registered-users">
-                        <div class="content">
-                            <h2>зарегистрированный <span>пользователь</span></h2>
-                            <ul class="form-list">
-                                <li>
-                                    <div class="input-box">
-                                        <?= $form->field($model, 'email')->textInput(['autofocus' => true, 'placeholder' => 'E-mail'])->label(false) ?>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="input-box">
-                                        <?= $form->field($model, 'password')->passwordInput(['placeholder' => 'Пароль'])->label(false) ?>
-                                    </div>
-                                </li>
-                            </ul>
-                            <div class="buttons-set">
-                                <?= $form->field($model, 'rememberMe')->checkbox() ?>
-                                <a href="<?= Url::to(['site/forgot-password']) ?>">Забыли
-                                    пароль?</a>
-                                <?= Html::submitButton('Войти', ['class' => 'button f-left', 'name' => 'login-button']) ?>
+<section class="section">
+    <div class="container">
+        <h1 class="title"><?= Html::encode($this->title) ?></h1>
+        <?php $form = ActiveForm::begin(['id' => 'login-form',]); ?>
+        <div class="columns">
+            <div class="column is-half">
+                <div class="box ok-box">
+                    <span class="is-uppercase is-size-4">зарегистрированный</span> <span
+                            class="is-uppercase is-size-4 has-text-primary">пользователь</span>
+                    <div class="section">
+                        <div class="field">
+                            <div class="control has-icons-left">
+                                <span class="icon is-left"><i class="fas fa-envelope"></i></span>
+                                <?= $form->field($model, 'email')->textInput(['autofocus' => true, 'placeholder' => 'E-mail', 'class' => 'input is-primary'])->label(false) ?>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-2 new-users">
-                        <div class="content">
-                            <h2>новый <span>пользователь</span></h2>
-                            <div class="buttons-set">
-                                <button type="button" title="Создать" class="button"
-                                        onclick="window.location='<?= Url::to(['site/new-customer']) ?>';">
-                                    <span><span>Создать</span></span></button>
+                        <div class="field">
+                            <div class="control has-icons-left">
+                                <span class="icon is-left"><i class="fas fa-lock"></i></span>
+                                <?= $form->field($model, 'password')->passwordInput(['placeholder' => 'Пароль', 'class' => 'input is-primary'])->label(false) ?>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="checkbox">
+                                <?= $form->field($model, 'rememberMe')->checkbox(['class' => 'checkbox']) ?>
+                            </label>
+                        </div>
+                        <div class="field is-grouped">
+                            <div class="control">
+                                <button class="button is-primary is-medium">Войти</button>
+                            </div>
+                            <div class="control">
+                                <a href="<?= Url::to(['site/forgot-password']) ?>">Забыли пароль?</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <?php ActiveForm::end(); ?>
+            </div>
+            <div class="column is-half">
+                <div class="box ok-box">
+                    <span class="is-uppercase is-size-4">новый</span> <span
+                            class="is-uppercase is-size-4 has-text-primary">пользователь</span>
+                    <div class="section">
+                        <div class="field">
+                            <div class="control">
+                                <a href="<?= Url::to(['site/new-customer']) ?>" class="button is-primary is-medium">Создать</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+        <?php ActiveForm::end(); ?>
     </div>
-</div>
+</section>

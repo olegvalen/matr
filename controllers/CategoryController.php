@@ -25,7 +25,7 @@ class CategoryController extends Controller
 
         $get = Yii::$app->request->get();
         $sortOrder = 'sort_order ASC';
-        $data['sortName'] = 'По рейтингу';
+        $data['sortName'] = 'Сортировать:';
         if (isset($get['sort'])) {
             if ($get['sort'] == 'cheap') {
                 $sortOrder = 'price ASC';
@@ -33,6 +33,8 @@ class CategoryController extends Controller
             } elseif ($get['sort'] == 'expensive') {
                 $sortOrder = 'price DESC';
                 $data['sortName'] = 'По убыванию цены';
+            } elseif ($get['sort'] == 'rating'){
+                $data['sortName'] = 'По рейтингу';
             }
         }
 

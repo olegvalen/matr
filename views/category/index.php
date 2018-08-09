@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Url;
+use yii\helpers\Html;
 
 $this->registerMetaTag(['name' => 'description', 'content' => $description]);
 $this->registerMetaTag(['name' => 'keywords', 'content' => $keywords]);
@@ -8,70 +9,103 @@ $this->registerMetaTag(['name' => 'robots', 'content' => $robots]);
 $this->title = $title;
 ?>
 <div id="breadcrumbs">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <?= $breadcrumbs ?>
-            </div>
-        </div>
+    <div class="container is-size-6">
+        <?= $breadcrumbs ?>
     </div>
 </div>
-<div class="container">
-    <div class="row">
-        <div class="col-sm-3 col-left">
-            <div class="block block-account">
-                <div class="block-content">
-                    <?php foreach ($filter as $agd): ?>
-                        <ul>
-                            <div><?= $agd['name'] ?></div>
-                            <li>
-                                <?php foreach ($agd['attrs'] as $ad): ?>
-                                    <label class="container-label"><a href="<?= $ad['href'] ?>"><?= $ad['name'] ?><input
-                                                    type="checkbox"<?= $ad['checked'] ?>><span class="checkmark"></span></a></label>
-                                <?php endforeach; ?>
+
+<section class="section">
+    <div class="container">
+        <div class="columns is-multiline">
+            <div class="column is-one-fifth">
+                <?php foreach ($filter as $agd): ?>
+                    <ul class="subtitle"><?= $agd['name'] ?>
+                        <?php foreach ($agd['attrs'] as $ad): ?>
+                            <li class="field">
+                                <a href="<?= $ad['href'] ?>">
+                                    <input class="is-checkradio" type="checkbox"<?= $ad['checked'] ?>>
+                                    <label><?= $ad['name'] ?></label>
+                                </a>
                             </li>
-                        </ul>
-                    <?php endforeach; ?>
-                </div>
+                        <?php endforeach; ?>
+                    </ul>
+                <?php endforeach; ?>
             </div>
-        </div>
-        <div class="col-sm-9 item-grid">
-            <div class="page-title">
-                <h1><?= $h1 ?></h1>
-            </div>
-            <div class="toolbar clearfix">
-                <div class="sorter">
-                    <div class="sort-by">
-                        <label>Сортировать:</label>
-                        <div class="toolbar-dropdown">
-                            <a href=""
-                               class="dropdown-toggle" data-toggle="dropdown"><?= $sortName ?><span
-                                        class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a href="<?= Url::current(['sort' => 'rating', 'page' => null]) ?>"
-                                       class="selected">По
-                                        рейтингу</a></li>
-                                <li>
-                                    <a href="<?= Url::current(['sort' => 'cheap', 'page' => null]) ?>">По возрастанию
-                                        цены</a>
-                                </li>
-                                <li>
-                                    <a href="<?= Url::current(['sort' => 'expensive', 'page' => null]) ?>">По убыванию
-                                        цены</a>
-                                </li>
-                            </ul>
+
+            <div class="column">
+                <h1 class="title"><?= $h1 ?></h1>
+                <nav class="level has-background-white-bis" style="padding: 0.5em 0.75em;">
+                    <div class="level-left">
+                        <div class="level-item">
+                            <div class="dropdown">
+                                <div class="dropdown-trigger">
+                                    <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
+                                        <span><?= $sortName ?></span>
+                                        <span class="icon is-small"><i class="fas fa-angle-down" aria-hidden="true"></i></span>
+                                    </button>
+                                </div>
+                                <div class="dropdown-menu" id="dropdown-menu" role="menu">
+                                    <div class="dropdown-content">
+                                        <a href="<?= Url::current(['sort' => 'rating', 'page' => null]) ?>"
+                                           class="dropdown-item<?= $sortName === 'По рейтингу' ? ' is-active' : '' ?>">По
+                                            рейтингу</a>
+                                        <a href="<?= Url::current(['sort' => 'cheap', 'page' => null]) ?>"
+                                           class="dropdown-item<?= $sortName === 'По возрастанию цены' ? ' is-active' : '' ?>">По
+                                            возрастанию цены</a>
+                                        <a href="<?= Url::current(['sort' => 'expensive', 'page' => null]) ?>"
+                                           class="dropdown-item<?= $sortName === 'По убыванию цены' ? ' is-active' : '' ?>">По
+                                            убыванию цены</a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <?= \yii\widgets\LinkPager::widget(['pagination' => $pages, 'prevPageLabel' => '<', 'nextPageLabel' => '>']); ?>
+                    <div class="level-right">
+                        <?= \yii\widgets\LinkPager::widget(['pagination' => $pages, 'prevPageLabel' => '<', 'nextPageLabel' => '>']); ?>
+                    </div>
+                </nav>
+
+                <?php if (!empty($products)): ?>
+                    <div class="columns is-multiline">
+                        <?php foreach ($products as $item): ?>
+                            <div class="column is-one-third-tablet">
+                                <a href="<?= Url::to("/{$item->seo_url}") ?>"
+                                   title="<?= $item['name'] ?>">
+                                    <figure class="image">
+                                        <?= Html::img("/{$item->getImage()->getPath('300x')}", ['alt' => $item['name']]) ?>
+                                    </figure>
+                                </a>
+                                <p class="has-text-centered"><a href="<?= Url::to("/{$item->seo_url}") ?>"
+                                                                title="<?= $item->name ?>"
+                                                                class="has-text-grey-dark ok-carousel-name"><?= $item->name ?></a>
+                                </p>
+                                <p class="has-text-centered has-text-primary"><?= Yii::$app->formatter->asInteger($item->price) ?>
+                                    грн.</p>
+                                <div class="has-text-centered">
+                                    <a class="button icon is-large is-primary ok-carousel-cart"
+                                       title="В корзину"
+                                       data-id="<?= $item->product_id ?>">
+                                        <span class="has-text-white"><i class="fas fa-shopping-cart"></i></span>
+                                    </a>
+                                    <a href="<?= Url::to(['wishlist/add', 'id' => $item->product_id]) ?>"
+                                       class="button icon is-large is-primary ok-carousel-wishlist"
+                                       title="В избранное"
+                                       data-id="<?= $item->product_id ?>">
+                        <span class="icon has-text-white"><i
+                                    class="fas fa-heart"></i></span>
+                                    </a>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                <?php else: ?>
+                    Нет данных по выбранному фильтру!
+                <?php endif; ?>
             </div>
-            <?php if (!empty($products)): ?>
-                <?= $this->render('/site/carousel', ['products' => $products,]) ?>
-            <?php else: ?>
-                Нет данных по выбранному фильтру!
-            <?php endif; ?>
+
         </div>
     </div>
-    <div class="footer-text row col-md-12"><?= $text_description ?></div>
-</div>
+</section>
+<section class="section">
+    <div class="container"><?= $text_description ?></div>
+</section>

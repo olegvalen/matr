@@ -3,9 +3,7 @@
 /* @var $this \yii\web\View */
 /* @var $content string */
 
-use app\widgets\Alert;
 use yii\helpers\Html;
-use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 use yii\helpers\Url;
 use yii\bootstrap\ActiveForm;
@@ -26,258 +24,181 @@ AppAsset::register($this);
         <link rel="icon" href="<?= Url::to('@web/images/fav.png') ?>" type="image/x-icon"/>
         <link rel="shortcut icon" href="<?= Url::to('@web/images/fav.png') ?>"
               type="image/x-icon"/>
-        <link href='//fonts.googleapis.com/css?family=Roboto:300,400,600,700,800' rel='stylesheet' type='text/css'/>
-        <link href='https://fonts.googleapis.com/css?family=Oswald:300,400,600,700,800' rel='stylesheet'
-              type='text/css'/>
-        <link href='//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800' rel='stylesheet' type='text/css'/>
+        <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
         <?php $this->head() ?>
     </head>
 
     <body>
-    <div>
-        <div id="loader" style="display: none;">
-            <img src="<?= Url::to('@web/images/ajax-loader.gif') ?>">
-        </div>
-        <div class="top-menu">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-5 top-menu1"><a href="<?= Url::to(['/']) ?>"><span
-                                    class="glyphicon glyphicon-home" aria-hidden="true"></span></a>
+
+    <section class="hero">
+        <div class="hero-head has-background-white-ter">
+            <nav class="navbar">
+                <div class="container">
+                    <div class="navbar-brand has-background-white">
+                        <a class="navbar-item has-text-grey ok-has-brand" href="<?= Url::to(['/']) ?>">
+                            <span class="icon has-text-primary is-large"><i class="fas fa-home"></i></span>
+                        </a>
+                        <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
                     </div>
-                    <div class="col-md-7 top-menu2 toolbar-dropdown">
-                        <a href="#" class="nav-btn dropdown-toggle" data-toggle="dropdown"><i
-                                    class="glyphicon glyphicon-menu-hamburger"></i></a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <?php if (!Yii::$app->user->isGuest): ?>
-                                    <a href="<?= Url::to(['site/account']) ?>"
-                                       title="Личный кабинет, <?= Yii::$app->user->identity->name ?>">Личный
-                                        кабинет, <?= Yii::$app->user->identity->name ?></a>
-                                <?php else: ?>
-                                    <a href="<?= Url::to(['site/account']) ?>" title="Личный кабинет">Личный кабинет</a>
-                                <?php endif; ?>
-                            </li>
-                            <li><a href="<?= Url::to(['wishlist/index']) ?>"
-                                   title="Избранное">Избранное<span
-                                            class="badge ok-badge-wishlist"><?php echo isset($_SESSION['wishlist.qty']) ? $_SESSION['wishlist.qty'] : '' ?></span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="<?= Url::to(['cart/index']) ?>" title="Корзина">Корзина<span
-                                            class="badge ok-badge ok-badge-cart"><?php echo \app\models\Cart::showCartQty() ?></span></a>
-                            </li>
-                            <!--                        <li>
-                            <a href="<? /*= Url::to(['site/compare']) */ ?>" title="Сравнение">Сравнение</a>
-                        </li>
--->
-                            <li>
-                                <?php if (!Yii::$app->user->isGuest): ?>
-                                    <a href="<?= Url::to(['site/logout']) ?>" title="Выход">Выход</a>
-                                <?php else: ?>
-                                    <a href="<?= Url::to(['site/login']) ?>" title="Войти">Войти</a>
-                                <?php endif; ?>
-                            </li>
-                        </ul>
+
+                    <div id="navbarMenuHeroA" class="navbar-menu">
+                        <div class="navbar-end">
+                            <?php if (!Yii::$app->user->isGuest): ?>
+                                <a class="navbar-item has-text-grey" href="<?= Url::to(['site/account']) ?>"
+                                   title="Личный кабинет, <?= Yii::$app->user->identity->name ?>">Личный
+                                    кабинет, <?= Yii::$app->user->identity->name ?></a>
+                            <?php else: ?>
+                                <a class="navbar-item has-text-grey" href="<?= Url::to(['site/account']) ?>"
+                                   title="Личный кабинет">Личный кабинет</a>
+                            <?php endif; ?>
+                            <a class="navbar-item has-text-grey" href="<?= Url::to(['wishlist/index']) ?>"
+                               title="Избранное">
+                                <div class="ok-main-badge-wishlist">
+                                    <?php if (isset($_SESSION['wishlist.qty'])): ?>
+                                        <span class="badge"
+                                              data-badge="<?= $_SESSION['wishlist.qty'] ?>">Избранное</span>
+                                    <?php else: ?>
+                                        Избранное
+                                    <?php endif; ?>
+                                </div>
+                            </a>
+                            <a class="navbar-item has-text-grey" href="<?= Url::to(['cart/index']) ?>"
+                               title="Корзина">
+                                <div class="ok-main-badge-cart">
+                                    <?php $cartQty = \app\models\Cart::showCartQty() ?>
+                                    <?php if ($cartQty): ?>
+                                        <span class="badge"
+                                              data-badge="<?= $cartQty ?>">Корзина</span>
+                                    <?php else: ?>
+                                        Корзина
+                                    <?php endif; ?>
+                                </div>
+                            </a>
+                            <?php if (!Yii::$app->user->isGuest): ?>
+                                <a class="navbar-item has-text-grey" href="<?= Url::to(['site/logout']) ?>"
+                                   title="Выход">Выход</a>
+                            <?php else: ?>
+                                <a class="navbar-item has-text-grey" href="<?= Url::to(['site/login']) ?>"
+                                   title="Войти">Войти</a>
+                            <?php endif; ?>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </nav>
         </div>
-        <div class="containter header-block">
+
+        <!-- Hero content: will be in the middle -->
+        <div class="hero-body">
             <div class="container">
-                <div class="row">
-                    <div class="col-md-3 logo-container">
+                <div class="level">
+                    <div class="level-item has-text-centered">
                         <a href="<?= Url::to(['/']) ?>">
                             <img src="<?= Url::to('@web/images/logo.png') ?>"
-                                 alt="Matrasovich.com.ua" class="img-responsive"></a>
+                                 alt="Matrasovich.com.ua"></a>
                     </div>
-                    <div class="col-md-5 search-container">
-                        <form class="navbar-search" method="get">
-                            <div class="input-group">
-                                <input type="text" class="form-control search-query" placeholder="Поиск" name="search"
-                                       maxlength="128" autocomplete="off">
-                                <div class="input-group-btn">
-                                    <button class="btn btn-default btn-search" type="submit">
-                                        <i class="glyphicon glyphicon-search"></i>
-                                    </button>
-                                </div>
-                                <!--                            <div style="border-left: 1px #fff solid;"></div>
-                                                            <div class="input-group-btn search-btn">
-                                                                <button class="btn btn-default" type="submit"><i
-                                                                            class="glyphicon glyphicon-shopping-cart"></i>
-                                                                </button>
-                                                            </div>
-                                -->                        </div>
-                        </form>
-                    </div>
-                    <!--                <div class="col-md-4 shop-cart">
-                                        <a href="#">
-                                            <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a>
-                                        <p class="cart-info">
-                                            <span>Shopping Cart: </span><span class="price">$0.00</span><br>
-                                            <span>now in your cart </span><span class="items">0 <span>item(s)</span></span>
-                                        </p>
-                                    </div>
-                    -->            </div>
-            </div>
-        </div>
-
-        <div class="nav-container">
-            <div class="container padding0">
-                <div class="row">
-                    <div class="col-md-12">
-                        <ul class="navigation">
-
-                            <li class="nav-li"><a href="<?= Url::to(['category/2']) ?>">Топперы</a>
-                                <div class="dropdown-menu">
-                                    <div class="col-md-12 menu-wrapper">
-                                        <div class="easycatalogimg">
-                                            <ul class="easycatalog-grid">
-                                                <li class="item">
-                                                    <div>
-                                                        <a href="<?= Url::to(['category/index', 'category' => 'toppery', 'filter' => '', 'categoryFilter' => 'nedorogie']) ?>"
-                                                           title="Недорогие">Недорогие</a></div>
-                                                </li>
-                                                <li class="item">
-                                                    <div>
-                                                        <a href="<?= Url::to(['category/index', 'category' => 'toppery', 'filter' => '', 'categoryFilter' => 'premium']) ?>"
-                                                           title="Премиум">Премиум</a></div>
-                                                </li>
-                                                <li class="item">
-                                                    <div>Размеры</div>
-                                                    <ul>
-                                                        <li>
-                                                            <a href="<?= Url::to(['category/index', 'category' => 'toppery', 'filter' => '', 'sizeFilter' => '90x190']) ?>"
-                                                               title="90x190">90x190</a></li>
-                                                        <li>
-                                                            <a href="<?= Url::to(['category/index', 'category' => 'toppery', 'filter' => '', 'sizeFilter' => '90x200']) ?>"
-                                                               title="90x200">90x200</a></li>
-                                                        <li>
-                                                            <a href="<?= Url::to(['category/index', 'category' => 'toppery', 'filter' => '', 'sizeFilter' => '100x190']) ?>"
-                                                               title="100x190">100x190</a></li>
-                                                        <li>
-                                                            <a href="<?= Url::to(['category/index', 'category' => 'toppery', 'filter' => '', 'sizeFilter' => '100x200']) ?>"
-                                                               title="100x200">100x200</a></li>
-                                                        <li>
-                                                            <a href="<?= Url::to(['category/index', 'category' => 'toppery', 'filter' => '', 'sizeFilter' => '140x190']) ?>"
-                                                               title="140x190">140x190</a></li>
-                                                        <li>
-                                                            <a href="<?= Url::to(['category/index', 'category' => 'toppery', 'filter' => '', 'sizeFilter' => '140x200']) ?>"
-                                                               title="140x200">140x200</a></li>
-                                                        <li>
-                                                            <a href="<?= Url::to(['category/index', 'category' => 'toppery', 'filter' => '', 'sizeFilter' => '150x190']) ?>"
-                                                               title="150x190">150x190</a></li>
-                                                        <li>
-                                                            <a href="<?= Url::to(['category/index', 'category' => 'toppery', 'filter' => '', 'sizeFilter' => '150x200']) ?>"
-                                                               title="150x200">150x200</a></li>
-                                                        <li>
-                                                            <a href="<?= Url::to(['category/index', 'category' => 'toppery', 'filter' => '', 'sizeFilter' => '160x190']) ?>"
-                                                               title="160x190">160x190</a></li>
-                                                        <li>
-                                                            <a href="<?= Url::to(['category/index', 'category' => 'toppery', 'filter' => '', 'sizeFilter' => '160x200']) ?>"
-                                                               title="160x200">160x200</a></li>
-                                                        <li>
-                                                            <a href="<?= Url::to(['category/index', 'category' => 'toppery', 'filter' => '', 'sizeFilter' => '200x200']) ?>"
-                                                               title="200x200">200x200</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li class="item">
-                                                    <div>Наполнитель</div>
-                                                    <ul>
-                                                        <li>
-                                                            <a href="<?= Url::to(['category/index', 'category' => 'toppery', 'filter' => '', 'fillFilter' => 'iskussvennyy-puh']) ?>"
-                                                               title="Искусственный пух">Искусственный пух</a></li>
-                                                        <li>
-                                                            <a href="<?= Url::to(['category/index', 'category' => 'toppery', 'filter' => '', 'fillFilter' => 'gusinnoe-pero']) ?>"
-                                                               title="Гусинное перо">Гусинное перо</a></li>
-                                                        <li>
-                                                            <a href="<?= Url::to(['category/index', 'category' => 'toppery', 'filter' => '', 'fillFilter' => 'utinnoe-pero']) ?>"
-                                                               title="Утинное перо">Утинное перо</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li class="item">
-                                                    <div>Чехол</div>
-                                                    <ul>
-                                                        <li>
-                                                            <a href="<?= Url::to(['category/index', 'category' => 'toppery', 'filter' => '', 'coverFilter' => 'microfiber']) ?>"
-                                                               title="Микрофибра">Микрофибра</a></li>
-                                                        <li>
-                                                            <a href="<?= Url::to(['category/index', 'category' => 'toppery', 'filter' => '', 'coverFilter' => 'hollowfiber']) ?>"
-                                                               title="Холлофайбер">Холлофайбер</a></li>
-                                                        <li>
-                                                            <a href="<?= Url::to(['category/index', 'category' => 'toppery', 'filter' => '', 'coverFilter' => 'cotton']) ?>"
-                                                               title="Хлопок">Хлопок</a></li>
-                                                        <li>
-                                                            <a href="<?= Url::to(['category/index', 'category' => 'toppery', 'filter' => '', 'coverFilter' => 'polyester']) ?>"
-                                                               title="Полиэстер">Полиэстер</a></li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <?php $this->beginBody() ?>
-        <?= $content ?>
-        <div class="scroll-top">
-            <span><a href="#"><span class="glyphicon glyphicon-chevron-up"></span></a></span>
-        </div>
-        <div class="container">
-            <div class="row footer-banners">
-                <div class="col-md-6">
-                    <i class="glyphicon glyphicon-envelope"></i>
-                    <div class="subscribe-container">
-                        <?php $form = ActiveForm::begin([
-                            'action' => 'site/subscribe',
-                            'method' => 'post',
-                            'options' => ['class' => 'input-group'],
-                        ]); ?>
-                        <?= $form->field(new SubscribeForm(), 'email', [
-                            'options' => [
-                            ]
-                        ])->textInput()->input('email', ['placeholder' => 'Ваш e-mail'])->label(false) ?>
-                        <div class="input-group-btn">
-                            <?= Html::submitButton('ПОДПИСАТЬСЯ', ['class' => 'btn button btn-subscribe', 'type' => 'submit']) ?>
+                    <div class="level-item has-text-centered">
+                        <div class="field has-addons">
+                            <div class="control">
+                                <input type="text" class="input is-shadowless ok-main-input-search" placeholder="Поиск">
+                            </div>
+                            <div class="control">
+                                <a class="button is-primary ok-main-btn-search">
+                                    <span class="icon has-text-white is-large"><i class="fas fa-search"></i></span>
+                                </a>
+                            </div>
                         </div>
-                        <?php ActiveForm::end(); ?>
                     </div>
-                </div>
-                <div class="col-md-6">
-                    <i cla ss="glyphicon glyphicon-earphone"></i>
-                    <p><span class="call-us">ПОЗВОНИТЕ НАМ: </span><span><a
-                                    href="tel:098-682-36-17">098-682-36-17</a></span>
-                    </p>
                 </div>
             </div>
         </div>
-        <footer>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-3 footer-block">
-                        <div>Информация</div>
-                        <ul>
-                            <li><a href="<?= Url::to(['site/about-us']) ?>">О нас</a></li>
-                            <li><a href="<?= Url::to(['site/privacy']) ?>">Политика безопастности</a></li>
-                            <li><a href="<?= Url::to(['site/terms']) ?>">Условия соглашения</a></li>
-                        </ul>
+
+        <!-- Hero footer: will stick at the bottom -->
+        <div class="hero-foot has-background-black-ter">
+            <nav class="tabs">
+                <div class="container">
+                    <ul>
+                        <li><a href="<?= Url::to(['category/2']) ?>" class="has-text-white is-size-4">Топперы</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </section>
+
+    <?php $this->beginBody() ?>
+    <?= $content ?>
+    <div class="scroll-top">
+        <span class="icon has-text-primary"><i class="fas fa-chevron-circle-up"></i></span>
+    </div>
+    <section class="section is-clearfix">
+        <div class="container">
+            <div class="level">
+                <div class="level-item is-pulled-left">
+                <span class="icon has-text-primary is-large ok-main-contact-icons"><i
+                            class="fas fa-envelope"></i></span>
+                    <?php $form = ActiveForm::begin([
+                        'action' => 'site/subscribe',
+                        'method' => 'post',
+                    ]); ?>
+                    <div class="field has-addons">
+                        <div class="control">
+                            <?= $form->field(new SubscribeForm(), 'email', [
+                                'options' => []])
+                                ->textInput()
+                                ->input('email', ['placeholder' => 'Ваш e-mail', 'class' => 'input is-shadowless ok-main-input-subscribe'])
+                                ->label(false) ?>
+                        </div>
+                        <div class="control">
+                            <?= Html::submitButton('Подписаться', ['class' => 'button is-primary ok-main-btn-subscribe', 'type' => 'submit']) ?>
+                        </div>
                     </div>
-                    <div class="col-md-3 footer-block">
-                        <div>Личный данные</div>
-                        <ul>
-                            <li><a href="<?= Url::to(['site/account']) ?>">Личный кабинет</a></li>
-                            <li><a href="<?= Url::to(['wishlist/index']) ?>">Мои закладки</a></li>
-                        </ul>
-                    </div>
+                    <?php ActiveForm::end(); ?>
+                </div>
+                <div class="level-item is-pulled-left">
+                <span class="icon has-text-primary is-large ok-main-contact-icons"><i
+                            class="fas fa-phone-square"></i></span>
+                    <span class="subtitle"><span class="is-hidden-mobile">позвоните нам: </span><a
+                                href="tel:098-682-36-17"><strong
+                                    class="has-text-primary">098-682-36-17</strong></a></span>
                 </div>
             </div>
-        </footer>
-        <?php $this->endBody() ?>
-    </div>
+        </div>
+    </section>
+
+    <section class="hero">
+        <div class="hero-head has-background-black-ter">
+            <section class="section">
+                <div class="container">
+                    <div class="columns">
+                        <div class="column is-one-quarter">
+                            <span class="subtitle has-text-grey-lighter">Информация</span>
+                            <ul>
+                                <li><a class="has-text-grey-light" href="<?= Url::to(['site/about-us']) ?>">О нас</a>
+                                </li>
+                                <li><a class="has-text-grey-light" href="<?= Url::to(['site/privacy']) ?>">Политика
+                                        безопасности</a></li>
+                                <li><a class="has-text-grey-light" href="<?= Url::to(['site/terms']) ?>">Условия
+                                        соглашения</a></li>
+                            </ul>
+                        </div>
+                        <div class="column is-one-quarter">
+                            <span class="subtitle has-text-grey-lighter">Личные данные</span>
+                            <ul>
+                                <li><a class="has-text-grey-light" href="<?= Url::to(['site/account']) ?>">Личный
+                                        кабинет</a></li>
+                                <li><a class="has-text-grey-light" href="<?= Url::to(['wishlist/index']) ?>">Мои
+                                        закладки</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </section>
+    <?php $this->endBody() ?>
 
     </body>
     </html>

@@ -271,4 +271,10 @@ class SiteController extends Controller
         $this->view->registerMetaTag(['name' => 'robots', 'content' => 'noindex,nofollow']);
         return $this->render('search');
     }
+
+    public function actionStudy()
+    {
+        $this->view->title = 'Matrasovish.com.ua | Study';
+        return $this->render('study');
+    }
 }

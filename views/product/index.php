@@ -12,21 +12,17 @@ $this->title = $product->productDescription->title;
 $formatter = Yii::$app->formatter;
 ?>
 <div id="breadcrumbs">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <?= $breadcrumbs ?>
-            </div>
-        </div>
+    <div class="container is-size-6">
+        <?= $breadcrumbs ?>
     </div>
 </div>
-<div class="container">
-    <div class="row">
-        <div class="col-md-12 col-main">
-            <h1><?= $product->productDescription->h1 ?></h1>
-            <form method="post" id="product_addtocart_form">
-                <!--                <input name="form_key" type="hidden" value="wwX6LljT4CA0Q6Ch">-->
-                <div class="product-img-box col-md-6">
+
+<section class="section">
+    <div class="container">
+        <h1 class="title"><?= $product->productDescription->h1 ?></h1>
+        <div class="columns">
+            <div class="column is-three-quarters">
+                <div class="product-img-box">
                     <!-- Begin magiczoomplus -->
                     <div class="MagicToolboxContainer selectorsBottom minWidth">
                         <div class="magic-slide mt-active" data-magic-slide="zoom"><a id="MagicZoomPlusImage38950"
@@ -54,62 +50,46 @@ $formatter = Yii::$app->formatter;
                             </div>
                         </div>
                     </div>
-                    <!--                    <img id="image" src="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA=" alt=""-->
-                    <!--                         class="invisible">-->
                 </div>
-                <div class="product-shop col-md-6">
-                    <div class="price-info">
-                        <span class="regular-price" id="product-price-38950"><span
-                                    class="price"><?= $formatter->asDecimal($price) ?> грн.</span></span>
-                    </div>
-                    <div class="add-to-box">
-                        <div class="add-to-cart">
-<!--                            <div class="qty-container">
-                                <label for="qty">Количество:</label>
-                                <span class="qty-minus-cart" data-id="<?/*= $product->product_id */?>">-</span><input type="text"
-                                                                                                             name="qty"
-                                                                                                             id="qty"
-                                                                                                             maxlength="12"
-                                                                                                             value="1"
-                                                                                                             title="Qty"
-                                                                                                             class="input-text qty"
-                                                                                                             disabled><span
-                                        class="qty-plus-cart" data-id="<?/*= $product->product_id */?>">+</span>
-                            </div>
--->                            <button type="button" title="Add to Cart" id="product-addtocart-button"
-                                    class="button btn-adto-cart" data-id="<?= $product->product_id ?>">
-                                <span class="glyphicon glyphicon-shopping-cart"></span>В КОРЗИНУ
-                            </button>
+            </div>
+            <div class="column">
+                <p class="title has-text-primary ok-product-price"><?= $formatter->asInteger($price) ?>
+                    грн.</p>
+                <div class="field">
+                    <div class="control">
+                        <div class="select is-primary is-medium">
+                            <select id="size-option">
+                                <?php foreach ($options as $option): ?>
+                                    <option value="<?= $option->attribute_id ?>"
+                                            data-price="<?= $formatter->asInteger($option->value) ?> грн.">
+                                        <?= $option->attributeDescription->name ?>
+                                        (<?= $formatter->asInteger($option->value) ?> грн.)
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
                         </div>
-                        <select name="size_id" id="size-option">
-                            <?php foreach ($options as $option): ?>
-                                <option value="<?= $option->attribute_id ?>"
-                                        data-price="<?= $formatter->asInteger($option->value) ?> грн.">
-                                    <?= $option->attributeDescription->name ?>
-                                    (<?= $formatter->asInteger($option->value) ?> грн.)
-                                </option>
-                            <?php endforeach; ?>
-                        </select>
-                        <ul class="add-to-links">
-                            <li>
-                                <a href="<?= Url::to(['wishlist/add', 'id' => $product->product_id]) ?>"
-                                   class="link-wishlist" data-id="<?= $product->product_id ?>">
-                                    <span class="glyphicon glyphicon-heart"></span>
-                                    В ИЗБРАННОЕ</a>
-                            </li>
-<!--                            <li>-->
-<!--                                <a href="#"-->
-<!--                                   class="link-compare">-->
-<!--                                    <span class="glyphicon glyphicon-duplicate"></span>-->
-<!--                                    В СРАВНЕНИЕ</a>-->
-<!--                            </li>-->
-                        </ul>
                     </div>
                 </div>
-            </form>
+                <hr>
+                <div class="buttons">
+                    <a class="button is-primary is-large ok-product-cart" title="В корзину"
+                       data-id="<?= $product->product_id ?>"><span class="icon is-small"><i
+                                    class="fas fa-shopping-cart"></i></span><span>В корзину</span></a>
+                    <a class="button is-primary ok-product-wishlist" title="В избранное"
+                       data-id="<?= $product->product_id ?>"
+                       href="<?= Url::to(['wishlist/add', 'id' => $product->product_id]) ?>"><span
+                                class="icon is-small"><i
+                                    class="fas fa-heart"></i></span><span>В избранное</span></a>
+                </div>
+                <hr>
+            </div>
         </div>
     </div>
-    <div class="footer-text row col-md-12">
-        <?= \yii\helpers\Html::decode($product->productDescription->text_description) ?>
+</section>
+<section class="section">
+    <div class="container">
+        <div class="content">
+            <?= \yii\helpers\Html::decode($product->productDescription->text_description) ?>
+        </div>
     </div>
-</div>
+</section>

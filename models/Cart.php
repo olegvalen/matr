@@ -107,11 +107,11 @@ class Cart extends ActiveRecord
 
                 Cart::clearAll();
 
-                Yii::$app->mailer->compose()->
-                setFrom(['matrasovich.com@gmail.com' => 'Matrasovich.com.ua'])->
-                setTo('matrasovich.com@gmail.com')->
-                setSubject('Новый заказ!!!')->
-                send();
+//                Yii::$app->mailer->compose()->
+//                setFrom(['admin@matrasovich.com.ua' => 'Matrasovich.com.ua'])->
+//                setTo('matrasovich.com@gmail.com')->
+//                setSubject('Новый заказ!!! ' . date("Y-m-d H:i:s"))->
+//                send();
 
                 echo json_encode([]);
             }
