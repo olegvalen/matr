@@ -478,6 +478,7 @@ a {
   right: 30px;
   cursor: pointer;
   font-size: 3em;
+  z-index: 20;
 }
 
 .ok-main-contact-icons {
@@ -487,6 +488,10 @@ a {
   width: 2.2em !important;
   height: 2.2em !important;
   font-size: 1.75em;
+}
+
+.ok-main-connect-icons {
+  margin-right: 0.3em;
 }
 
 .help-block.help-block-error {
@@ -503,6 +508,7 @@ a {
 .ok-main-badge-wishlist, .ok-main-badge-cart {
   margin-left: 0.2em;
 }
+
 //<<< main
 
 //product >>>
@@ -534,6 +540,7 @@ a {
     }
   }
 }
+
 //<<< product
 
 //account >>>
@@ -543,6 +550,7 @@ a {
     border-bottom: 1px solid $grey-lighter;
   }
 }
+
 //<<< account
 
 .ok-table-btn {
@@ -678,4 +686,5 @@ a {
     border-color: transparent;
   }
 }
+
 //<<< pagination

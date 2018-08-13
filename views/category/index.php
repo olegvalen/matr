@@ -61,7 +61,9 @@ $this->title = $title;
                         </div>
                     </div>
                     <div class="level-right">
-                        <?= \yii\widgets\LinkPager::widget(['pagination' => $pages, 'prevPageLabel' => '<', 'nextPageLabel' => '>']); ?>
+                        <div class="level-item">
+                            <?= \yii\widgets\LinkPager::widget(['pagination' => $pages, 'prevPageLabel' => '<', 'nextPageLabel' => '>']); ?>
+                        </div>
                     </div>
                 </nav>
 

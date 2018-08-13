@@ -6546,7 +6546,8 @@ a {
   bottom: 30px;
   right: 30px;
   cursor: pointer;
-  font-size: 3em; }
+  font-size: 3em;
+  z-index: 20; }
 
 .ok-main-contact-icons {
   border: 3px solid whitesmoke;
@@ -6555,6 +6556,9 @@ a {
   width: 2.2em !important;
   height: 2.2em !important;
   font-size: 1.75em; }
+
+.ok-main-connect-icons {
+  margin-right: 0.3em; }
 
 .help-block.help-block-error {
   display: block;
