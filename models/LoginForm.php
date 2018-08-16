@@ -64,6 +64,10 @@ class LoginForm extends Model
                 $user->generateAuthKey();
                 $user->save();
             }
+            if (Yii::$app->user->getReturnUrl() == '/yii2admin') {
+                if (!$user->is_admin)
+                    return false;
+            }
             return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0);
         }
         return false;

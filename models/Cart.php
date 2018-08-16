@@ -148,4 +148,18 @@ class Cart extends ActiveRecord
         return false;
     }
 
+    public static function getProductsIDs()
+    {
+        $cart = Cart::find()
+            ->where(['user_id' => Yii::$app->user->getId()])->all();
+        if ($cart) {
+            $array = array();
+            foreach ($cart as $item) {
+                $array[] = $item->product_id;
+            }
+            return $array;
+        }
+        return $cart;
+    }
+
 }

@@ -6,6 +6,7 @@ use app\models\ChangepasswordForm;
 use app\models\ForgotpasswordForm;
 use app\models\NewcustomerForm;
 use app\models\Product;
+use app\models\Cart;
 use app\models\Subscribe;
 use app\models\SubscribeForm;
 use Yii;
@@ -77,6 +78,7 @@ class SiteController extends Controller
             'productsCheap' => Product::getProductsByIds([10, 1, 4, 5]),
             'productsPopular' => Product::getProductsByIds([2, 7, 11, 9]),
             'productsPremium' => Product::getProductsByIds([14, 12, 15, 13]),
+            'cartProductsIDs' => Cart::getProductsIDs(),
         ]);
 
     }

@@ -118,9 +118,14 @@ $(document).ready(function () {
     });
 
     $('.ok-carousel-wishlist, .ok-product-wishlist').on('click', function (e) {
-        e.preventDefault();
-        var doc = $(document);
         var self = $(this);
+        if (self.hasClass('is-warning')) {
+            return;
+        }
+        e.preventDefault();
+        self.addClass('is-warning');
+        self.attr('href', '/wishlist');
+        var doc = $(document);
         var id = self.data('id');
         $.ajax({
             url: '/wishlist/add',
@@ -256,15 +261,20 @@ $(document).ready(function () {
     });
 
     $('.ok-product-cart,.ok-carousel-cart').on('click', function (e) {
-        e.preventDefault();
-        var doc = $(document);
         var self = $(this);
+        if (self.hasClass('is-warning')) {
+            self.attr('href', '/cart');
+            return;
+        }
+        e.preventDefault();
+        self.addClass('is-warning');
+        // self.attr('href', '/cart');
+        var doc = $(document);
         var id = self.data('id');
         var attribute_id = $('option:selected', $(document).find('#size-option')).val();
         if (attribute_id === undefined) {
             attribute_id = '';
         }
-
         $.ajax({
             url: '/cart/add',
             data: {id: id, attribute_id: attribute_id, pathname: window.location.pathname},

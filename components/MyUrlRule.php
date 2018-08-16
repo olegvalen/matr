@@ -65,6 +65,8 @@ class MyUrlRule implements UrlRuleInterface
             // 1/images/image-by-item-and-alias
             if ($parts[1] == 'images') {
                 return $params['item0'] . $params['item'] . $params['dirtyAlias'];
+            } else { //yii2admin/attribute-group/view?id=1
+                return $route . (!empty($params) ? '?' . http_build_query($params) : '');
             }
         }
     }

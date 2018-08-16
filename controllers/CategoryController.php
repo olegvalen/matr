@@ -10,6 +10,7 @@ namespace app\controllers;
 
 use app\models\Category;
 use app\models\Product;
+use app\models\Cart;
 use Yii;
 use yii\data\Pagination;
 use yii\web\Controller;
@@ -33,7 +34,7 @@ class CategoryController extends Controller
             } elseif ($get['sort'] == 'expensive') {
                 $sortOrder = 'price DESC';
                 $data['sortName'] = 'По убыванию цены';
-            } elseif ($get['sort'] == 'rating'){
+            } elseif ($get['sort'] == 'rating') {
                 $data['sortName'] = 'По рейтингу';
             }
         }
@@ -72,6 +73,8 @@ class CategoryController extends Controller
             $this->getMetaTags($category->name, $this->getSortedFilter($getFilter, $data['filter']), $data['filter'], $get);
 
         $data['text_description'] = $category->categoryDescriptions->text_description;
+
+        $data['cartProductsIDs'] = Cart::getProductsIDs();
 
         return $this->render('index', $data);
     }

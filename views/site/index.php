@@ -17,6 +17,7 @@ use yii\bootstrap\ActiveForm;
         <h2 class="title is-4">Недорогие матрасы</h2>
         <?= $this->render('carousel', [
             'products' => $productsCheap,
+            'cartProductsIDs' => $cartProductsIDs,
         ]) ?>
     </div>
 </section>
@@ -26,6 +27,7 @@ use yii\bootstrap\ActiveForm;
         <h2 class="title is-4">Популярные матрасы</h2>
         <?= $this->render('carousel', [
             'products' => $productsPopular,
+            'cartProductsIDs' => $cartProductsIDs,
         ]) ?>
     </div>
 </section>
@@ -35,6 +37,7 @@ use yii\bootstrap\ActiveForm;
         <h2 class="title is-4">Премиум матрасы</h2>
         <?= $this->render('carousel', [
             'products' => $productsPremium,
+            'cartProductsIDs' => $cartProductsIDs,
         ]) ?>
     </div>
 </section>
