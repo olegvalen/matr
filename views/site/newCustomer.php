@@ -65,7 +65,9 @@ use yii\bootstrap\ActiveForm;
             </div>
             <div class="field">
                 <div class="control">
-                    <button class="button is-primary is-medium">Создать</button>
+                    <button class="button is-primary is-medium" onclick="ga('send', 'event', 'registration', 'click');">
+                        Создать
+                    </button>
                 </div>
             </div>
         </div>

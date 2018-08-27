@@ -48,6 +48,8 @@ class MyUrlRule implements UrlRuleInterface
 
                     return "{$url}{$filter}{$urlParams}";
                 }
+            } elseif ($parts[0] == 'blog') {
+                return $parts[0] . '/' . $params['blog'];
             }
             $model = Category::findOne($parts[1]);
             return $model->seo_url;
@@ -92,6 +94,8 @@ class MyUrlRule implements UrlRuleInterface
             if ($count) {
                 return ['product/index', array('product' => $parts[0])];
             }
+        } elseif (count($parts) == 2) {
+            return ['blog/blog', array('blog' => $parts[1])];
         } elseif ($parts[1] == 'filter') {
             $params = ['category' => $parts[0], 'filter' => ''];
             $filters = explode(';', $parts[2]);

@@ -61,6 +61,7 @@ class Category extends ActiveRecord
                     'description' => $a->attributeDescriptions->description,
                     'keyword' => $a->attributeDescriptions->keyword,
                     'h1' => $a->attributeDescriptions->h1,
+                    'text_description' => $a->attributeDescriptions->text_description,
                 ];
             }
             $filter[] = [

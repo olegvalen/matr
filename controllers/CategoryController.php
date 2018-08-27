@@ -69,10 +69,11 @@ class CategoryController extends Controller
         $data['products'] = $products;
         $data['pages'] = $pages;
 
-        list($data['description'], $data['keywords'], $data['robots'], $data['title'], $data['h1']) =
-            $this->getMetaTags($category->name, $this->getSortedFilter($getFilter, $data['filter']), $data['filter'], $get);
+        $adTextDescription = '';
+        list($data['description'], $data['keywords'], $data['robots'], $data['title'], $data['h1'], $adTextDescription) =
+            $this->getMetaTags($category, $this->getSortedFilter($getFilter, $data['filter']), $data['filter'], $get);
 
-        $data['text_description'] = $category->categoryDescriptions->text_description;
+        $data['text_description'] = empty($adTextDescription) ? $category->categoryDescriptions->text_description : $adTextDescription;
 
         $data['cartProductsIDs'] = Cart::getProductsIDs();
 
@@ -156,11 +157,13 @@ class CategoryController extends Controller
         return $ids;
     }
 
-    public function getMetaTags($categoryName, $getFilter, $filter, $get)
+    public function getMetaTags($category, $getFilter, $filter, $get)
     {
         $description = $keywords = $robots = $title = $h1 = '';
+        $descriptionFollow = $keywordsFollow = $robots = $titleFollow = $h1Follow = '';
         $noindex = 'index';
         $nofollow = 'follow';
+        $adTextDescription = '';
 
         $noi = 0;
         $nof = 0;
@@ -177,10 +180,10 @@ class CategoryController extends Controller
                     $nof++;
                 }
 
-                $description .= "{$agd['description']} ";
-                $keywords .= "{$agd['keyword']} ";
-                $title .= "{$agd['title']} ";
-                $h1 .= "{$agd['h1']} ";
+//                $description .= "{$agd['description']} ";
+//                $keywords .= "{$agd['keyword']} ";
+//                $title .= "{$agd['title']} ";
+//                $h1 .= "{$agd['h1']} ";
                 $num_groups = 0;
                 foreach ($agd['attrs'] as $ad) {
                     if (in_array($ad['seo_url'], $getFilter[$agd['seo_url']])) {
@@ -188,6 +191,14 @@ class CategoryController extends Controller
                         $keywords .= "{$ad['keyword']}, ";
                         $title .= "{$ad['title']}, ";
                         $h1 .= "{$ad['h1']}, ";
+
+                        $descriptionFollow = $ad['description'];
+                        $keywordsFollow = $ad['keyword'];
+                        $titleFollow = $ad['title'];
+                        $h1Follow = $ad['h1'];
+                        $adTextDescription = $ad['text_description'];
+
+
                         $num_groups++;
                         if ($num_groups > 1) {
                             $noindex = 'noindex';
@@ -195,16 +206,12 @@ class CategoryController extends Controller
                         }
                     }
                 }
-                $description = rtrim($description, ', ') . ' ';
-                $keywords = rtrim($keywords, ', ') . ', ';
-                $title = rtrim($title, ', ') . ', ';
-                $h1 = rtrim($h1, ', ') . ' ';
             }
         }
-        if ($noi > 2) {
+        if ($noi > 1) {
             $noindex = 'noindex';
         }
-        if ($nof > 2) {
+        if ($nof > 1) {
             $nofollow = 'nofollow';
         }
 
@@ -213,13 +220,32 @@ class CategoryController extends Controller
             $nofollow = 'noindex';
         }
 
-        $description = rtrim(Yii::$app->myComponent->mb_ucfirst($categoryName, 'UTF-8') . ' ' . rtrim($description, ' '), ' ') . '. ' . Yii::$app->params['descriptionEnd'];
-        $keywords = rtrim(Yii::$app->myComponent->mb_ucfirst($categoryName, 'UTF-8') . ' ' . rtrim($keywords, ', '), ' ');
-        $title = rtrim(Yii::$app->params['titleStart'] . ' ' . $categoryName . ' ' . rtrim($title, ', '), ' ') . ' ' . Yii::$app->params['titleEnd'];
-        $h1 = Yii::$app->myComponent->mb_ucfirst($categoryName, 'UTF-8') . ' ' . rtrim($h1, ' ');
+        if ($getFilter) {
+            if ($noindex == 'noindex') {
+                $description = rtrim($description, ', ') . Yii::$app->params['descriptionEnd'];
+                $keywords = rtrim($keywords, ', ');
+                $title = rtrim($title, ', ');
+                $h1 = rtrim($h1, ', ');
+                $adTextDescription = '';
+            } else {
+                $description = $descriptionFollow . Yii::$app->params['descriptionEnd'];
+                $keywords = $keywordsFollow;
+                $title = $titleFollow;
+                $h1 = $h1Follow;
+            }
+        } else {
+            $description = $category->categoryDescriptions->description;
+            $keywords = $category->categoryDescriptions->keyword;
+            $title = $category->categoryDescriptions->title;
+            $h1 = $category->categoryDescriptions->h1;
+        }
+        $description = Yii::$app->myComponent->mb_uctoupper($description, 'UTF-8');
+        $title = Yii::$app->myComponent->mb_uctoupper($title, 'UTF-8');
+        $h1 = Yii::$app->myComponent->mb_uctoupper($h1, 'UTF-8');
+
         $robots = $noindex . ', ' . $nofollow;
 
-        return [$description, $keywords, $robots, $title, $h1];
+        return [$description, $keywords, $robots, $title, $h1, $adTextDescription];
     }
 
 }

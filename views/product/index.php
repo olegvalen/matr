@@ -72,12 +72,13 @@ $formatter = Yii::$app->formatter;
                 </div>
                 <hr>
                 <div class="buttons">
-                    <a class="button is-primary is-large ok-product-cart" title="В корзину"
+                    <a class="button is-primary <?= isset($cartProductsIDs) && in_array($product->product_id, $cartProductsIDs) ? 'is-warning ' : '' ?> is-large ok-product-cart" title="В корзину"
                        data-id="<?= $product->product_id ?>"><span class="icon is-small"><i
                                     class="fas fa-shopping-cart"></i></span><span>В корзину</span></a>
-                    <a class="button is-primary ok-product-wishlist" title="В избранное"
+                    <a class="button is-primary <?= isset($_SESSION['wishlist']) && key_exists($product->product_id, $_SESSION['wishlist']) ? 'is-warning ' : '' ?>ok-product-wishlist"
+                       title="В избранное"
                        data-id="<?= $product->product_id ?>"
-                       href="<?= Url::to(['wishlist/add', 'id' => $product->product_id]) ?>"><span
+                       href="<?= isset($_SESSION['wishlist']) && key_exists($product->product_id, $_SESSION['wishlist']) ? Url::to(['wishlist/index']) : Url::to(['wishlist/add', 'id' => $product->product_id]) ?>"><span
                                 class="icon is-small"><i
                                     class="fas fa-heart"></i></span><span>В избранное</span></a>
                 </div>

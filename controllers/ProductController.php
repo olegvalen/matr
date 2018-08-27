@@ -10,6 +10,7 @@ namespace app\controllers;
 
 use app\models\Category;
 use app\models\Product;
+use app\models\Cart;
 use app\models\ProductOption;
 use Yii;
 use yii\data\Pagination;
@@ -24,7 +25,6 @@ class ProductController extends Controller
     {
 
         $data = [];
-        $data['test'] = 'test';
 
         $get = Yii::$app->request->get();
 
@@ -53,6 +53,8 @@ class ProductController extends Controller
         } else {
             $data['price'] = 0;
         };
+
+        $data['cartProductsIDs'] = Cart::getProductsIDs();
 
         return $this->render('index', $data);
     }

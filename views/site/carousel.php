@@ -13,7 +13,7 @@ use yii\helpers\Html;
                     <a href="<?= Url::to("/{$item->seo_url}") ?>"
                        title="<?= $item['name'] ?>">
                         <figure class="image">
-                            <?= Html::img("/{$item->getImage()->getPath('300x')}", ['alt' => $item['name']]) ?>
+                            <?= Html::img("/{$item->getImage()->getPath('300x300')}", ['alt' => $item['name']]) ?>
                         </figure>
                     </a>
                     <p class="has-text-centered"><a href="<?= Url::to("/{$item->seo_url}") ?>"

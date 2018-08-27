@@ -94,6 +94,8 @@ AppAsset::register($this);
                                 <?php endif; ?>
                             </div>
                         </a>
+                        <a class="navbar-item has-text-grey" href="<?= Url::to(['blog/index']) ?>"
+                           title="Блог">Блог</a>
                         <?php if (!Yii::$app->user->isGuest): ?>
                             <a class="navbar-item has-text-grey" href="<?= Url::to(['site/logout']) ?>"
                                title="Выход">Выход</a>
@@ -205,7 +207,7 @@ AppAsset::register($this);
                             class="icon is-medium" style="color: #3b5999"><i
                                 class="fab fa-facebook fa-2x"></i></span></a>
                 <a class="ok-main-connect-icons" title="Google+"
-                   onclick="window.open('////plus.google.com/share?url=<?= Url::base(true) ?><?= Url::current() ?>', '_blank', 'scrollbars=0, resizable=1, menubar=0, left=100, top=100, width=550, height=440, toolbar=0, status=0');return false"
+                   onclick="window.open('//plus.google.com/share?url=<?= Url::base(true) ?><?= Url::current() ?>', '_blank', 'scrollbars=0, resizable=1, menubar=0, left=100, top=100, width=550, height=440, toolbar=0, status=0');return false"
                    target="_blank" rel="nofollow"><span
                             class="icon is-medium" style="color: #dd4b39"><i
                                 class="fab fa-google-plus fa-2x"></i></span></a>

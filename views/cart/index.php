@@ -106,12 +106,14 @@ use yii\helpers\Html;
                     </tr>
                     <tr>
                         <td colspan="5">Сумма:</td>
-                        <td class="has-text-centered"><span class="ok-cart-sum"><?= Yii::$app->formatter->asInteger($cartSum) ?></span></td>
+                        <td class="has-text-centered"><span
+                                    class="ok-cart-sum"><?= Yii::$app->formatter->asInteger($cartSum) ?></span></td>
                         <td></td>
                     </tr>
                     <tr>
                         <td colspan="7" class="ok-table-btn">
-                            <a class="button is-primary is-large ok-cart-checkout" title="Заказать">
+                            <a class="button is-primary is-large ok-cart-checkout" title="Заказать"
+                               onclick="ga('send', 'event', 'order', 'click');">
                                 <span class="icon is-small"><i class="fas fa-check"></i></span><span>Заказать</span></a>
                         </td>
                     </tr>

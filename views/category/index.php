@@ -74,7 +74,7 @@ $this->title = $title;
                                 <a href="<?= Url::to("/{$item->seo_url}") ?>"
                                    title="<?= $item['name'] ?>">
                                     <figure class="image">
-                                        <?= Html::img("/{$item->getImage()->getPath('300x')}", ['alt' => $item['name']]) ?>
+                                        <?= Html::img("/{$item->getImage()->getPath('300x300')}", ['alt' => $item['name']]) ?>
                                     </figure>
                                 </a>
                                 <p class="has-text-centered"><a href="<?= Url::to("/{$item->seo_url}") ?>"
@@ -108,6 +108,6 @@ $this->title = $title;
         </div>
     </div>
 </section>
-<section class="section">
-    <div class="container"><?= $text_description ?></div>
+<section class="section container content">
+    <?= $text_description ?>
 </section>
